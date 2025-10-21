@@ -26,7 +26,7 @@ If our work resonates with you, we warmly invite you to connect and collaborate 
     </sup>
 </div>
 <div>&nbsp;</div>
-  <img src="../images/AI4C_logo.png" />
+  <img src="../images/logo1.png" />
 </div>
 
 
