@@ -1,0 +1,1 @@
+# aigcresearch.github.io
