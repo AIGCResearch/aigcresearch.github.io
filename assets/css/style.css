@@ -119,3 +119,56 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
   padding: 6px 14px;
 }
 .btn-ghost:hover { color: var(--accent-cyan); border-color: var(--border-subtle); }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: background var(--transition), padding var(--transition);
+}
+.nav.scrolled {
+  background: rgba(5, 13, 26, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.nav__logo-icon {
+  font-size: 1.4rem;
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px var(--accent-cyan));
+}
+.nav__logo strong { color: var(--accent-cyan); }
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.9rem;
+}
+.nav__links a:not(.btn) {
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.nav__links a:not(.btn):hover { color: var(--text-primary); }
+.nav__toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.4rem; cursor: pointer; }
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__toggle { display: block; }
+}

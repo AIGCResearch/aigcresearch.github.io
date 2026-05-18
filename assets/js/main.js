@@ -1,4 +1,11 @@
-// Initialized in later tasks
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('AIGC Research loaded');
+  initNav();
+  AOS.init({ duration: 700, once: true, offset: 80 });
 });
+
+function initNav() {
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+}
