@@ -188,6 +188,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
 #hero-canvas {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 }
 .hero__overlay {
@@ -225,6 +227,10 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
 .hide-mobile { display: inline; }
 
 /* Stats bar */
+.hero__stats-wrapper {
+  margin-top: auto;
+  padding-bottom: 3rem;
+}
 .hero__stats {
   position: relative;
   z-index: 2;
@@ -232,13 +238,11 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
   align-items: center;
   gap: 0;
   padding: 1.5rem;
-  margin-top: auto;
   background: rgba(10,22,40,0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  margin-bottom: 3rem;
 }
 .hero__stat { flex: 1; text-align: center; }
 .hero__stat-num {
