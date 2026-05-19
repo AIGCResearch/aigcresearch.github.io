@@ -4,59 +4,147 @@ interface Props { memberZh: Member; memberEn: Member; }
 const { memberZh, memberEn } = Astro.props;
 ---
 <article class="member reveal">
-  <div class="member-avatar" aria-hidden="true">
-    {memberZh.avatar
-      ? <img src={memberZh.avatar} alt="" />
-      : <span class="member-monogram">{memberZh.monogram}</span>
-    }
+  <div class="member-portrait" aria-hidden="true">
+    <div class="member-portrait-frame"></div>
+    <div class="member-portrait-glow"></div>
+    <div class="member-avatar">
+      {memberZh.avatar
+        ? <img src={memberZh.avatar} alt="" />
+        : <span class="member-monogram">{memberZh.monogram}</span>
+      }
+    </div>
   </div>
-  <h3 class="member-name">
-    <span data-lang="zh">{memberZh.name}</span><span data-lang="en">{memberEn.name}</span>
-  </h3>
-  <p class="member-role">
-    <span data-lang="zh">{memberZh.role}</span><span data-lang="en">{memberEn.role}</span>
-  </p>
-  <p class="member-aff">
-    <span data-lang="zh">{memberZh.affiliation}</span><span data-lang="en">{memberEn.affiliation}</span>
-  </p>
-  <p class="member-bio">
-    <span data-lang="zh">{memberZh.bio}</span><span data-lang="en">{memberEn.bio}</span>
-  </p>
+  <div class="member-info">
+    <h3 class="member-name">
+      <span data-lang="zh">{memberZh.name}</span><span data-lang="en">{memberEn.name}</span>
+    </h3>
+    <p class="member-role">
+      <span class="member-role-dot" aria-hidden="true"></span>
+      <span data-lang="zh">{memberZh.role}</span><span data-lang="en">{memberEn.role}</span>
+    </p>
+    <p class="member-aff">
+      <span data-lang="zh">{memberZh.affiliation}</span><span data-lang="en">{memberEn.affiliation}</span>
+    </p>
+    <hr class="member-rule" aria-hidden="true" />
+    <p class="member-bio">
+      <span data-lang="zh">{memberZh.bio}</span><span data-lang="en">{memberEn.bio}</span>
+    </p>
+  </div>
 </article>
 
 <style>
   .member {
+    position: relative;
     text-align: center;
-    padding: 32px 24px;
-    background: var(--surface);
+    padding: 36px 28px 32px;
+    background: linear-gradient(180deg, rgba(20, 42, 74, 0.55) 0%, rgba(11, 26, 46, 0.6) 100%);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-card);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-card);
-    transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+    transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+    overflow: hidden;
+  }
+  .member::before {
+    content: "";
+    position: absolute;
+    top: 14px; left: 14px;
+    width: 14px; height: 14px;
+    border-top: 1px solid var(--accent-cyan);
+    border-left: 1px solid var(--accent-cyan);
+    opacity: 0.55;
+  }
+  .member::after {
+    content: "";
+    position: absolute;
+    bottom: 14px; right: 14px;
+    width: 14px; height: 14px;
+    border-bottom: 1px solid var(--accent-cyan);
+    border-right: 1px solid var(--accent-cyan);
+    opacity: 0.55;
   }
   .member:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     border-color: var(--surface-border-strong);
     box-shadow: var(--shadow-card-hover);
   }
+
+  /* Portrait: hexagonal-feeling round frame with rotating accent ring */
+  .member-portrait {
+    position: relative;
+    width: 116px;
+    height: 116px;
+    margin: 4px auto 24px;
+  }
+  .member-portrait-frame {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1.5px;
+    background: conic-gradient(from 200deg, transparent 0%, var(--accent-cyan) 20%, transparent 35%, var(--accent-violet) 60%, transparent 80%, var(--accent-cyan) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    filter: drop-shadow(0 0 8px rgba(127, 215, 255, 0.4));
+    animation: member-ring-spin 22s linear infinite;
+  }
+  .member-portrait-glow {
+    position: absolute;
+    inset: -18%;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(127, 215, 255, 0.22) 0%, transparent 70%);
+    filter: blur(14px);
+  }
   .member-avatar {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 18px;
+    position: absolute;
+    inset: 8%;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--accent-aurora);
-    border: 2px solid rgba(127, 215, 255, 0.4);
-    box-shadow: 0 0 24px rgba(127, 215, 255, 0.15);
     overflow: hidden;
   }
   .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .member-monogram { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: #0B1A2E; }
-  .member-name { margin-bottom: 4px; font-size: 18px; }
-  .member-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 8px; }
-  .member-aff { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
-  .member-bio { font-size: 14px; color: var(--text-muted); }
+  .member-monogram {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 700;
+    color: #06090F;
+    letter-spacing: 0.02em;
+  }
+  @keyframes member-ring-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .member-portrait-frame { animation: none; } }
+
+  .member-info { display: flex; flex-direction: column; align-items: center; }
+  .member-name { margin-bottom: 8px; font-size: 19px; letter-spacing: 0.02em; }
+  .member-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 6px;
+  }
+  .member-role-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px rgba(127, 215, 255, 0.7);
+  }
+  .member-aff { font-size: 13px; color: var(--text-primary); opacity: 0.85; }
+  .member-rule {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    border: 0;
+    margin: 16px 0 12px;
+  }
+  .member-bio { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  html[lang="en"] .member-bio { line-height: 1.55; }
 </style>

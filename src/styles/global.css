@@ -85,6 +85,50 @@ section.section {
   section.section { padding-block: var(--pad-section-mobile); }
 }
 
+/* Section header layout — eyebrow row with chapter number on the left.
+   Components opt-in by wrapping their eyebrow + title in <header class="section-head">. */
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  margin-bottom: 56px;
+}
+.section-chapter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+  flex-shrink: 0;
+  min-width: 88px;
+}
+.section-chapter-num {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.section-chapter-tick {
+  width: 24px;
+  height: 1px;
+  background: var(--accent-cyan);
+}
+.section-head-body {
+  flex: 1;
+  min-width: 0;
+}
+@media (max-width: 768px) {
+  .section-head { flex-direction: column; gap: 18px; margin-bottom: 36px; }
+  .section-chapter { flex-direction: row; align-items: center; min-width: 0; gap: 12px; padding-top: 0; }
+  .section-chapter-num { font-size: 22px; }
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -108,6 +152,12 @@ section.section {
   gap: 14px;
   margin-bottom: 18px;
   margin-top: 14px;
+  font-size: clamp(28px, 3.6vw, 42px);
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, #FFFFFF 0%, #B6CBFF 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
 }
 .section-title::before {
   content: "";
@@ -116,12 +166,28 @@ section.section {
   border-radius: 50%;
   background: var(--accent-aurora);
   box-shadow: 0 0 12px rgba(155, 123, 255, 0.6), 0 0 28px rgba(127, 215, 255, 0.35);
+  flex-shrink: 0;
 }
 
+/* Cinematic en-dash chapter rule between sections */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(120, 180, 255, 0.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(120, 180, 255, 0.28), transparent);
   border: 0;
   margin: 0;
+  position: relative;
 }
+.section-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 14px rgba(127, 215, 255, 0.5);
+}
+
 

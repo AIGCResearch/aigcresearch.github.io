@@ -7,17 +7,27 @@ const e = en.directions;
 <section class="section directions" id="directions" aria-labelledby="directions-title">
   <hr class="section-divider" />
   <div class="container">
-    <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
-    <h2 class="section-title reveal" id="directions-title">
-      <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
-    </h2>
-    <p class="lede reveal">
-      <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
-    </p>
+    <header class="section-head">
+      <div class="section-chapter">
+        <span class="section-chapter-tick"></span>
+        <span class="section-chapter-num">02</span>
+        <span>Chapter</span>
+      </div>
+      <div class="section-head-body">
+        <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
+        <h2 class="section-title reveal" id="directions-title">
+          <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
+        </h2>
+        <p class="lede reveal">
+          <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
+        </p>
+      </div>
+    </header>
 
     <div class="dir-grid">
       {z.items.map((d, i) => (
         <article class="dir-card reveal">
+          <span class="dir-card-watermark" aria-hidden="true">{i === 0 ? "GCI" : "ICW"}</span>
           <header class="dir-head">
             <span class="dir-index">{String(i + 1).padStart(2, "0")}</span>
             <div>
@@ -30,6 +40,7 @@ const e = en.directions;
             </div>
           </header>
           <p class="dir-tagline">
+            <span class="dir-tagline-decor" aria-hidden="true">»</span>
             <span data-lang="zh">{d.tagline}</span><span data-lang="en">{e.items[i].tagline}</span>
           </p>
           <p class="dir-body">
@@ -49,18 +60,28 @@ const e = en.directions;
 </section>
 
 <style>
-  .lede { max-width: 820px; color: var(--text-muted); font-size: 17px; margin-bottom: 56px; }
-  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .lede {
+    max-width: 760px;
+    color: var(--text-muted);
+    font-size: 17px;
+    margin-top: 20px;
+    line-height: 1.85;
+  }
+  html[lang="en"] .lede { line-height: 1.65; }
+
+  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
   .dir-card {
     position: relative;
-    padding: 32px;
-    background: var(--surface);
+    padding: 44px 36px 36px;
+    background:
+      linear-gradient(170deg, rgba(20, 42, 74, 0.65) 0%, rgba(11, 26, 46, 0.55) 60%, rgba(6, 9, 15, 0.55) 100%);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-card);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-card);
-    transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+    transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
     overflow: hidden;
+    isolation: isolate;
   }
   .dir-card::before {
     content: "";
@@ -68,47 +89,85 @@ const e = en.directions;
     inset: -1px;
     border-radius: var(--radius-card);
     padding: 1px;
-    background: linear-gradient(135deg, transparent 40%, rgba(127, 215, 255, 0.4) 60%, transparent 80%);
+    background: linear-gradient(135deg, transparent 30%, rgba(127, 215, 255, 0.5) 60%, rgba(155, 123, 255, 0.4) 80%, transparent 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask-composite: exclude;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 240ms var(--ease-out);
+    transition: opacity 320ms var(--ease-out);
   }
-  .dir-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
+  .dir-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(70% 60% at 80% 100%, rgba(155, 123, 255, 0.12), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .dir-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card-hover); border-color: var(--surface-border-strong); }
   .dir-card:hover::before { opacity: 1; }
 
-  .dir-head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 16px; }
+  .dir-card-watermark {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-family: var(--font-mono);
+    font-size: 78px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: rgba(127, 215, 255, 0.05);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .dir-head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 22px; }
   .dir-index {
     font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    padding: 4px 10px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    padding: 5px 12px;
     border-radius: 6px;
-    background: rgba(127, 215, 255, 0.08);
+    background: rgba(127, 215, 255, 0.1);
+    border: 1px solid rgba(127, 215, 255, 0.25);
     color: var(--accent-cyan);
+    flex-shrink: 0;
   }
-  .dir-title { font-size: 24px; }
-  .dir-subtitle { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; color: var(--text-muted); margin-top: 4px; }
+  .dir-title { font-size: 26px; letter-spacing: 0.01em; }
+  .dir-subtitle { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; }
 
-  .dir-tagline { font-size: 16px; color: var(--accent-cyan); margin-bottom: 16px; }
-  .dir-body { color: var(--text-muted); font-size: 15px; }
+  .dir-tagline {
+    font-size: 16px;
+    color: var(--accent-cyan);
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dir-tagline-decor { font-family: var(--font-mono); font-weight: 700; opacity: 0.7; }
+  .dir-body { color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+  html[lang="en"] .dir-body { line-height: 1.6; }
 
-  .dir-tags { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .dir-tags { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    padding: 5px 10px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 5px 11px;
     border-radius: var(--radius-pill);
-    background: rgba(155, 123, 255, 0.08);
-    border: 1px solid rgba(155, 123, 255, 0.18);
+    background: transparent;
+    border: 1px solid rgba(155, 123, 255, 0.32);
     color: #C9B9FF;
+    text-transform: uppercase;
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out);
   }
+  .tag:hover { border-color: var(--accent-violet); color: #DCC8FF; background: rgba(155, 123, 255, 0.08); }
 
   @media (max-width: 860px) {
-    .dir-grid { grid-template-columns: 1fr; }
+    .dir-grid { grid-template-columns: 1fr; gap: 18px; }
+    .dir-card { padding: 32px 24px; }
+    .dir-card-watermark { font-size: 56px; top: 18px; right: 20px; }
   }
 </style>

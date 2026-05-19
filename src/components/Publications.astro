@@ -9,13 +9,23 @@ const e = en.publications;
 <section class="section publications" id="publications" aria-labelledby="publications-title">
   <hr class="section-divider" />
   <div class="container">
-    <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
-    <h2 class="section-title reveal" id="publications-title">
-      <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
-    </h2>
-    <p class="lede reveal">
-      <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
-    </p>
+    <header class="section-head">
+      <div class="section-chapter">
+        <span class="section-chapter-tick"></span>
+        <span class="section-chapter-num">03</span>
+        <span>Chapter</span>
+      </div>
+      <div class="section-head-body">
+        <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
+        <h2 class="section-title reveal" id="publications-title">
+          <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
+        </h2>
+        <p class="lede reveal">
+          <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
+        </p>
+      </div>
+    </header>
+
     <div class="pub-grid">
       {z.items.map((it, i) => (
         <PubCard itemZh={it} itemEn={e.items[i]} />
@@ -25,12 +35,20 @@ const e = en.publications;
 </section>
 
 <style>
-  .lede { max-width: 820px; color: var(--text-muted); font-size: 17px; margin-bottom: 56px; }
+  .lede {
+    max-width: 760px;
+    color: var(--text-muted);
+    font-size: 17px;
+    margin-top: 20px;
+    line-height: 1.85;
+  }
+  html[lang="en"] .lede { line-height: 1.65; }
+
+  /* 2-column grid — bigger thumbnails so each project reads as a film card */
   .pub-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
-  @media (max-width: 1180px) { .pub-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px)  { .pub-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .pub-grid { grid-template-columns: 1fr; gap: 18px; } }
 </style>

@@ -8,13 +8,22 @@ const e = en.team;
 <section class="section team" id="team" aria-labelledby="team-title">
   <hr class="section-divider" />
   <div class="container">
-    <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
-    <h2 class="section-title reveal" id="team-title">
-      <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
-    </h2>
-    <p class="lede reveal">
-      <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
-    </p>
+    <header class="section-head">
+      <div class="section-chapter">
+        <span class="section-chapter-tick"></span>
+        <span class="section-chapter-num">04</span>
+        <span>Chapter</span>
+      </div>
+      <div class="section-head-body">
+        <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
+        <h2 class="section-title reveal" id="team-title">
+          <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
+        </h2>
+        <p class="lede reveal">
+          <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
+        </p>
+      </div>
+    </header>
 
     <div class="member-grid">
       {z.members.map((m, i) => (
@@ -22,9 +31,14 @@ const e = en.team;
       ))}
     </div>
 
-    <p class="advisors-label reveal">
-      <span data-lang="zh">{z.advisorsLabel}</span><span data-lang="en">{e.advisorsLabel}</span>
-    </p>
+    <div class="advisors-divider reveal" aria-hidden="true">
+      <span class="advisors-line"></span>
+      <span class="advisors-label">
+        <span data-lang="zh">{z.advisorsLabel}</span><span data-lang="en">{e.advisorsLabel}</span>
+      </span>
+      <span class="advisors-line"></span>
+    </div>
+
     <div class="member-grid member-grid--advisors">
       {z.advisors.map((m, i) => (
         <MemberCard memberZh={m} memberEn={e.advisors[i]} />
@@ -34,30 +48,47 @@ const e = en.team;
 </section>
 
 <style>
-  .lede { max-width: 820px; color: var(--text-muted); font-size: 17px; margin-bottom: 56px; }
+  .lede {
+    max-width: 760px;
+    color: var(--text-muted);
+    font-size: 17px;
+    margin-top: 20px;
+    line-height: 1.85;
+  }
+  html[lang="en"] .lede { line-height: 1.65; }
+
   .member-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 26px;
+  }
+
+  .advisors-divider {
+    margin: 72px auto 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 520px;
+  }
+  .advisors-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--surface-border-strong), transparent);
   }
   .advisors-label {
-    margin: 64px 0 24px;
     font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.22em;
+    font-size: 11px;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--accent-cyan);
-    position: relative;
-    padding-left: 18px;
+    white-space: nowrap;
   }
-  .advisors-label::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 50%;
-    width: 10px; height: 1px;
-    background: var(--accent-cyan);
+
+  .member-grid--advisors {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+    margin-inline: auto;
   }
-  .member-grid--advisors { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 720px; }
   @media (max-width: 860px) {
     .member-grid, .member-grid--advisors { grid-template-columns: 1fr; }
   }
