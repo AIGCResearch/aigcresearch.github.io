@@ -14,7 +14,7 @@ const items: NewsItem[] = [
     <span class="inline-block text-xs tracking-widest uppercase rounded-full px-3.5 py-1 mb-4" style="color:var(--accent-cyan);border:1px solid var(--border-subtle)">Updates</span>
     <h2 class="text-3xl md:text-4xl font-semibold mb-12 text-white">动态与新闻</h2>
     <div class="relative pl-8 max-w-3xl">
-      <div class="absolute left-0 top-2 bottom-2 w-px" style="background:linear-gradient(to bottom,var(--accent-cyan),transparent)"></div>
+      <div class="absolute left-0 top-2 bottom-2 w-px" style="background:linear-gradient(to bottom,var(--accent-cyan) 0%,var(--accent-cyan) 70%,transparent 100%);box-shadow:0 0 6px var(--accent-cyan)"></div>
       {items.map(item => (
         <div class="relative grid grid-cols-[80px_1fr] gap-6 py-5 border-b last:border-0" style="border-color:rgba(255,255,255,0.04)">
           <div
