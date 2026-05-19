@@ -1,0 +1,108 @@
+---
+import type { Publication } from "../data/types";
+interface Props { itemZh: Publication; itemEn: Publication; }
+const { itemZh, itemEn } = Astro.props;
+---
+<article class={`pub-card reveal${itemZh.featured ? " pub-card--featured" : ""}`}>
+  <div class="pub-thumb" aria-hidden="true">
+    <span class="pub-thumb-id">{itemZh.id}</span>
+  </div>
+  <div class="pub-body">
+    <h3 class="pub-title">{itemZh.title}</h3>
+    <p class="pub-tagline">
+      <span data-lang="zh">{itemZh.tagline}</span><span data-lang="en">{itemEn.tagline}</span>
+    </p>
+    <p class="pub-desc">
+      <span data-lang="zh">{itemZh.body}</span><span data-lang="en">{itemEn.body}</span>
+    </p>
+    <div class="pub-links">
+      {itemZh.links.map((l, i) => {
+        const enLink = itemEn.links[i];
+        const disabled = l.disabled;
+        const href = disabled ? undefined : l.href;
+        return (
+          <a
+            class={`pub-link${disabled ? " is-disabled" : ""}`}
+            href={href}
+            aria-disabled={disabled ? "true" : undefined}
+            title={disabled ? "Link coming soon" : undefined}
+          >
+            <span data-lang="zh">{l.label}</span><span data-lang="en">{enLink.label}</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</article>
+
+<style>
+  .pub-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
+    transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+  .pub-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--surface-border-strong);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .pub-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(92, 141, 255, 0.18), rgba(155, 123, 255, 0.18)),
+      url("/background.png") center / cover;
+    overflow: hidden;
+  }
+  .pub-thumb::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(6, 9, 15, 0.85) 100%);
+  }
+  .pub-thumb-id {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    z-index: 1;
+  }
+
+  .pub-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .pub-title { font-size: 18px; }
+  .pub-tagline { color: var(--accent-cyan); font-size: 13px; font-family: var(--font-mono); letter-spacing: 0.02em; }
+  .pub-desc { color: var(--text-muted); font-size: 14px; flex-grow: 1; }
+
+  .pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .pub-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--surface-border);
+    color: var(--text-muted);
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .pub-link:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .pub-link.is-disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+  /* Featured strip card: full-width banner style */
+  .pub-card--featured { grid-column: 1 / -1; flex-direction: row; }
+  .pub-card--featured .pub-thumb { width: 280px; aspect-ratio: auto; flex-shrink: 0; }
+  @media (max-width: 768px) {
+    .pub-card--featured { flex-direction: column; }
+    .pub-card--featured .pub-thumb { width: 100%; aspect-ratio: 16 / 9; }
+  }
+</style>
