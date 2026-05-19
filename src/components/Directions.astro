@@ -1,0 +1,44 @@
+---
+const directions = [
+  {
+    index: '01',
+    icon: '🧠',
+    title: '通用创意智能',
+    en: 'General Creative Intelligence / Agent',
+    desc: '从"理解人类创作行为"的角度出发，关注 AI 如何获得在创作中进行顶层设计的能力。核心问题不只是"如何生成素材"，而是"如何理解创作"。重点研究多模态感知、跨模态语义对齐、设计元素建模、美学认知与创作推理，使 AI 逐步演化为具有设计思维的创意智能体。',
+    tags: ['多模态感知', '跨模态设计对齐', '创作推理', '美学认知', '设计思维智能体'],
+  },
+  {
+    index: '02',
+    icon: '⚙️',
+    title: '智能创意工作流',
+    en: 'Intelligent Creative Workflow',
+    desc: '从"数字艺术资产的高效生产"出发，将创意智能体真正应用到内容生产流程中，减少重复性劳动、提升创作效率。覆盖从一维音频、二维图像、三维几何资产到四维视频的全数据形态，构建贴近影视动画创作实际的多模态交互机制，推动内容生产从繁琐工作流走向更加纯粹的创意流。',
+    tags: ['创意智能体落地', '2D / 3D / 4D 内容生产', '多模态交互', '影视动画工作流', 'Workflow → Creative Flow'],
+  },
+];
+---
+
+<section id="directions" class="py-24" style="background:var(--bg-primary)">
+  <div class="max-w-6xl mx-auto px-6">
+    <span class="inline-block text-xs tracking-widest uppercase rounded-full px-3.5 py-1 mb-4" style="color:var(--accent-cyan);border:1px solid var(--border-subtle)">Research Directions</span>
+    <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-white">具体研究方向</h2>
+    <p class="text-slate-400 max-w-2xl mb-12">围绕"通用创意智能"与"智能创意工作流"两大维度协同推进，构成从创意理解到创意生产的完整研究闭环。</p>
+    <div class="grid md:grid-cols-2 gap-5">
+      {directions.map(d => (
+        <div class="rounded-xl p-8 transition-transform duration-300 hover:-translate-y-1" style="background:linear-gradient(135deg,rgba(0,119,182,0.08) 0%,rgba(10,22,40,0.8) 100%);border:1px solid rgba(0,180,216,0.25);box-shadow:0 0 20px rgba(0,180,216,0.1)">
+          <div class="text-4xl mb-3">{d.icon}</div>
+          <div class="text-xs tracking-widest uppercase mb-1" style="color:rgba(0,180,216,0.6)">Direction {d.index}</div>
+          <h3 class="text-2xl font-semibold mb-1 text-white">{d.title}</h3>
+          <p class="text-xs italic text-slate-500 mb-4">{d.en}</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-5">{d.desc}</p>
+          <div class="flex flex-wrap gap-1.5">
+            {d.tags.map(t => (
+              <span class="text-xs rounded-full px-2.5 py-0.5" style="color:var(--accent-cyan);background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.25)">{t}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
