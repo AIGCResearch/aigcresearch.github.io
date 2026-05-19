@@ -6,7 +6,7 @@ import ParticleField from "./ParticleField.astro";
 const z = zh.hero;
 const e = en.hero;
 ---
-<section class="hero" id="top">
+<section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero-bg" aria-hidden="true">
     <ParticleField />
     <div class="hero-gradient"></div>
@@ -16,7 +16,7 @@ const e = en.hero;
     <p class="hero-eyebrow reveal">
       <span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span>
     </p>
-    <h1 class="hero-headline reveal">
+    <h1 class="hero-headline reveal" id="hero-title">
       <span data-lang="zh">{z.headline}</span><span data-lang="en">{e.headline}</span>
     </h1>
     <p class="hero-subhead reveal">
