@@ -11,7 +11,9 @@ const brandSub = zh.nav.brandSub;
 <header class="nav" id="nav">
   <div class="nav-inner container">
     <a class="brand" href="#top" aria-label="AIGC Research">
-      <span class="brand-mark">AI4C</span>
+      <span class="brand-logo" aria-hidden="true">
+        <img src="/images/logo-aigc.png" alt="" width="36" height="36" />
+      </span>
       <span class="brand-name">
         <span class="brand-name-main">{brand}</span>
         <span class="brand-name-sub">{brandSub}</span>
@@ -54,16 +56,18 @@ const brandSub = zh.nav.brandSub;
     padding-block: 18px;
   }
   .brand { display: inline-flex; align-items: center; gap: 12px; }
-  .brand-mark {
-    font-family: var(--font-mono);
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    padding: 4px 10px;
-    border-radius: 6px;
-    background: var(--accent-aurora);
-    color: #0B1A2E;
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #06090F;
+    box-shadow:
+      0 0 0 1px rgba(127, 215, 255, 0.25),
+      0 0 18px rgba(127, 215, 255, 0.18);
   }
+  .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
   .brand-name { display: inline-flex; flex-direction: column; line-height: 1.1; }
   .brand-name-main { font-weight: 600; font-size: 15px; color: var(--text-primary); }
   .brand-name-sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); }
