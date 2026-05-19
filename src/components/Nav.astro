@@ -1,0 +1,55 @@
+---
+const links = [
+  { href: '#directions', label: '研究方向' },
+  { href: '#foundations', label: '基础研究' },
+  { href: '#papers', label: '代表成果' },
+  { href: '#news', label: '动态' },
+  { href: '#team', label: '团队' },
+];
+---
+
+<nav id="site-nav" class="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5 text-lg font-medium">
+      <span class="text-2xl drop-shadow-[0_0_8px_#00b4d8]" style="color:var(--accent-cyan)">◈</span>
+      <span>AIGC <strong style="color:var(--accent-cyan)">Research</strong></span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-sm list-none">
+      {links.map(({ href, label }) => (
+        <li>
+          <a href={href} class="text-slate-400 hover:text-white transition-colors duration-300">
+            {label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="#contact"
+          class="px-4 py-1.5 text-sm rounded-lg transition-all duration-300 hover:-translate-y-px"
+          style="color:var(--accent-cyan); border:1px solid var(--border-subtle);"
+          onmouseover="this.style.background='var(--accent-glow)'"
+          onmouseout="this.style.background=''"
+        >
+          联系我们
+        </a>
+      </li>
+    </ul>
+    <button id="nav-toggle" class="md:hidden text-white text-2xl bg-transparent border-none cursor-pointer leading-none" aria-label="Toggle menu">
+      ☰
+    </button>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 60;
+      nav.style.background = scrolled ? 'rgba(5,13,26,0.88)' : '';
+      nav.style.backdropFilter = scrolled ? 'blur(16px)' : '';
+      nav.style.borderBottom = scrolled ? '1px solid rgba(0,180,216,0.2)' : '';
+      nav.style.paddingTop = scrolled ? '0.75rem' : '';
+      nav.style.paddingBottom = scrolled ? '0.75rem' : '';
+    });
+  }
+</script>
