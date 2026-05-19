@@ -1,0 +1,33 @@
+---
+interface NewsItem { date: string; type: string; text: string; future: boolean; }
+
+const items: NewsItem[] = [
+  { date: '2026.05', type: '论文发布', text: 'Act2Cut 论文与项目内容发布，推进多镜头动作连续性生成研究。', future: false },
+  { date: '2026.05', type: '数据集', text: 'ViStoryBench 相关工作持续完善，开放数据集、项目页与可视化浏览页面。', future: false },
+  { date: '2026', type: '技术报告', text: 'StyleMe3D 技术报告上线，探索 3D 高斯场景中的风格化控制问题。', future: false },
+  { date: '即将', type: '会议', text: 'CVPR 2026 录用信息、学术访问、开源项目新版本发布 — 持续关注。', future: true },
+];
+---
+
+<section id="news" class="py-24" style="background:var(--bg-secondary)">
+  <div class="max-w-6xl mx-auto px-6">
+    <span class="inline-block text-xs tracking-widest uppercase rounded-full px-3.5 py-1 mb-4" style="color:var(--accent-cyan);border:1px solid var(--border-subtle)">Updates</span>
+    <h2 class="text-3xl md:text-4xl font-semibold mb-12 text-white">动态与新闻</h2>
+    <div class="relative pl-8 max-w-3xl">
+      <div class="absolute left-0 top-2 bottom-2 w-px" style="background:linear-gradient(to bottom,var(--accent-cyan),transparent)"></div>
+      {items.map(item => (
+        <div class="relative grid grid-cols-[80px_1fr] gap-6 py-5 border-b last:border-0" style="border-color:rgba(255,255,255,0.04)">
+          <div
+            class="absolute w-2 h-2 rounded-full"
+            style={`left:-2rem;top:1.6rem;transform:translateX(-3px);background:${item.future ? '#64748b' : 'var(--accent-cyan)'};${item.future ? '' : 'box-shadow:0 0 10px var(--accent-cyan)'}`}
+          ></div>
+          <span class="font-mono text-xs pt-0.5" style={item.future ? 'color:#64748b' : 'color:var(--accent-cyan)'}>{item.date}</span>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            <span class="text-xs rounded-full px-2 py-0.5 mr-2" style="color:var(--accent-cyan);background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.25)">{item.type}</span>
+            {item.text}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
