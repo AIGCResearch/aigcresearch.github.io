@@ -1,0 +1,54 @@
+---
+interface ContactLink { icon: string; label: string; href: string; external: boolean; }
+
+const links: ContactLink[] = [
+  { icon: '⬡', label: 'GitHub', href: 'https://github.com/aigcresearch', external: true },
+  { icon: '🤗', label: 'Hugging Face', href: 'https://huggingface.co/aigcresearch', external: true },
+  { icon: '◎', label: 'Google Scholar', href: '#', external: false },
+  { icon: '✉', label: 'Email', href: 'mailto:contact@aigcresearch.github.io', external: false },
+  { icon: '𝕏', label: 'Twitter / X', href: '#', external: false },
+];
+---
+
+<section id="contact" class="py-24 text-center" style="background:linear-gradient(180deg,var(--bg-secondary) 0%,var(--bg-primary) 100%)">
+  <div class="max-w-6xl mx-auto px-6">
+    <span class="inline-block text-xs tracking-widest uppercase rounded-full px-3.5 py-1 mb-4" style="color:var(--accent-cyan);border:1px solid var(--border-subtle)">Collaboration & Contact</span>
+    <h2 class="text-3xl md:text-4xl font-semibold mb-4 text-white">合作与联系</h2>
+    <p class="text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+      如果您对我们的研究方向、项目合作、学术交流、开源共建或创意生产系统落地感兴趣，欢迎与我们取得联系。
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      {links.map(l => (
+        <a
+          href={l.href}
+          target={l.external ? '_blank' : undefined}
+          rel={l.external ? 'noopener noreferrer' : undefined}
+          class="contact-link flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm transition-all duration-300"
+          style="color:#94a3b8;border:1px solid var(--border-subtle);background:var(--bg-card);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)"
+        >
+          <span aria-hidden="true">{l.icon}</span>
+          <span>{l.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<footer class="py-8" style="background:var(--bg-primary);border-top:1px solid var(--border-subtle)">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between flex-wrap gap-4">
+    <div class="flex items-center gap-2.5 text-lg font-medium">
+      <span class="text-2xl" style="color:var(--accent-cyan)">◈</span>
+      <span class="text-white">AIGC <span style="color:var(--accent-cyan);font-weight:600">Research</span></span>
+    </div>
+    <p class="text-xs text-slate-600">© 2026 AIGC Research. Open knowledge for creative intelligence.</p>
+  </div>
+</footer>
+
+<style>
+  .contact-link:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px var(--accent-glow);
+  }
+</style>
