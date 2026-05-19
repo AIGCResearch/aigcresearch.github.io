@@ -1,0 +1,118 @@
+---
+import { zh } from "../data/content.zh";
+import { en } from "../data/content.en";
+import ParticleField from "./ParticleField.astro";
+
+const z = zh.hero;
+const e = en.hero;
+---
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <ParticleField />
+    <div class="hero-gradient"></div>
+  </div>
+
+  <div class="hero-inner container">
+    <p class="hero-eyebrow reveal">
+      <span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span>
+    </p>
+    <h1 class="hero-headline reveal">
+      <span data-lang="zh">{z.headline}</span><span data-lang="en">{e.headline}</span>
+    </h1>
+    <p class="hero-subhead reveal">
+      <span data-lang="zh">{z.subhead}</span><span data-lang="en">{e.subhead}</span>
+    </p>
+    <p class="hero-intro reveal">
+      <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
+    </p>
+    <div class="hero-ctas reveal">
+      {z.ctas.map((c, i) => (
+        <a class={i === 0 ? "btn btn-primary" : "btn btn-ghost"} href={c.href}>
+          <span data-lang="zh">{c.label}</span><span data-lang="en">{e.ctas[i].label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(120% 80% at 50% 10%, var(--bg-nebula-2) 0%, var(--bg-nebula-1) 45%, var(--bg-deep) 85%);
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(40% 30% at 20% 30%, rgba(92, 141, 255, 0.25), transparent 60%),
+      radial-gradient(45% 35% at 80% 70%, rgba(155, 123, 255, 0.22), transparent 60%);
+    mix-blend-mode: screen;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 900px;
+    padding-block: 120px 80px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 24px;
+  }
+  .hero-headline {
+    font-size: clamp(40px, 6.4vw, 68px);
+    line-height: 1.1;
+    background: linear-gradient(180deg, #FFFFFF 0%, #B6CBFF 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+  .hero-subhead {
+    margin-top: 12px;
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+  .hero-intro {
+    margin-top: 28px;
+    max-width: 680px;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+  .hero-ctas { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--surface-border-strong);
+    color: var(--text-primary);
+    transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), background 180ms var(--ease-out), color 180ms var(--ease-out);
+  }
+  .btn:hover { transform: scale(1.02); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .btn-primary {
+    background: var(--accent-aurora);
+    color: #0B1A2E;
+    border-color: transparent;
+  }
+  .btn-primary:hover { color: #0B1A2E; filter: brightness(1.08); border-color: transparent; }
+  .btn-ghost { background: var(--surface); backdrop-filter: blur(8px); }
+</style>
