@@ -1,0 +1,46 @@
+---
+import { zh } from "../data/content.zh";
+const labels = zh.langToggle;
+---
+<button class="lang-toggle" type="button" aria-label="Toggle language">
+  <span class="lang-opt" data-target="zh">{labels.zh}</span>
+  <span class="lang-sep">/</span>
+  <span class="lang-opt" data-target="en">{labels.en}</span>
+</button>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .lang-toggle:hover { border-color: var(--surface-border-strong); color: var(--text-primary); }
+  .lang-sep { color: var(--text-dim); }
+  .lang-opt { transition: color 160ms var(--ease-out); }
+  html[data-lang="zh"] .lang-opt[data-target="zh"],
+  html[data-lang="en"] .lang-opt[data-target="en"] {
+    color: var(--accent-cyan);
+  }
+</style>
+
+<script is:inline>
+  document.querySelectorAll(".lang-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var cur = document.documentElement.dataset.lang || "zh";
+      var next = cur === "zh" ? "en" : "zh";
+      document.documentElement.dataset.lang = next;
+      try { localStorage.setItem("aigcr.lang", next); } catch (e) {}
+      window.dispatchEvent(new CustomEvent("aigcr:langchange", { detail: { lang: next } }));
+    });
+  });
+</script>

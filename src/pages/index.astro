@@ -1,13 +1,10 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
 ---
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>AIGC Research</title>
-  </head>
-  <body>
-    <h1>AIGC Research — under construction</h1>
-  </body>
-</html>
+<BaseLayout>
+  <Nav />
+  <main id="top" style="padding-top:120px;padding-bottom:240px;text-align:center;">
+    <p style="color:var(--text-muted)">Nav scaffolded. More sections incoming.</p>
+  </main>
+</BaseLayout>
