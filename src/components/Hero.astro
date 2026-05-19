@@ -11,7 +11,7 @@ const stats = [
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r168/three.min.js"></script>
 
 <section id="hero" class="relative min-h-screen flex flex-col justify-center overflow-hidden">
-  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" style="z-index:0"></canvas>
+  <canvas id="hero-canvas" aria-hidden="true" class="absolute inset-0 w-full h-full" style="z-index:0"></canvas>
   <div class="absolute inset-0" style="z-index:1;background:radial-gradient(ellipse at 50% 40%, rgba(0,119,182,0.18) 0%, transparent 70%), linear-gradient(to bottom, transparent 60%, var(--bg-primary) 100%)"></div>
 
   <div class="relative max-w-6xl mx-auto px-6 pt-32 pb-16" style="z-index:2">
@@ -32,10 +32,8 @@ const stats = [
         style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan));box-shadow:0 4px 20px rgba(0,180,216,0.3)">
         了解研究方向
       </a>
-      <a href="#papers" class="inline-flex items-center px-6 py-2.5 rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5"
-        style="color:var(--accent-cyan);border:1px solid var(--border-subtle);"
-        onmouseover="this.style.background='var(--accent-glow)'"
-        onmouseout="this.style.background=''">
+      <a href="#papers" class="hero-outline-btn inline-flex items-center px-6 py-2.5 rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5"
+        style="color:var(--accent-cyan);border:1px solid var(--border-subtle);">
         查看代表成果
       </a>
     </div>
@@ -124,3 +122,9 @@ const stats = [
     initParticles();
   }
 </script>
+
+<style>
+  .hero-outline-btn:hover {
+    background: var(--accent-glow);
+  }
+</style>
