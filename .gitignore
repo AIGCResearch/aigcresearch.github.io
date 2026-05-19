@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+
+# Build
+dist/
+.astro/
+node_modules/
+
+# Local
+*.log
+
+# Loose reference assets dropped into repo root
+/1779181721762_download.png
+/1779185054034_download.png
+/181206142.png
+/download.png
+/query
+/video_ac-3.pdf
