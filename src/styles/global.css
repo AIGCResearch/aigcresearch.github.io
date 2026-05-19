@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* ── CSS Custom Properties ── */
+:root {
+  --bg-primary: #050d1a;
+  --bg-secondary: #0a1628;
+  --bg-card: rgba(10, 22, 40, 0.7);
+  --accent-cyan: #00b4d8;
+  --accent-blue: #0077b6;
+  --accent-glow: rgba(0, 180, 216, 0.15);
+  --border-subtle: rgba(0, 180, 216, 0.2);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius: 12px;
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+body { background: var(--bg-primary); color: #fff; overflow-x: hidden; }
+::selection { background: rgba(0,180,216,0.25); color: #fff; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
