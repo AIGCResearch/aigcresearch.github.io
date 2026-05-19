@@ -1,0 +1,64 @@
+---
+import { zh } from "../data/content.zh";
+import { en } from "../data/content.en";
+import MemberCard from "./MemberCard.astro";
+const z = zh.team;
+const e = en.team;
+---
+<section class="section team" id="team" aria-labelledby="team-title">
+  <hr class="section-divider" />
+  <div class="container">
+    <p class="eyebrow reveal"><span data-lang="zh">{z.eyebrow}</span><span data-lang="en">{e.eyebrow}</span></p>
+    <h2 class="section-title reveal" id="team-title">
+      <span data-lang="zh">{z.title}</span><span data-lang="en">{e.title}</span>
+    </h2>
+    <p class="lede reveal">
+      <span data-lang="zh">{z.intro}</span><span data-lang="en">{e.intro}</span>
+    </p>
+
+    <div class="member-grid">
+      {z.members.map((m, i) => (
+        <MemberCard memberZh={m} memberEn={e.members[i]} />
+      ))}
+    </div>
+
+    <p class="advisors-label reveal">
+      <span data-lang="zh">{z.advisorsLabel}</span><span data-lang="en">{e.advisorsLabel}</span>
+    </p>
+    <div class="member-grid member-grid--advisors">
+      {z.advisors.map((m, i) => (
+        <MemberCard memberZh={m} memberEn={e.advisors[i]} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .lede { max-width: 820px; color: var(--text-muted); font-size: 17px; margin-bottom: 56px; }
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .advisors-label {
+    margin: 64px 0 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    position: relative;
+    padding-left: 18px;
+  }
+  .advisors-label::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 50%;
+    width: 10px; height: 1px;
+    background: var(--accent-cyan);
+  }
+  .member-grid--advisors { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 720px; }
+  @media (max-width: 860px) {
+    .member-grid, .member-grid--advisors { grid-template-columns: 1fr; }
+  }
+</style>
