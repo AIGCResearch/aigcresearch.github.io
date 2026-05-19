@@ -1,0 +1,21 @@
+---
+import { zh } from "../data/content.zh";
+import { en } from "../data/content.en";
+const z = zh.footer;
+const e = en.footer;
+---
+<footer class="footer">
+  <hr class="section-divider" />
+  <div class="container footer-inner">
+    <p class="footer-copy">{z.copyright}</p>
+    <p class="footer-tag">
+      <span data-lang="zh">{z.tagline}</span><span data-lang="en">{e.tagline}</span>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: 36px 56px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy, .footer-tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--text-dim); }
+</style>
