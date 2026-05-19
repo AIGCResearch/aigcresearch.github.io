@@ -1,0 +1,83 @@
+@import "./tokens.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-zh);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+html[lang="en"] body { font-family: var(--font-en); line-height: 1.55; }
+
+img, svg, canvas { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; transition: color 160ms var(--ease-out); }
+a:hover { color: var(--accent-cyan); }
+
+button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: clamp(36px, 5.2vw, 56px); line-height: 1.18; }
+h2 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.25; }
+h3 { font-size: 22px; line-height: 1.35; }
+
+p { margin: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Language toggle: hide the inactive language */
+html[data-lang="zh"] [data-lang="en"] { display: none; }
+html[data-lang="en"] [data-lang="zh"] { display: none; }
+
+/* Layout primitives */
+.container { width: var(--container); margin-inline: auto; }
+
+section.section {
+  padding-block: var(--pad-section-desktop);
+  position: relative;
+}
+@media (max-width: 768px) {
+  section.section { padding-block: var(--pad-section-mobile); }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.section-title::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-aurora);
+  box-shadow: 0 0 12px rgba(155, 123, 255, 0.6);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(120, 180, 255, 0.2), transparent);
+  border: 0;
+  margin: 0;
+}
