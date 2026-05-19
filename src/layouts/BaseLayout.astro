@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import "../styles/motion.css";
+import { zh } from "../data/content.zh";
+import { en } from "../data/content.en";
+
+const titleZh = zh.meta.title;
+const titleEn = en.meta.title;
+const descZh = zh.meta.description;
+const descEn = en.meta.description;
+---
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#06090F" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+    />
+
+    <title>{titleZh}</title>
+    <meta name="description" content={descZh} />
+
+    <!-- Inline early script: read saved lang, set html[data-lang] before paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem("aigcr.lang");
+          if (saved === "en" || saved === "zh") {
+            document.documentElement.dataset.lang = saved;
+            document.documentElement.lang = saved === "en" ? "en" : "zh-CN";
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <!-- Sync <title> + <meta description> + lang attr when toggle changes -->
+    <script is:inline define:vars={{ titleZh, titleEn, descZh, descEn }}>
+      (function () {
+        function sync() {
+          var l = document.documentElement.dataset.lang || "zh";
+          document.title = l === "en" ? titleEn : titleZh;
+          var d = document.querySelector('meta[name="description"]');
+          if (d) d.setAttribute("content", l === "en" ? descEn : descZh);
+          document.documentElement.lang = l === "en" ? "en" : "zh-CN";
+        }
+        sync();
+        window.addEventListener("aigcr:langchange", sync);
+      })();
+    </script>
+
+    <!-- Scroll-reveal observer -->
+    <script is:inline>
+      (function () {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("in-view");
+          });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in-view");
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
