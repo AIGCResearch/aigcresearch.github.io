@@ -4,18 +4,17 @@ interface Member {
   role: string;
   field: string;
   initial: string;
-  advisor: boolean;
 }
 
 const members: Member[] = [
-  { name: '庄才林', role: '上海科技大学 · 硕士研究生', field: 'AIGC · 生成式模型', initial: '庄', advisor: false },
-  { name: '胡耀淇', role: '研究成员', field: '创意人工智能', initial: '胡', advisor: false },
-  { name: '董政', role: '研究成员', field: '创意人工智能', initial: '董', advisor: false },
+  { name: '庄才林', role: '上海科技大学 · 硕士研究生', field: 'AIGC · 生成式模型', initial: '庄' },
+  { name: '胡耀淇', role: '研究成员', field: '创意人工智能', initial: '胡' },
+  { name: '董政', role: '研究成员', field: '创意人工智能', initial: '董' },
 ];
 
 const advisors: Member[] = [
-  { name: '程巍', role: '阶跃星辰 · 研究科学家', field: '生成式人工智能 · 工业界导师', initial: '程', advisor: true },
-  { name: '夏清零', role: '重庆理工大学 · 导师', field: '生物医学工程 · 学术界导师', initial: '夏', advisor: true },
+  { name: '程巍', role: '阶跃星辰 · 研究科学家', field: '生成式人工智能 · 工业界导师', initial: '程' },
+  { name: '夏清零', role: '重庆理工大学 · 导师', field: '生物医学工程 · 学术界导师', initial: '夏' },
 ];
 ---
 
@@ -28,7 +27,7 @@ const advisors: Member[] = [
     <h3 class="text-xs tracking-widest uppercase text-slate-500 mb-4">核心成员</h3>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
       {members.map(m => (
-        <div class="flex items-center gap-4 p-5 rounded-xl transition-transform duration-300 hover:-translate-y-0.5" style="background:var(--bg-card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,180,216,0.2)">
+        <div class="flex items-center gap-4 p-5 rounded-xl transition-transform duration-300 hover:-translate-y-1" style="background:var(--bg-card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,180,216,0.2)">
           <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white shrink-0" style="background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan))">
             {m.initial}
           </div>
@@ -44,7 +43,7 @@ const advisors: Member[] = [
     <h3 class="text-xs tracking-widest uppercase text-slate-500 mb-4">合作导师</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
       {advisors.map(a => (
-        <div class="flex items-center gap-4 p-5 rounded-xl transition-transform duration-300 hover:-translate-y-0.5" style="background:var(--bg-card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,180,216,0.2)">
+        <div class="flex items-center gap-4 p-5 rounded-xl transition-transform duration-300 hover:-translate-y-1" style="background:var(--bg-card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,180,216,0.2)">
           <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white shrink-0" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)">
             {a.initial}
           </div>
