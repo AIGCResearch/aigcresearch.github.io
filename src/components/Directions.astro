@@ -6,7 +6,7 @@ const e = en.directions;
 ---
 <section class="section directions" id="directions" aria-labelledby="directions-title">
   <hr class="section-divider" />
-  <div class="container">
+  <div class="container section-panel">
     <header class="section-head">
       <div class="section-chapter">
         <span class="section-chapter-tick"></span>
@@ -60,25 +60,41 @@ const e = en.directions;
 </section>
 
 <style>
+  .section-panel {
+    padding: 34px 34px 38px;
+    border-radius: 26px;
+    background:
+      radial-gradient(120% 120% at 100% 0%, rgba(91, 146, 181, 0.055), transparent 34%),
+      linear-gradient(180deg, rgba(8, 24, 39, 0.74), rgba(5, 18, 31, 0.86));
+    border: 1px solid rgba(145, 187, 214, 0.1);
+    backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(214, 229, 239, 0.035),
+      inset 0 -24px 40px rgba(1, 8, 15, 0.18),
+      0 22px 54px rgba(2, 9, 17, 0.3);
+  }
   .lede {
-    max-width: 760px;
-    color: var(--text-muted);
-    font-size: 17px;
-    margin-top: 20px;
+    max-width: 860px;
+    color: rgba(220, 233, 243, 0.78);
+    font-size: 16px;
+    margin-top: 18px;
     line-height: 1.85;
   }
   html[lang="en"] .lede { line-height: 1.65; }
 
-  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .dir-card {
     position: relative;
-    padding: 44px 36px 36px;
+    padding: 32px 28px 28px;
     background:
-      linear-gradient(170deg, rgba(20, 42, 74, 0.65) 0%, rgba(11, 26, 46, 0.55) 60%, rgba(6, 9, 15, 0.55) 100%);
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-card);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-card);
+      radial-gradient(140% 120% at 100% 0%, rgba(129, 168, 193, 0.05), transparent 32%),
+      linear-gradient(170deg, rgba(10, 29, 47, 0.86) 0%, rgba(7, 21, 35, 0.94) 100%);
+    border: 1px solid rgba(139, 178, 203, 0.09);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    box-shadow:
+      inset 0 1px 0 rgba(226, 235, 241, 0.024),
+      0 16px 36px rgba(2, 9, 17, 0.26);
     transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
     overflow: hidden;
     isolation: isolate;
@@ -87,9 +103,9 @@ const e = en.directions;
     content: "";
     position: absolute;
     inset: -1px;
-    border-radius: var(--radius-card);
+    border-radius: 18px;
     padding: 1px;
-    background: linear-gradient(135deg, transparent 30%, rgba(127, 215, 255, 0.5) 60%, rgba(155, 123, 255, 0.4) 80%, transparent 100%);
+    background: linear-gradient(135deg, transparent 30%, rgba(167, 201, 223, 0.16) 60%, rgba(129, 154, 175, 0.12) 80%, transparent 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -102,7 +118,7 @@ const e = en.directions;
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(70% 60% at 80% 100%, rgba(155, 123, 255, 0.12), transparent 70%);
+    background: radial-gradient(70% 60% at 80% 100%, rgba(80, 118, 148, 0.11), transparent 70%);
     pointer-events: none;
     z-index: -1;
   }
@@ -111,63 +127,64 @@ const e = en.directions;
 
   .dir-card-watermark {
     position: absolute;
-    top: 24px;
-    right: 28px;
+    top: 18px;
+    right: 20px;
     font-family: var(--font-mono);
-    font-size: 78px;
+    font-size: 66px;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.02em;
-    color: rgba(127, 215, 255, 0.05);
+    color: rgba(180, 204, 220, 0.05);
     pointer-events: none;
     user-select: none;
   }
 
-  .dir-head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 22px; }
+  .dir-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
   .dir-index {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     padding: 5px 12px;
     border-radius: 6px;
-    background: rgba(127, 215, 255, 0.1);
-    border: 1px solid rgba(127, 215, 255, 0.25);
-    color: var(--accent-cyan);
+    background: rgba(145, 185, 208, 0.08);
+    border: 1px solid rgba(145, 185, 208, 0.16);
+    color: rgba(181, 215, 234, 0.86);
     flex-shrink: 0;
   }
-  .dir-title { font-size: 26px; letter-spacing: 0.01em; }
-  .dir-subtitle { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; }
+  .dir-title { font-size: 24px; letter-spacing: 0.01em; }
+  .dir-subtitle { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: rgba(200, 220, 236, 0.64); margin-top: 4px; text-transform: uppercase; }
 
   .dir-tagline {
-    font-size: 16px;
-    color: var(--accent-cyan);
-    margin-bottom: 18px;
+    font-size: 15px;
+    color: rgba(177, 214, 233, 0.82);
+    margin-bottom: 14px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
   }
   .dir-tagline-decor { font-family: var(--font-mono); font-weight: 700; opacity: 0.7; }
-  .dir-body { color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+  .dir-body { color: rgba(214, 229, 241, 0.74); font-size: 14px; line-height: 1.8; }
   html[lang="en"] .dir-body { line-height: 1.6; }
 
-  .dir-tags { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .dir-tags { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    padding: 5px 11px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
     border-radius: var(--radius-pill);
-    background: transparent;
-    border: 1px solid rgba(155, 123, 255, 0.32);
-    color: #C9B9FF;
+    background: rgba(136, 171, 193, 0.045);
+    border: 1px solid rgba(136, 171, 193, 0.12);
+    color: rgba(203, 220, 231, 0.72);
     text-transform: uppercase;
     transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out);
   }
-  .tag:hover { border-color: var(--accent-violet); color: #DCC8FF; background: rgba(155, 123, 255, 0.08); }
+  .tag:hover { border-color: rgba(180, 208, 224, 0.2); color: rgba(228, 236, 241, 0.88); background: rgba(163, 184, 198, 0.07); }
 
   @media (max-width: 860px) {
     .dir-grid { grid-template-columns: 1fr; gap: 18px; }
     .dir-card { padding: 32px 24px; }
     .dir-card-watermark { font-size: 56px; top: 18px; right: 20px; }
+    .section-panel { padding: 24px 20px 28px; }
   }
 </style>

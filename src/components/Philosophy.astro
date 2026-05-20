@@ -12,7 +12,7 @@ const iconMap: Record<string, string> = {
 ---
 <section class="section philosophy" id="philosophy" aria-labelledby="philosophy-title">
   <hr class="section-divider" />
-  <div class="container">
+  <div class="container section-panel">
     <header class="section-head">
       <div class="section-chapter">
         <span class="section-chapter-tick"></span>
@@ -52,11 +52,24 @@ const iconMap: Record<string, string> = {
 </section>
 
 <style>
+  .section-panel {
+    padding: 34px 34px 38px;
+    border-radius: 26px;
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(92, 154, 194, 0.06), transparent 38%),
+      linear-gradient(180deg, rgba(8, 24, 39, 0.72), rgba(5, 18, 31, 0.84));
+    border: 1px solid rgba(145, 187, 214, 0.1);
+    backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(214, 229, 239, 0.035),
+      inset 0 -24px 40px rgba(1, 8, 15, 0.18),
+      0 22px 54px rgba(2, 9, 17, 0.3);
+  }
   .lede {
-    max-width: 760px;
-    color: var(--text-muted);
-    font-size: 17px;
-    margin-top: 20px;
+    max-width: 860px;
+    color: rgba(220, 233, 243, 0.78);
+    font-size: 16px;
+    margin-top: 18px;
     line-height: 1.85;
   }
   html[lang="en"] .lede { line-height: 1.65; }
@@ -67,17 +80,20 @@ const iconMap: Record<string, string> = {
     margin: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 18px;
   }
   .pillar {
     position: relative;
-    padding: 36px 28px 32px;
+    padding: 28px 24px 24px;
     background:
-      linear-gradient(180deg, rgba(18, 32, 56, 0.7) 0%, rgba(11, 26, 46, 0.55) 100%);
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-card);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-card);
+      radial-gradient(120% 120% at 0% 0%, rgba(143, 184, 210, 0.055), transparent 34%),
+      linear-gradient(180deg, rgba(10, 28, 45, 0.84) 0%, rgba(7, 21, 35, 0.92) 100%);
+    border: 1px solid rgba(139, 178, 203, 0.09);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    box-shadow:
+      inset 0 1px 0 rgba(226, 235, 241, 0.025),
+      0 16px 36px rgba(2, 9, 17, 0.26);
     transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
     overflow: hidden;
     isolation: isolate;
@@ -87,7 +103,7 @@ const iconMap: Record<string, string> = {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(60% 50% at 50% 0%, rgba(127, 215, 255, 0.10), transparent 70%);
+      radial-gradient(60% 50% at 50% 0%, rgba(145, 189, 218, 0.08), transparent 70%);
     z-index: -1;
     opacity: 0;
     transition: opacity 320ms var(--ease-out);
@@ -97,8 +113,8 @@ const iconMap: Record<string, string> = {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-    opacity: 0.3;
+    background: linear-gradient(90deg, transparent, rgba(189, 214, 229, 0.24), transparent);
+    opacity: 0.6;
     transition: opacity 280ms var(--ease-out);
   }
   .pillar:hover {
@@ -111,33 +127,34 @@ const iconMap: Record<string, string> = {
 
   .pillar-num {
     position: absolute;
-    top: 18px;
-    right: 22px;
+    top: 16px;
+    right: 18px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     color: var(--text-dim);
   }
   .pillar-icon {
     display: inline-flex;
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
+    border-radius: 12px;
     background:
-      linear-gradient(135deg, rgba(92, 141, 255, 0.18), rgba(155, 123, 255, 0.10));
-    border: 1px solid var(--surface-border-strong);
-    color: var(--accent-cyan);
-    margin-bottom: 22px;
-    box-shadow: inset 0 0 22px rgba(127, 215, 255, 0.08);
+      linear-gradient(135deg, rgba(145, 179, 201, 0.12), rgba(84, 112, 134, 0.06));
+    border: 1px solid rgba(155, 189, 212, 0.16);
+    color: rgba(168, 208, 231, 0.88);
+    margin-bottom: 18px;
+    box-shadow: inset 0 0 18px rgba(204, 220, 230, 0.03);
   }
-  .pillar-title { margin-bottom: 10px; font-size: 20px; letter-spacing: 0.01em; }
-  .pillar-body { color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+  .pillar-title { margin-bottom: 8px; font-size: 19px; letter-spacing: 0.01em; }
+  .pillar-body { color: rgba(214, 229, 241, 0.72); font-size: 14px; line-height: 1.8; }
   html[lang="en"] .pillar-body { line-height: 1.6; }
 
   @media (max-width: 860px) {
     .pillars { grid-template-columns: 1fr; gap: 18px; }
     .pillar { padding: 28px 24px; }
+    .section-panel { padding: 24px 20px 28px; }
   }
 </style>

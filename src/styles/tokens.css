@@ -1,18 +1,18 @@
 :root {
-  --bg-deep: #06090F;
-  --bg-nebula-1: #0B1A2E;
-  --bg-nebula-2: #142A4A;
+  --bg-deep: #04111D;
+  --bg-nebula-1: #0A243C;
+  --bg-nebula-2: #143A5B;
 
-  --surface: rgba(18, 32, 56, 0.55);
-  --surface-strong: rgba(18, 32, 56, 0.78);
-  --surface-border: rgba(120, 180, 255, 0.12);
-  --surface-border-strong: rgba(120, 180, 255, 0.35);
+  --surface: rgba(13, 37, 61, 0.62);
+  --surface-strong: rgba(13, 37, 61, 0.82);
+  --surface-border: rgba(120, 203, 255, 0.12);
+  --surface-border-strong: rgba(120, 203, 255, 0.32);
 
-  --accent-cyan: #7FD7FF;
-  --accent-blue: #5C8DFF;
-  --accent-violet: #9B7BFF;
-  --accent-aurora: linear-gradient(135deg, #5C8DFF 0%, #9B7BFF 100%);
-  --gold-faint: #F2C58A;
+  --accent-cyan: #6EE0FF;
+  --accent-blue: #4E9EFF;
+  --accent-violet: #72A9FF;
+  --accent-aurora: linear-gradient(135deg, #4BA6FF 0%, #6EE0FF 100%);
+  --gold-faint: #F4D77A;
 
   --text-primary: #E8EEF7;
   --text-muted: rgba(232, 238, 247, 0.62);
@@ -21,8 +21,8 @@
   --radius-card: 16px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 12px 40px rgba(80, 140, 255, 0.08);
-  --shadow-card-hover: 0 18px 60px rgba(80, 140, 255, 0.18);
+  --shadow-card: 0 14px 40px rgba(3, 16, 31, 0.26);
+  --shadow-card-hover: 0 20px 60px rgba(3, 16, 31, 0.38);
 
   --container: min(1240px, 92vw);
 

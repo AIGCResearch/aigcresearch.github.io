@@ -36,12 +36,16 @@ const { memberZh, memberEn } = Astro.props;
   .member {
     position: relative;
     text-align: center;
-    padding: 36px 28px 32px;
-    background: linear-gradient(180deg, rgba(20, 42, 74, 0.55) 0%, rgba(11, 26, 46, 0.6) 100%);
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-card);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-card);
+    padding: 28px 22px 24px;
+    background:
+      radial-gradient(120% 120% at 50% 0%, rgba(136, 174, 198, 0.05), transparent 34%),
+      linear-gradient(180deg, rgba(10, 28, 44, 0.86) 0%, rgba(7, 21, 33, 0.94) 100%);
+    border: 1px solid rgba(139, 178, 203, 0.09);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    box-shadow:
+      inset 0 1px 0 rgba(226, 235, 241, 0.024),
+      0 16px 36px rgba(2, 9, 17, 0.26);
     transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
     overflow: hidden;
   }
@@ -50,8 +54,8 @@ const { memberZh, memberEn } = Astro.props;
     position: absolute;
     top: 14px; left: 14px;
     width: 14px; height: 14px;
-    border-top: 1px solid var(--accent-cyan);
-    border-left: 1px solid var(--accent-cyan);
+    border-top: 1px solid rgba(175, 204, 220, 0.36);
+    border-left: 1px solid rgba(175, 204, 220, 0.36);
     opacity: 0.55;
   }
   .member::after {
@@ -59,8 +63,8 @@ const { memberZh, memberEn } = Astro.props;
     position: absolute;
     bottom: 14px; right: 14px;
     width: 14px; height: 14px;
-    border-bottom: 1px solid var(--accent-cyan);
-    border-right: 1px solid var(--accent-cyan);
+    border-bottom: 1px solid rgba(175, 204, 220, 0.36);
+    border-right: 1px solid rgba(175, 204, 220, 0.36);
     opacity: 0.55;
   }
   .member:hover {
@@ -72,44 +76,44 @@ const { memberZh, memberEn } = Astro.props;
   /* Portrait: hexagonal-feeling round frame with rotating accent ring */
   .member-portrait {
     position: relative;
-    width: 116px;
-    height: 116px;
-    margin: 4px auto 24px;
+    width: 92px;
+    height: 92px;
+    margin: 2px auto 18px;
   }
   .member-portrait-frame {
     position: absolute;
     inset: 0;
     border-radius: 50%;
     padding: 1.5px;
-    background: conic-gradient(from 200deg, transparent 0%, var(--accent-cyan) 20%, transparent 35%, var(--accent-violet) 60%, transparent 80%, var(--accent-cyan) 100%);
+    background: conic-gradient(from 200deg, transparent 0%, rgba(171, 202, 220, 0.68) 20%, transparent 35%, rgba(130, 159, 178, 0.44) 60%, transparent 80%, rgba(171, 202, 220, 0.68) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask-composite: exclude;
-    filter: drop-shadow(0 0 8px rgba(127, 215, 255, 0.4));
+    filter: drop-shadow(0 0 8px rgba(133, 170, 193, 0.22));
     animation: member-ring-spin 22s linear infinite;
   }
   .member-portrait-glow {
     position: absolute;
     inset: -18%;
     border-radius: 50%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(127, 215, 255, 0.22) 0%, transparent 70%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(161, 196, 218, 0.12) 0%, transparent 70%);
     filter: blur(14px);
   }
   .member-avatar {
     position: absolute;
-    inset: 8%;
+    inset: 10%;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent-aurora);
+    background: linear-gradient(180deg, rgba(170, 202, 220, 0.82), rgba(84, 113, 135, 0.92));
     overflow: hidden;
   }
   .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .member-monogram {
     font-family: var(--font-mono);
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     color: #06090F;
     letter-spacing: 0.02em;
@@ -118,33 +122,33 @@ const { memberZh, memberEn } = Astro.props;
   @media (prefers-reduced-motion: reduce) { .member-portrait-frame { animation: none; } }
 
   .member-info { display: flex; flex-direction: column; align-items: center; }
-  .member-name { margin-bottom: 8px; font-size: 19px; letter-spacing: 0.02em; }
+  .member-name { margin-bottom: 8px; font-size: 18px; letter-spacing: 0.02em; }
   .member-role {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent-cyan);
+    color: rgba(182, 212, 229, 0.84);
     margin-bottom: 6px;
   }
   .member-role-dot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: var(--accent-cyan);
-    box-shadow: 0 0 8px rgba(127, 215, 255, 0.7);
+    background: rgba(182, 212, 229, 0.8);
+    box-shadow: 0 0 8px rgba(133, 170, 193, 0.28);
   }
-  .member-aff { font-size: 13px; color: var(--text-primary); opacity: 0.85; }
+  .member-aff { font-size: 12px; color: var(--text-primary); opacity: 0.78; }
   .member-rule {
     width: 40px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    background: linear-gradient(90deg, transparent, rgba(179, 208, 224, 0.42), transparent);
     border: 0;
     margin: 16px 0 12px;
   }
-  .member-bio { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .member-bio { font-size: 13px; color: rgba(214, 229, 241, 0.72); line-height: 1.7; }
   html[lang="en"] .member-bio { line-height: 1.55; }
 </style>

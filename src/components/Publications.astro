@@ -8,7 +8,7 @@ const e = en.publications;
 ---
 <section class="section publications" id="publications" aria-labelledby="publications-title">
   <hr class="section-divider" />
-  <div class="container">
+  <div class="container section-panel">
     <header class="section-head">
       <div class="section-chapter">
         <span class="section-chapter-tick"></span>
@@ -35,11 +35,24 @@ const e = en.publications;
 </section>
 
 <style>
+  .section-panel {
+    padding: 34px 34px 38px;
+    border-radius: 26px;
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(90, 143, 178, 0.05), transparent 36%),
+      linear-gradient(180deg, rgba(8, 23, 37, 0.76), rgba(5, 17, 29, 0.88));
+    border: 1px solid rgba(145, 187, 214, 0.1);
+    backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(214, 229, 239, 0.035),
+      inset 0 -24px 40px rgba(1, 8, 15, 0.18),
+      0 22px 54px rgba(2, 9, 17, 0.3);
+  }
   .lede {
-    max-width: 760px;
-    color: var(--text-muted);
-    font-size: 17px;
-    margin-top: 20px;
+    max-width: 860px;
+    color: rgba(220, 233, 243, 0.78);
+    font-size: 16px;
+    margin-top: 18px;
     line-height: 1.85;
   }
   html[lang="en"] .lede { line-height: 1.65; }
@@ -48,7 +61,10 @@ const e = en.publications;
   .pub-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 18px;
   }
-  @media (max-width: 768px) { .pub-grid { grid-template-columns: 1fr; gap: 18px; } }
+  @media (max-width: 768px) {
+    .pub-grid { grid-template-columns: 1fr; gap: 18px; }
+    .section-panel { padding: 24px 20px 28px; }
+  }
 </style>
