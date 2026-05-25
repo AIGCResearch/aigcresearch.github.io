@@ -105,10 +105,10 @@ export const en: Content = {
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",
         links: [
-          { label: "Tech Report", href: "#", disabled: true },
-          { label: "Code", href: "#", disabled: true },
-          { label: "Dataset", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
+          { label: "Tech Report", href: "https://arxiv.org/abs/2505.24862" },
+          { label: "Code", href: "https://github.com/ViStoryBench/vistorybench" },
+          { label: "Dataset", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
+          { label: "Project Page", href: "https://vistorybench.github.io/" },
         ],
       },
       {
@@ -118,9 +118,9 @@ export const en: Content = {
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",
         links: [
-          { label: "Tech Report", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
-          { label: "Code", href: "#", disabled: true },
+          { label: "Tech Report", href: "https://arxiv.org/abs/2504.15281" },
+          { label: "Project Page", href: "https://styleme3d.github.io/" },
+          { label: "Code", href: "https://github.com/AIGCResearch/styleme3d" },
         ],
       },
       {
@@ -130,9 +130,9 @@ export const en: Content = {
         body:
           "An evolving framework that integrates creative understanding, shot organization, asset generation, and production coordination — a pioneering scaffold for future cinematic generation systems.",
         links: [
-          { label: "Code", href: "#", disabled: true },
-          { label: "Demo", href: "#", disabled: true },
-          { label: "Docs", href: "#", disabled: true },
+          { label: "Code", href: "https://github.com/AIGCResearch/ShotStudio" },
+          { label: "Demo", href: "https://aigcresearch.github.io/ShotStudio/" },
+          { label: "Docs", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
         ],
       },
       {
@@ -143,7 +143,7 @@ export const en: Content = {
           "Tackling the long-overlooked “match on action” problem in cinematic language, Act2Cut enables generative video systems to understand action continuity across shots — narrative motion, not just surface frame similarity.",
         links: [
           { label: "Paper", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
+          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
           { label: "Code", href: "#", disabled: true },
         ],
       },
@@ -153,7 +153,7 @@ export const en: Content = {
         tagline: "Following the advance of AIGC, day by day.",
         body:
           "An open knowledge curation project that tracks AIGC frontiers — reflecting our continued investment in knowledge organization, trend tracking, and community contribution.",
-        links: [{ label: "Code", href: "#", disabled: true }],
+        links: [{ label: "Code", href: "https://github.com/AIGCResearch/Awesome-PaperDaily" }],
         featured: true,
       },
     ],
@@ -170,7 +170,11 @@ export const en: Content = {
         role: "Team Member",
         affiliation: "M.Sc., ShanghaiTech University",
         bio: "Working on AIGC, creative intelligence, and cinematic content generation.",
-        links: {},
+        links: {
+          homepage: "https://journey-zhuang.github.io/",
+          github: "https://github.com/journey-zhuang",
+          email: "journeyzhuang@gmail.com",
+        },
       },
       {
         name: "Yaoqi Hu",
@@ -178,7 +182,9 @@ export const en: Content = {
         role: "Team Member",
         affiliation: "—",
         bio: "Bio coming soon.",
-        links: {},
+        links: {
+          github: "https://github.com/yaoqih",
+        },
       },
       {
         name: "Zheng Dong",
@@ -214,13 +220,13 @@ export const en: Content = {
     title: "Collaborate with Us",
     body:
       "If our research directions, open-source efforts, academic exchanges, or creative production systems resonate with you, we warmly invite you to connect. Let's shape a novel creative world together.",
-    email: "aigcresearch@example.com",
+    email: "journeyzhuang@gmail.com",
     emailCtaLabel: "Email Us",
     wechatTitle: "WeChat",
     wechatNote: "Scan to follow AIGC Research",
     socials: [
-      { icon: "github", label: "GitHub", href: "#", disabled: true },
-      { icon: "huggingface", label: "Hugging Face", href: "#", disabled: true },
+      { icon: "github", label: "GitHub", href: "https://github.com/AIGCResearch" },
+      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/ViStoryBench" },
       { icon: "scholar", label: "Scholar", href: "#", disabled: true },
       { icon: "bilibili", label: "Bilibili", href: "#", disabled: true },
       { icon: "x", label: "X", href: "#", disabled: true },

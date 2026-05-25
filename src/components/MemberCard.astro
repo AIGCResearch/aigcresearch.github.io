@@ -29,6 +29,22 @@ const { memberZh, memberEn } = Astro.props;
     <p class="member-bio">
       <span data-lang="zh">{memberZh.bio}</span><span data-lang="en">{memberEn.bio}</span>
     </p>
+    {(memberZh.links.homepage || memberZh.links.github || memberZh.links.scholar || memberZh.links.email) && (
+      <div class="member-links">
+        {memberZh.links.homepage && (
+          <a class="member-link" href={memberZh.links.homepage} target="_blank" rel="noreferrer">Home</a>
+        )}
+        {memberZh.links.github && (
+          <a class="member-link" href={memberZh.links.github} target="_blank" rel="noreferrer">GitHub</a>
+        )}
+        {memberZh.links.scholar && (
+          <a class="member-link" href={memberZh.links.scholar} target="_blank" rel="noreferrer">Scholar</a>
+        )}
+        {memberZh.links.email && (
+          <a class="member-link" href={`mailto:${memberZh.links.email}`}>Email</a>
+        )}
+      </div>
+    )}
   </div>
 </article>
 
@@ -151,4 +167,30 @@ const { memberZh, memberEn } = Astro.props;
   }
   .member-bio { font-size: 13px; color: rgba(214, 229, 241, 0.72); line-height: 1.7; }
   html[lang="en"] .member-bio { line-height: 1.55; }
+  .member-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .member-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(139, 178, 203, 0.11);
+    color: rgba(206, 220, 229, 0.74);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out);
+  }
+  .member-link:hover {
+    border-color: rgba(181, 209, 224, 0.22);
+    color: rgba(228, 236, 241, 0.88);
+    background: rgba(158, 181, 196, 0.06);
+  }
 </style>

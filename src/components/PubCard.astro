@@ -10,7 +10,14 @@ const visuals: Record<string, { from: string; to: string; motif: string }> = {
   act2cut:             { from: "#7FD7FF", to: "#0B1A2E", motif: "frames" },
   "awesome-paperdaily":{ from: "#B6F5C9", to: "#0B1A2E", motif: "stack" },
 };
+const thumbImages: Record<string, string> = {
+  vistorybench: "/images/vistorybench.png",
+  styleme3d: "/images/styleme3d.png",
+  shotstudio: "/images/shotstudio.png",
+  act2cut: "/images/act2cut.png",
+};
 const v = visuals[itemZh.id] ?? visuals.vistorybench;
+const thumbImage = thumbImages[itemZh.id];
 const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   cx: 30 + (i * 13 + (i * i * 7)) % 150,
   cy: 20 + (i * 9 + i * 11) % 90,
@@ -19,91 +26,94 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
 }));
 ---
 <article class={`pub-card reveal${itemZh.featured ? " pub-card--featured" : ""}`}>
-  <div class="pub-thumb" aria-hidden="true">
-    <div class="pub-thumb-bg" style={`background: radial-gradient(120% 100% at 20% 0%, ${v.from}33 0%, transparent 60%), linear-gradient(160deg, ${v.from}22 0%, ${v.to} 80%);`}></div>
+  <div class="pub-thumb-shell" aria-hidden="true">
+    <div class="pub-thumb" data-expand-thumb>
+      <div class="pub-thumb-bg" style={`background: radial-gradient(120% 100% at 20% 0%, ${v.from}33 0%, transparent 60%), linear-gradient(160deg, ${v.from}22 0%, ${v.to} 80%);`}></div>
+      {thumbImage && <img class="pub-thumb-image" src={thumbImage} alt="" data-expand-image />}
 
-    {v.motif === "storyboard" && (
-      <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
-        <rect x="10"  y="14" width="34" height="22" rx="2"/>
-        <rect x="50"  y="14" width="34" height="22" rx="2"/>
-        <rect x="90"  y="14" width="34" height="22" rx="2"/>
-        <rect x="130" y="14" width="34" height="22" rx="2"/>
-        <rect x="10"  y="48" width="34" height="22" rx="2"/>
-        <rect x="50"  y="48" width="34" height="22" rx="2"/>
-        <rect x="90"  y="48" width="34" height="22" rx="2"/>
-        <rect x="130" y="48" width="34" height="22" rx="2"/>
-        <rect x="10"  y="82" width="34" height="22" rx="2"/>
-        <rect x="50"  y="82" width="34" height="22" rx="2" stroke-width="1.4" stroke="#7FD7FF"/>
-        <rect x="90"  y="82" width="34" height="22" rx="2"/>
-        <rect x="130" y="82" width="34" height="22" rx="2"/>
-      </svg>
-    )}
+      {!thumbImage && v.motif === "storyboard" && (
+        <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+          <rect x="10"  y="14" width="34" height="22" rx="2"/>
+          <rect x="50"  y="14" width="34" height="22" rx="2"/>
+          <rect x="90"  y="14" width="34" height="22" rx="2"/>
+          <rect x="130" y="14" width="34" height="22" rx="2"/>
+          <rect x="10"  y="48" width="34" height="22" rx="2"/>
+          <rect x="50"  y="48" width="34" height="22" rx="2"/>
+          <rect x="90"  y="48" width="34" height="22" rx="2"/>
+          <rect x="130" y="48" width="34" height="22" rx="2"/>
+          <rect x="10"  y="82" width="34" height="22" rx="2"/>
+          <rect x="50"  y="82" width="34" height="22" rx="2" stroke-width="1.4" stroke="#7FD7FF"/>
+          <rect x="90"  y="82" width="34" height="22" rx="2"/>
+          <rect x="130" y="82" width="34" height="22" rx="2"/>
+        </svg>
+      )}
 
-    {v.motif === "gaussian" && (
-      <svg class="pub-motif" viewBox="0 0 200 120" fill="none" aria-hidden="true">
-        {gaussianDots.map((d) => (
-          <circle cx={d.cx} cy={d.cy} r={d.r} fill="#9B7BFF" opacity={d.o}/>
-        ))}
-      </svg>
-    )}
+      {!thumbImage && v.motif === "gaussian" && (
+        <svg class="pub-motif" viewBox="0 0 200 120" fill="none" aria-hidden="true">
+          {gaussianDots.map((d) => (
+            <circle cx={d.cx} cy={d.cy} r={d.r} fill="#9B7BFF" opacity={d.o}/>
+          ))}
+        </svg>
+      )}
 
-    {v.motif === "filmstrip" && (
-      <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
-        <rect x="10" y="36" width="180" height="48" rx="3"/>
-        <rect x="14" y="40" width="16" height="8" rx="1"/>
-        <rect x="34" y="40" width="16" height="8" rx="1"/>
-        <rect x="54" y="40" width="16" height="8" rx="1"/>
-        <rect x="74" y="40" width="16" height="8" rx="1"/>
-        <rect x="94" y="40" width="16" height="8" rx="1"/>
-        <rect x="114" y="40" width="16" height="8" rx="1"/>
-        <rect x="134" y="40" width="16" height="8" rx="1"/>
-        <rect x="154" y="40" width="16" height="8" rx="1"/>
-        <rect x="174" y="40" width="16" height="8" rx="1"/>
-        <rect x="14" y="72" width="16" height="8" rx="1"/>
-        <rect x="34" y="72" width="16" height="8" rx="1"/>
-        <rect x="54" y="72" width="16" height="8" rx="1"/>
-        <rect x="74" y="72" width="16" height="8" rx="1"/>
-        <rect x="94" y="72" width="16" height="8" rx="1"/>
-        <rect x="114" y="72" width="16" height="8" rx="1"/>
-        <rect x="134" y="72" width="16" height="8" rx="1"/>
-        <rect x="154" y="72" width="16" height="8" rx="1"/>
-        <rect x="174" y="72" width="16" height="8" rx="1"/>
-        <rect x="64" y="52" width="72" height="16" rx="2" stroke="#F2C58A" stroke-width="1"/>
-      </svg>
-    )}
+      {!thumbImage && v.motif === "filmstrip" && (
+        <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+          <rect x="10" y="36" width="180" height="48" rx="3"/>
+          <rect x="14" y="40" width="16" height="8" rx="1"/>
+          <rect x="34" y="40" width="16" height="8" rx="1"/>
+          <rect x="54" y="40" width="16" height="8" rx="1"/>
+          <rect x="74" y="40" width="16" height="8" rx="1"/>
+          <rect x="94" y="40" width="16" height="8" rx="1"/>
+          <rect x="114" y="40" width="16" height="8" rx="1"/>
+          <rect x="134" y="40" width="16" height="8" rx="1"/>
+          <rect x="154" y="40" width="16" height="8" rx="1"/>
+          <rect x="174" y="40" width="16" height="8" rx="1"/>
+          <rect x="14" y="72" width="16" height="8" rx="1"/>
+          <rect x="34" y="72" width="16" height="8" rx="1"/>
+          <rect x="54" y="72" width="16" height="8" rx="1"/>
+          <rect x="74" y="72" width="16" height="8" rx="1"/>
+          <rect x="94" y="72" width="16" height="8" rx="1"/>
+          <rect x="114" y="72" width="16" height="8" rx="1"/>
+          <rect x="134" y="72" width="16" height="8" rx="1"/>
+          <rect x="154" y="72" width="16" height="8" rx="1"/>
+          <rect x="174" y="72" width="16" height="8" rx="1"/>
+          <rect x="64" y="52" width="72" height="16" rx="2" stroke="#F2C58A" stroke-width="1"/>
+        </svg>
+      )}
 
-    {v.motif === "frames" && (
-      <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.7" aria-hidden="true">
-        <rect x="14" y="30" width="50" height="34" rx="2"/>
-        <rect x="76" y="40" width="50" height="34" rx="2"/>
-        <rect x="138" y="50" width="50" height="34" rx="2" stroke="#7FD7FF" stroke-width="1.3"/>
-        <path d="M64 47 L76 57" stroke-dasharray="2,2"/>
-        <path d="M126 57 L138 67" stroke-dasharray="2,2"/>
-        <circle cx="40"  cy="92" r="2.5" fill="#7FD7FF"/>
-        <circle cx="102" cy="92" r="2.5" fill="#7FD7FF"/>
-        <circle cx="164" cy="92" r="2.5" fill="#7FD7FF"/>
-        <path d="M40 92 L164 92" stroke-dasharray="3,3"/>
-      </svg>
-    )}
+      {!thumbImage && v.motif === "frames" && (
+        <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.7" aria-hidden="true">
+          <rect x="14" y="30" width="50" height="34" rx="2"/>
+          <rect x="76" y="40" width="50" height="34" rx="2"/>
+          <rect x="138" y="50" width="50" height="34" rx="2" stroke="#7FD7FF" stroke-width="1.3"/>
+          <path d="M64 47 L76 57" stroke-dasharray="2,2"/>
+          <path d="M126 57 L138 67" stroke-dasharray="2,2"/>
+          <circle cx="40"  cy="92" r="2.5" fill="#7FD7FF"/>
+          <circle cx="102" cy="92" r="2.5" fill="#7FD7FF"/>
+          <circle cx="164" cy="92" r="2.5" fill="#7FD7FF"/>
+          <path d="M40 92 L164 92" stroke-dasharray="3,3"/>
+        </svg>
+      )}
 
-    {v.motif === "stack" && (
-      <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
-        <rect x="40" y="20" width="120" height="14" rx="2"/>
-        <rect x="40" y="38" width="120" height="14" rx="2"/>
-        <rect x="40" y="56" width="120" height="14" rx="2" stroke="#B6F5C9" stroke-width="1.2"/>
-        <rect x="40" y="74" width="120" height="14" rx="2"/>
-        <rect x="40" y="92" width="120" height="14" rx="2"/>
-        <circle cx="32" cy="27" r="1.5" fill="#B6F5C9"/>
-        <circle cx="32" cy="45" r="1.5" fill="#B6F5C9"/>
-        <circle cx="32" cy="63" r="1.5" fill="#B6F5C9"/>
-        <circle cx="32" cy="81" r="1.5" fill="#B6F5C9"/>
-        <circle cx="32" cy="99" r="1.5" fill="#B6F5C9"/>
-      </svg>
-    )}
+      {!thumbImage && v.motif === "stack" && (
+        <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+          <rect x="40" y="20" width="120" height="14" rx="2"/>
+          <rect x="40" y="38" width="120" height="14" rx="2"/>
+          <rect x="40" y="56" width="120" height="14" rx="2" stroke="#B6F5C9" stroke-width="1.2"/>
+          <rect x="40" y="74" width="120" height="14" rx="2"/>
+          <rect x="40" y="92" width="120" height="14" rx="2"/>
+          <circle cx="32" cy="27" r="1.5" fill="#B6F5C9"/>
+          <circle cx="32" cy="45" r="1.5" fill="#B6F5C9"/>
+          <circle cx="32" cy="63" r="1.5" fill="#B6F5C9"/>
+          <circle cx="32" cy="81" r="1.5" fill="#B6F5C9"/>
+          <circle cx="32" cy="99" r="1.5" fill="#B6F5C9"/>
+        </svg>
+      )}
 
-    <div class="pub-thumb-overlay"></div>
-    <span class="pub-thumb-code" aria-hidden="true">{itemZh.id.toUpperCase().replace(/-/g, " · ")}</span>
-    <span class="pub-thumb-tag" aria-hidden="true">{itemZh.featured ? "OPEN KNOWLEDGE" : "FEATURED"}</span>
+      <div class="pub-thumb-overlay"></div>
+      <span class="pub-thumb-code" aria-hidden="true">{itemZh.id.toUpperCase().replace(/-/g, " · ")}</span>
+      <span class="pub-thumb-tag" aria-hidden="true">{itemZh.featured ? "OPEN KNOWLEDGE" : "FEATURED"}</span>
+    </div>
   </div>
   <div class="pub-body">
     <h3 class="pub-title">{itemZh.title}</h3>
@@ -144,7 +154,7 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
       linear-gradient(180deg, rgba(10, 28, 44, 0.86) 0%, rgba(7, 21, 33, 0.94) 100%);
     border: 1px solid rgba(139, 178, 203, 0.09);
     border-radius: 18px;
-    overflow: hidden;
+    overflow: visible;
     backdrop-filter: blur(14px);
     box-shadow:
       inset 0 1px 0 rgba(226, 235, 241, 0.024),
@@ -157,13 +167,42 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     box-shadow: var(--shadow-card-hover);
   }
 
-  .pub-thumb {
+  .pub-thumb-shell {
     position: relative;
     aspect-ratio: 16 / 9;
+    overflow: visible;
+  }
+  .pub-thumb {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
     overflow: hidden;
     isolation: isolate;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    transition:
+      height 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pub-card:hover .pub-thumb {
+    height: var(--thumb-full-height, 100%);
+    z-index: 5;
   }
   .pub-thumb-bg { position: absolute; inset: 0; z-index: -2; }
+  .pub-thumb-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    display: block;
+    transition: filter 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+    filter: saturate(1.02) contrast(1.02);
+    will-change: filter;
+  }
   .pub-motif {
     position: absolute;
     inset: 0;
@@ -175,13 +214,18 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     transition: transform 600ms var(--ease-out);
   }
   .pub-card:hover .pub-motif { transform: scale(1.06); }
+  .pub-card:hover .pub-thumb-image {
+    filter: saturate(1.06) contrast(1.05) drop-shadow(0 18px 32px rgba(2, 9, 17, 0.35));
+  }
   .pub-thumb-overlay {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, transparent 26%, rgba(4, 13, 23, 0.82) 100%),
-      linear-gradient(135deg, transparent 58%, rgba(4, 13, 23, 0.28) 100%);
+      linear-gradient(180deg, rgba(4, 13, 23, 0.06) 0%, rgba(4, 13, 23, 0.82) 100%),
+      linear-gradient(135deg, transparent 52%, rgba(4, 13, 23, 0.34) 100%);
+    z-index: 3;
     pointer-events: none;
+    transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .pub-thumb-code {
     position: absolute;
@@ -193,7 +237,10 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     text-transform: uppercase;
     color: rgba(232, 238, 247, 0.85);
     text-shadow: 0 0 12px rgba(6, 9, 15, 0.8);
-    z-index: 1;
+    z-index: 4;
+    transition:
+      opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .pub-thumb-tag {
     position: absolute;
@@ -207,9 +254,19 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     background: rgba(8, 15, 22, 0.56);
     border: 1px solid rgba(162, 192, 210, 0.16);
     border-radius: var(--radius-pill);
-    z-index: 1;
+    z-index: 4;
     text-transform: uppercase;
+    transition:
+      opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .pub-card:hover .pub-thumb-overlay,
+  .pub-card:hover .pub-thumb-code,
+  .pub-card:hover .pub-thumb-tag {
+    opacity: 0;
+  }
+  .pub-card:hover .pub-thumb-code { transform: translateY(6px); }
+  .pub-card:hover .pub-thumb-tag { transform: translateY(-6px); }
 
   .pub-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; }
   .pub-title { font-size: 18px; letter-spacing: 0.01em; }
@@ -249,11 +306,41 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
 
   /* Featured strip card */
   .pub-card--featured { grid-column: 1 / -1; flex-direction: row; }
-  .pub-card--featured .pub-thumb { width: 320px; aspect-ratio: auto; flex-shrink: 0; }
+  .pub-card--featured .pub-thumb-shell { width: 320px; aspect-ratio: auto; flex-shrink: 0; }
+  .pub-card--featured .pub-thumb { height: 100%; }
   .pub-card--featured .pub-body { flex: 1; padding: 24px 26px; }
   @media (max-width: 768px) {
     .pub-card--featured { flex-direction: column; }
-    .pub-card--featured .pub-thumb { width: 100%; aspect-ratio: 16 / 9; }
+    .pub-card--featured .pub-thumb-shell { width: 100%; aspect-ratio: 16 / 9; }
     .pub-card--featured .pub-body { padding: 18px; }
   }
 </style>
+
+<script>
+  const setupExpandableThumbs = () => {
+    const thumbs = document.querySelectorAll("[data-expand-thumb]");
+
+    thumbs.forEach((thumb) => {
+      const image = thumb.querySelector("[data-expand-image]");
+      if (!(thumb instanceof HTMLElement) || !(image instanceof HTMLImageElement)) return;
+
+      const updateShift = () => {
+        const thumbHeight = thumb.clientHeight;
+        const imageHeight = image.getBoundingClientRect().height;
+        const fullHeight = Math.max(thumbHeight, imageHeight);
+        thumb.style.setProperty("--thumb-full-height", `${fullHeight}px`);
+      };
+
+      if (image.complete) updateShift();
+      image.addEventListener("load", updateShift, { once: true });
+      window.addEventListener("resize", updateShift);
+      updateShift();
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupExpandableThumbs, { once: true });
+  } else {
+    setupExpandableThumbs();
+  }
+</script>

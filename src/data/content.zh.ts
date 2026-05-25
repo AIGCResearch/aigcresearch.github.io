@@ -105,10 +105,10 @@ export const zh: Content = {
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
         links: [
-          { label: "Tech Report", href: "#", disabled: true },
-          { label: "Code", href: "#", disabled: true },
-          { label: "Dataset", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
+          { label: "Tech Report", href: "https://arxiv.org/abs/2505.24862" },
+          { label: "Code", href: "https://github.com/ViStoryBench/vistorybench" },
+          { label: "Dataset", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
+          { label: "Project Page", href: "https://vistorybench.github.io/" },
         ],
       },
       {
@@ -118,9 +118,9 @@ export const zh: Content = {
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
         links: [
-          { label: "Tech Report", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
-          { label: "Code", href: "#", disabled: true },
+          { label: "Tech Report", href: "https://arxiv.org/abs/2504.15281" },
+          { label: "Project Page", href: "https://styleme3d.github.io/" },
+          { label: "Code", href: "https://github.com/AIGCResearch/styleme3d" },
         ],
       },
       {
@@ -130,9 +130,9 @@ export const zh: Content = {
         body:
           "将创意理解、镜头组织、素材生成与创作流程协同串联起来，是面向未来电影生成与影视创作系统的重要框架原型，也是不断演化的创意工作流实验场。",
         links: [
-          { label: "Code", href: "#", disabled: true },
-          { label: "Demo", href: "#", disabled: true },
-          { label: "Docs", href: "#", disabled: true },
+          { label: "Code", href: "https://github.com/AIGCResearch/ShotStudio" },
+          { label: "Demo", href: "https://aigcresearch.github.io/ShotStudio/" },
+          { label: "Docs", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
         ],
       },
       {
@@ -143,7 +143,7 @@ export const zh: Content = {
           "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
         links: [
           { label: "Paper", href: "#", disabled: true },
-          { label: "Project Page", href: "#", disabled: true },
+          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
           { label: "Code", href: "#", disabled: true },
         ],
       },
@@ -153,7 +153,7 @@ export const zh: Content = {
         tagline: "持续追踪 AIGC 前沿进展的开源知识整理项目。",
         body:
           "体现团队在知识组织、趋势追踪与社区共享方面的持续投入，不仅服务于内部研究，也希望与更广泛社区共同推动 AIGC 发展。",
-        links: [{ label: "Code", href: "#", disabled: true }],
+        links: [{ label: "Code", href: "https://github.com/AIGCResearch/Awesome-PaperDaily" }],
         featured: true,
       },
     ],
@@ -170,7 +170,11 @@ export const zh: Content = {
         role: "团队成员",
         affiliation: "上海科技大学硕士",
         bio: "研究方向为 AIGC，关注创意人工智能与影视级内容生成。",
-        links: {},
+        links: {
+          homepage: "https://journey-zhuang.github.io/",
+          github: "https://github.com/journey-zhuang",
+          email: "journeyzhuang@gmail.com",
+        },
       },
       {
         name: "胡耀淇",
@@ -178,7 +182,9 @@ export const zh: Content = {
         role: "团队成员",
         affiliation: "—",
         bio: "简介待补充。",
-        links: {},
+        links: {
+          github: "https://github.com/yaoqih",
+        },
       },
       {
         name: "董政",
@@ -214,13 +220,13 @@ export const zh: Content = {
     title: "合作与联系",
     body:
       "如果您对我们的研究方向、项目合作、学术交流、开源共建或创意生产系统落地感兴趣，欢迎与我们取得联系。让我们共同塑造一个全新的创意世界。",
-    email: "aigcresearch@example.com",
+    email: "journeyzhuang@gmail.com",
     emailCtaLabel: "邮件联系",
     wechatTitle: "微信公众号",
     wechatNote: "扫码关注 AIGC Research",
     socials: [
-      { icon: "github", label: "GitHub", href: "#", disabled: true },
-      { icon: "huggingface", label: "Hugging Face", href: "#", disabled: true },
+      { icon: "github", label: "GitHub", href: "https://github.com/AIGCResearch" },
+      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/ViStoryBench" },
       { icon: "scholar", label: "Scholar", href: "#", disabled: true },
       { icon: "bilibili", label: "Bilibili", href: "#", disabled: true },
       { icon: "x", label: "X", href: "#", disabled: true },
