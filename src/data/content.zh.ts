@@ -240,6 +240,7 @@ export const zh: Content = {
           homepage: "https://journey-zhuang.github.io/",
           github: "https://github.com/journey-zhuang",
           email: "journeyzhuang@gmail.com",
+          google_scholar: "https://scholar.google.com/citations?user=YuOegioAAAAJ&hl=zh-CN",
         },
       },
       {
@@ -269,7 +270,9 @@ export const zh: Content = {
         role: "工业界导师",
         affiliation: "阶跃星辰 · 研究科学家",
         bio: "研究方向为生成式人工智能。",
-        links: {},
+        links: {
+          google_scholar: "https://scholar.google.com/citations?user=OC8eBkYAAAAJ&hl=zh-TW",
+        },
       },
       {
         name: "夏清玲",
@@ -277,7 +280,9 @@ export const zh: Content = {
         role: "学术界导师",
         affiliation: "重庆理工大学",
         bio: "研究方向为生物医学工程。",
-        links: {},
+        links: {
+          google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
+        },
       },
     ],
   },
