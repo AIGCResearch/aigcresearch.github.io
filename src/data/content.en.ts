@@ -54,44 +54,97 @@ export const en: Content = {
       },
     ],
   },
+
+
+  
+  // directions: {
+  //   eyebrow: "Research Directions",
+  //   title: "Two Research Pathways",
+  //   intro:
+  //     "Our research advances along two pathways. General Creative Intelligence explores the frontier of machine creativity; Intelligent Creative Workflow focuses on releasing human creativity. Together they form a closed loop from creative understanding to creative production.",
+  //   items: [
+  //     {
+  //       id: "gci",
+  //       title: "General Creative Intelligence",
+  //       subtitle: "通用创意智能",
+  //       tagline: "From asset generator to design-thinking creative agent.",
+  //       body:
+  //         "A film director, when conceiving a narrative, orchestrates sound, image, action, pacing, and story logic simultaneously — a cross-modal act of imagination. This pathway studies how AI can acquire that top-level design capability through multimodal perception, cross-modal alignment, aesthetic cognition, and creative reasoning.",
+  //       tags: [
+  //         "Multimodal Perception",
+  //         "Cross-modal Alignment",
+  //         "Creative Reasoning",
+  //         "Aesthetic Cognition",
+  //         "Design-Thinking Agent",
+  //       ],
+  //     },
+  //     {
+  //       id: "icw",
+  //       title: "Intelligent Creative Workflow",
+  //       subtitle: "智能创意工作流",
+  //       tagline: "Let the tools adapt to creators — not the other way around.",
+  //       body:
+  //         "We bring creative agents into real production, reducing mechanical steps in 2D / 3D animation: previsualization, cold-start 3D modeling, inbetweening, shot transitions, asset recomposition. We cover the full data spectrum — 1D audio, 2D images, 3D geometry, 4D video — and break the single text-to-image paradigm with multimodal interaction grounded in artist intuition.",
+  //       tags: [
+  //         "Agent Deployment",
+  //         "2D/3D/4D Content",
+  //         "Multimodal Interaction",
+  //         "Film & Animation Workflow",
+  //         "Workflow → Creative Flow",
+  //       ],
+  //     },
+  //   ],
+  // },
+
   directions: {
-    eyebrow: "Research Directions",
-    title: "Two Research Pathways",
-    intro:
-      "Our research advances along two pathways. General Creative Intelligence explores the frontier of machine creativity; Intelligent Creative Workflow focuses on releasing human creativity. Together they form a closed loop from creative understanding to creative production.",
-    items: [
+    "eyebrow": "Research Directions",
+    "title": "Research Directions",
+    "intro": "Our research advances synergistically along three main threads: General Creative Intelligence explores the boundaries of machine creativity; Intelligent Creative Workflow focuses on unleashing human creative potential; and AI for Science probes the frontiers of life cognition. Together, these pillars form a complete research loop—spanning from creative understanding and production applications to foundational scientific exploration in life cognition.",
+    "items": [
       {
-        id: "gci",
-        title: "General Creative Intelligence",
-        subtitle: "通用创意智能",
-        tagline: "From asset generator to design-thinking creative agent.",
-        body:
-          "A film director, when conceiving a narrative, orchestrates sound, image, action, pacing, and story logic simultaneously — a cross-modal act of imagination. This pathway studies how AI can acquire that top-level design capability through multimodal perception, cross-modal alignment, aesthetic cognition, and creative reasoning.",
-        tags: [
+        "id": "gci",
+        "title": "General Creative Intelligence",
+        "subtitle": "General Creative Intelligence",
+        "tagline": "Exploring the boundaries of machine creativity — starting with 'understanding human creation' to endow AI with top-level design and aesthetic reasoning capabilities.",
+        "body": "We aim to break through the traditional limitation of AI being confined to mechanical generation without an understanding of the creative process. This direction not only investigates human intent, processes, and cognitive mechanisms in artistic creation but also strives to grant AI a 'Design Thinking' capability akin to that of human directors or designers.\n\n1. Cross-modal Aesthetic Alignment: Outstanding artworks stem from a holistic imagination of sound, visuals, and narrative. Our core research focuses on the deep alignment of cross-modal design elements—such as text, music, color, emotion, and motion—endowing AI with top-level aesthetic perception and panoramic conceptualization abilities. This enables AI to generate assets while truly understanding the underlying aesthetic logic of creation.\n\n2. Interpretability and Lightweighting of Large Models: We conduct a multi-scale analysis of generative large models—from the micro level (neuron activation patterns), through the meso level (sub-network and attention mechanism synergy), to the macro level (overall generalization and emergent capabilities). By demystifying these 'black boxes,' we guide algorithmic optimization and architectural refinement to achieve efficient, lightweight computing that 'does more with less.'",
+        "tags": [
           "Multimodal Perception",
           "Cross-modal Alignment",
           "Creative Reasoning",
-          "Aesthetic Cognition",
-          "Design-Thinking Agent",
-        ],
+          "Design Thinking",
+          "Aesthetic Perception"
+        ]
       },
       {
-        id: "icw",
-        title: "Intelligent Creative Workflow",
-        subtitle: "智能创意工作流",
-        tagline: "Let the tools adapt to creators — not the other way around.",
-        body:
-          "We bring creative agents into real production, reducing mechanical steps in 2D / 3D animation: previsualization, cold-start 3D modeling, inbetweening, shot transitions, asset recomposition. We cover the full data spectrum — 1D audio, 2D images, 3D geometry, 4D video — and break the single text-to-image paradigm with multimodal interaction grounded in artist intuition.",
-        tags: [
-          "Agent Deployment",
+        "id": "icw",
+        "title": "Intelligent Creative Workflow",
+        "subtitle": "Intelligent Creative Workflow",
+        "tagline": "Exploring the boundaries of human creativity — starting with 'efficient digital asset production' to integrate creative agents into industrial pipelines and liberate human productivity.",
+        "body": "We focus on translating cutting-edge AI capabilities into efficient productivity tools. By addressing the labor-intensive, mechanical tasks in 2D/3D animation and film production, we enable creators to detach from tedious repetitive work and refocus on inspiration itself.\n\n1. Full-dimensional Multimodal Interaction: Our research spans 1D audio, 2D concept art, 3D geometric assets, and 4D spatiotemporal video. Moving beyond single-modality 'Text/Image-to-X' paradigms, we explore interaction methods that align with artists' intuition, such as motion-driven, audio-driven, or multimodal collaborative generation.\n\n2. Revolutionizing Production Paradigms: We promote the deep integration of generative AI with established industrial pipelines. By solving specific pain points—such as visual previews, cold-start 3D modeling, and manual in-betweening—we facilitate a paradigm shift from cumbersome 'workflows' to pure 'creative flow.'",
+        "tags": [
+          "Full-dimensional Multimodal Interaction",
           "2D/3D/4D Content",
-          "Multimodal Interaction",
+          "Digital Asset Production",
           "Film & Animation Workflow",
-          "Workflow → Creative Flow",
-        ],
+          "Industrial Pipeline Integration"
+        ]
       },
-    ],
+      {
+        "id": "ai4s",
+        "title": "AI for Science",
+        "subtitle": "AI for Science / Neuroscience",
+        "tagline": "Exploring the boundaries of life cognition — leveraging neurobiology and cognitive science to foster a bidirectional symbiosis between 'brain-inspired research' and 'scientific empowerment.'",
+        "body": "We focus on the intersection of artificial intelligence and neuroscience. By deeply integrating computational science with biological intelligence, we seek breakthroughs for next-generation AI architectures while utilizing AI technology to expand the boundaries of human understanding of the brain.\n\n1. Inward Inspiration (Simulation-driven Brain-inspired Research): Introducing advanced neuroscience theories, we translate complex biological neural mechanisms into computable mathematical models. By constructing mathematical models and neural network algorithms corresponding to different functional areas and brain networks, we seek architectural breakthroughs in AI models.\n\n2. Outward Empowerment (AI-driven Neuroscience): Utilizing advanced generative AI and data analytics, we give back to neuroscience research. We assist scientists in exploring the complex neural connectivity mechanisms and disease pathologies of the human brain, aiming to solve significant scientific challenges in brain science and promote clinical applications.",
+        "tags": [
+          "Brain-inspired Research",
+          "Neuroscience",
+          "Bidirectional Symbiosis"
+        ]
+      }
+    ]
   },
+
+  
   publications: {
     eyebrow: "Publications & Projects",
     title: "Featured Work",
