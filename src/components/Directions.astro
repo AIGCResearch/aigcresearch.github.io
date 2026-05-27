@@ -27,29 +27,36 @@ const e = en.directions;
     <div class="dir-grid">
       {z.items.map((d, i) => (
         <article class="dir-card reveal">
-          <span class="dir-card-watermark" aria-hidden="true">{i === 0 ? "GCI" : "ICW"}</span>
+          <span class="dir-card-watermark" aria-hidden="true">
+            {i === 0 ? "GCI" : i === 1 ? "ICW" : "AI4S"}
+          </span>
           <header class="dir-head">
             <span class="dir-index">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3 class="dir-title">
-                <span data-lang="zh">{d.title}</span><span data-lang="en">{e.items[i].title}</span>
+                <span data-lang="zh">{d.title}</span>
+                <span data-lang="en">{e.items[i].title}</span>
               </h3>
               <p class="dir-subtitle">
-                <span data-lang="zh">{d.subtitle}</span><span data-lang="en">{e.items[i].subtitle}</span>
+                <span data-lang="zh">{d.subtitle}</span>
+                <span data-lang="en">{e.items[i].subtitle}</span>
               </p>
             </div>
           </header>
           <p class="dir-tagline">
             <span class="dir-tagline-decor" aria-hidden="true">»</span>
-            <span data-lang="zh">{d.tagline}</span><span data-lang="en">{e.items[i].tagline}</span>
+            <span data-lang="zh">{d.tagline}</span>
+            <span data-lang="en">{e.items[i].tagline}</span>
           </p>
           <p class="dir-body">
-            <span data-lang="zh">{d.body}</span><span data-lang="en">{e.items[i].body}</span>
+            <span data-lang="zh">{d.body}</span>
+            <span data-lang="en">{e.items[i].body}</span>
           </p>
           <ul class="dir-tags">
             {d.tags.map((t, ti) => (
               <li class="tag">
-                <span data-lang="zh">{t}</span><span data-lang="en">{e.items[i].tags[ti]}</span>
+                <span data-lang="zh">{t}</span>
+                <span data-lang="en">{e.items[i].tags[ti]}</span>
               </li>
             ))}
           </ul>
