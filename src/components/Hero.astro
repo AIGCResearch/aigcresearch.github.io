@@ -68,8 +68,7 @@ const iconPaths: Record<string, string[]> = {
     "M13 20a4 4 0 0 1 8 0",
   ],
   publication: [
-    "M4 5h8a3 3 0 0 1 3 3v11H7a3 3 0 0 0-3 3Z",
-    "M20 5h-8a3 3 0 0 0-3 3v11h8a3 3 0 0 1 3 3Z",
+    "M810.666667 128a42.666667 42.666667 0 0 1 42.666666 42.666667v42.666666h85.290667a42.666667 42.666667 0 0 1 42.368 37.674667l0.298667 4.992v128a128 128 0 0 1-120.490667 127.786667l-7.509333 0.213333h-24.832A341.418667 341.418667 0 0 1 554.666667 722.730667V810.666667h170.666666a42.666667 42.666667 0 0 1 0 85.333333H298.666667a42.666667 42.666667 0 0 1 0-85.333333h170.666666v-87.978667a341.418667 341.418667 0 0 1-273.792-210.645333L170.666667 512a128 128 0 0 1-127.786667-120.490667L42.666667 384V256a42.666667 42.666667 0 0 1 37.674666-42.368L85.333333 213.333333h85.333334V170.666667a42.666667 42.666667 0 0 1 42.666666-42.666667h597.333334z m-42.666667 85.333333H256v170.666667a256 256 0 1 0 512 0V257.408L767.957333 256 768 254.592V213.333333zM170.666667 384V298.666667H128v85.333333a42.666667 42.666667 0 0 0 37.674667 42.368L170.666667 426.666667h2.645333A343.552 343.552 0 0 1 170.666667 384z m725.248-85.333333H853.333333v85.333333c0 14.421333-0.896 28.672-2.645333 42.666667h2.56a42.666667 42.666667 0 0 0 42.410667-37.674667L895.957333 384l-0.042666-85.333333z",
   ],
   future: [
     "M4 13a8 8 0 0 1 16 0",
@@ -103,6 +102,12 @@ const iconPaths: Record<string, string[]> = {
     "m8.6 13.2 6.8 4.1",
   ],
 };
+
+const iconViewBoxes: Record<string, string> = {
+  publication: "0 0 1024 1024",
+};
+
+const filledIcons = new Set(["publication"]);
 ---
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero-bg" aria-hidden="true">
@@ -160,7 +165,16 @@ const iconPaths: Record<string, string[]> = {
               <p class="hero-card-sub">{card.titleEn}</p>
             </div>
             <span class="hero-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                viewBox={iconViewBoxes[card.icon] ?? "0 0 24 24"}
+                width="28"
+                height="28"
+                fill={filledIcons.has(card.icon) ? "currentColor" : "none"}
+                stroke={filledIcons.has(card.icon) ? "none" : "currentColor"}
+                stroke-width={filledIcons.has(card.icon) ? undefined : "1.7"}
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 {iconPaths[card.icon].map((path) => <path d={path}></path>)}
               </svg>
             </span>
