@@ -103,9 +103,9 @@ export const zh: Content = {
       "我们的研究围绕三条主线协同推进：通用创意智能关注机器创造力的边界，智能创意工作流关注人类创造力的释放方式，科学智能关注生命认知的边界。三者并行构成从创意理解、生产应用到底层生命认知科学探索的完整研究闭环。",
     items: [
       {
-        id: "gci",
+        id: "cgi",
         title: "通用创意智能",
-        subtitle: "General Creative Intelligence",
+        subtitle: "Creative General Intelligence",
         tagline: "探索机器创造力的边界 —— 从“理解人类创作”出发，赋予AI顶层设计与美学推理的能力。",
         body:
           "我们旨在打破传统AI“只能机械生成、无法理解创作”的局限。本方向不仅研究人类在艺术创作中的意图、过程与认知机制，更致力于让AI真正具备类似人类导演或设计师的“设计思维 (Design Thinking)”。\
