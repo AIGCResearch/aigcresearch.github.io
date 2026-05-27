@@ -105,7 +105,7 @@ export const zh: Content = {
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
         links: [
-          { label: "Tech Report", href: "https://arxiv.org/abs/2505.24862" },
+          { label: "Paper", href: "https://arxiv.org/abs/2505.24862" },
           { label: "Code", href: "https://github.com/ViStoryBench/vistorybench" },
           { label: "Dataset", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
           { label: "Project Page", href: "https://vistorybench.github.io/" },
@@ -118,7 +118,7 @@ export const zh: Content = {
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
         links: [
-          { label: "Tech Report", href: "https://arxiv.org/abs/2504.15281" },
+          { label: "Paper", href: "https://arxiv.org/abs/2504.15281" },
           { label: "Project Page", href: "https://styleme3d.github.io/" },
           { label: "Code", href: "https://github.com/AIGCResearch/styleme3d" },
         ],

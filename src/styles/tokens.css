@@ -30,7 +30,7 @@
   --pad-section-mobile: 64px;
 
   --font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-en: "Inter", "Sora", system-ui, -apple-system, sans-serif;
+  --font-en: "Eurostile", "Eurostile LT Std", "Microgramma D Extended", "Bank Gothic", sans-serif;
   --font-mono: "Space Grotesk", "JetBrains Mono", ui-monospace, monospace;
 
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);

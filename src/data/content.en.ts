@@ -105,7 +105,7 @@ export const en: Content = {
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",
         links: [
-          { label: "Tech Report", href: "https://arxiv.org/abs/2505.24862" },
+          { label: "Paper", href: "https://arxiv.org/abs/2505.24862" },
           { label: "Code", href: "https://github.com/ViStoryBench/vistorybench" },
           { label: "Dataset", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
           { label: "Project Page", href: "https://vistorybench.github.io/" },
@@ -118,7 +118,7 @@ export const en: Content = {
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",
         links: [
-          { label: "Tech Report", href: "https://arxiv.org/abs/2504.15281" },
+          { label: "Paper", href: "https://arxiv.org/abs/2504.15281" },
           { label: "Project Page", href: "https://styleme3d.github.io/" },
           { label: "Code", href: "https://github.com/AIGCResearch/styleme3d" },
         ],

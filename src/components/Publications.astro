@@ -5,6 +5,9 @@ import PubCard from "./PubCard.astro";
 
 const z = zh.publications;
 const e = en.publications;
+const hiddenIds = new Set(["shotstudio", "act2cut"]);
+const visibleZhItems = z.items.filter((item) => !hiddenIds.has(item.id));
+const visibleEnItems = e.items.filter((item) => !hiddenIds.has(item.id));
 ---
 <section class="section publications" id="publications" aria-labelledby="publications-title">
   <hr class="section-divider" />
@@ -27,8 +30,8 @@ const e = en.publications;
     </header>
 
     <div class="pub-grid">
-      {z.items.map((it, i) => (
-        <PubCard itemZh={it} itemEn={e.items[i]} />
+      {visibleZhItems.map((it, i) => (
+        <PubCard itemZh={it} itemEn={visibleEnItems[i]} />
       ))}
     </div>
   </div>
