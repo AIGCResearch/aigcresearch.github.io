@@ -272,7 +272,7 @@ export const zh: Content = {
         links: {},
       },
       {
-        name: "夏清零",
+        name: "夏清玲",
         monogram: "X",
         role: "学术界导师",
         affiliation: "重庆理工大学",
