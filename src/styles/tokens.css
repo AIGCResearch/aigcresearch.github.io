@@ -29,9 +29,9 @@
   --pad-section-desktop: 120px;
   --pad-section-mobile: 64px;
 
-  --font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-en: "Eurostile", "Eurostile LT Std", "Microgramma D Extended", "Bank Gothic", sans-serif;
-  --font-mono: "Space Grotesk", "JetBrains Mono", ui-monospace, monospace;
+  --font-zh: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
+  --font-en: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
 
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

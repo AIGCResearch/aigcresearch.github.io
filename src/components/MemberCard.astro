@@ -2,6 +2,7 @@
 import type { Member } from "../data/types";
 interface Props { memberZh: Member; memberEn: Member; }
 const { memberZh, memberEn } = Astro.props;
+const scholarLink = memberZh.links.scholar || memberZh.links.google_scholar;
 ---
 <article class="member reveal">
   <div class="member-portrait" aria-hidden="true">
@@ -29,7 +30,7 @@ const { memberZh, memberEn } = Astro.props;
     <p class="member-bio">
       <span data-lang="zh">{memberZh.bio}</span><span data-lang="en">{memberEn.bio}</span>
     </p>
-    {(memberZh.links.homepage || memberZh.links.github || memberZh.links.scholar || memberZh.links.email) && (
+    {(memberZh.links.homepage || memberZh.links.github || scholarLink || memberZh.links.email) && (
       <div class="member-links">
         {memberZh.links.homepage && (
           <a class="member-link" href={memberZh.links.homepage} target="_blank" rel="noreferrer">Home</a>
@@ -37,8 +38,8 @@ const { memberZh, memberEn } = Astro.props;
         {memberZh.links.github && (
           <a class="member-link" href={memberZh.links.github} target="_blank" rel="noreferrer">GitHub</a>
         )}
-        {memberZh.links.scholar && (
-          <a class="member-link" href={memberZh.links.scholar} target="_blank" rel="noreferrer">Scholar</a>
+        {scholarLink && (
+          <a class="member-link" href={scholarLink} target="_blank" rel="noreferrer">Scholar</a>
         )}
         {memberZh.links.email && (
           <a class="member-link" href={`mailto:${memberZh.links.email}`}>Email</a>

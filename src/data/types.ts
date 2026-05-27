@@ -29,7 +29,7 @@ export type Member = {
   affiliation: string;
   bio: string;
   avatar?: string;
-  links: { homepage?: string; scholar?: string; github?: string; email?: string };
+  links: { homepage?: string; scholar?: string; google_scholar?: string; github?: string; email?: string };
 };
 
 export type Content = {
