@@ -227,6 +227,7 @@ export const en: Content = {
           homepage: "https://journey-zhuang.github.io/",
           github: "https://github.com/journey-zhuang",
           email: "journeyzhuang@gmail.com",
+          google_scholar: "https://scholar.google.com/citations?user=YuOegioAAAAJ&hl=zh-CN",
         },
       },
       {
@@ -255,16 +256,20 @@ export const en: Content = {
         monogram: "C",
         role: "Industry Advisor",
         affiliation: "StepFun · Research Scientist",
-        bio: "Researches generative AI.",
-        links: {},
+        bio: "Research on generative AI.",
+        links: {
+          google_scholar: "https://scholar.google.com/citations?user=OC8eBkYAAAAJ&hl=zh-TW",
+        },
       },
       {
         name: "Qingling Xia",
         monogram: "X",
         role: "Academic Advisor",
         affiliation: "Chongqing University of Technology",
-        bio: "Researches biomedical engineering.",
-        links: {},
+        bio: "Research on biomedical engineering.",
+        links: {
+          google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
+        },
       },
     ],
   },
