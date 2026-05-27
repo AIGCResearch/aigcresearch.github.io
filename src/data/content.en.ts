@@ -102,9 +102,9 @@ export const en: Content = {
     "intro": "Our research advances synergistically along three main threads: General Creative Intelligence explores the boundaries of machine creativity; Intelligent Creative Workflow focuses on unleashing human creative potential; and AI for Science probes the frontiers of life cognition. Together, these pillars form a complete research loop—spanning from creative understanding and production applications to foundational scientific exploration in life cognition.",
     "items": [
       {
-        "id": "gci",
-        "title": "General Creative Intelligence",
-        "subtitle": "General Creative Intelligence",
+        "id": "cgi",
+        "title": "Creative General Intelligence",
+        "subtitle": "Creative General Intelligence",
         "tagline": "Exploring the boundaries of machine creativity — starting with 'understanding human creation' to endow AI with top-level design and aesthetic reasoning capabilities.",
         "body": "We aim to break through the traditional limitation of AI being confined to mechanical generation without an understanding of the creative process. This direction not only investigates human intent, processes, and cognitive mechanisms in artistic creation but also strives to grant AI a 'Design Thinking' capability akin to that of human directors or designers.\n\n1. Cross-modal Aesthetic Alignment: Outstanding artworks stem from a holistic imagination of sound, visuals, and narrative. Our core research focuses on the deep alignment of cross-modal design elements—such as text, music, color, emotion, and motion—endowing AI with top-level aesthetic perception and panoramic conceptualization abilities. This enables AI to generate assets while truly understanding the underlying aesthetic logic of creation.\n\n2. Interpretability and Lightweighting of Large Models: We conduct a multi-scale analysis of generative large models—from the micro level (neuron activation patterns), through the meso level (sub-network and attention mechanism synergy), to the macro level (overall generalization and emergent capabilities). By demystifying these 'black boxes,' we guide algorithmic optimization and architectural refinement to achieve efficient, lightweight computing that 'does more with less.'",
         "tags": [
