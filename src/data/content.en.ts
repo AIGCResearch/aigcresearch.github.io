@@ -266,6 +266,16 @@ export const en: Content = {
         },
       },
       {
+        name: "Mengtian Li",
+        monogram: "X",
+        role: "Academic Advisor",
+        affiliation: "Shanghai University",
+        bio: "Research on AI filmmaking.",
+        links: {
+          personal_page: "https://mengtianli.github.io/cv/",
+        },
+      },
+      {
         name: "Qingling Xia",
         monogram: "X",
         role: "Academic Advisor",

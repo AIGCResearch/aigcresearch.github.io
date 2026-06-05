@@ -30,7 +30,14 @@ export type Member = {
   bio: string;
   avatar?: string;
   wechatQr?: string;
-  links: { homepage?: string; scholar?: string; google_scholar?: string; github?: string; email?: string };
+  links: {
+    homepage?: string;
+    personal_page?: string;
+    scholar?: string;
+    google_scholar?: string;
+    github?: string;
+    email?: string;
+  };
 };
 
 export type Content = {

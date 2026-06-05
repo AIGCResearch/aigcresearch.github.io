@@ -2,6 +2,7 @@
 import type { Member } from "../data/types";
 interface Props { memberZh: Member; memberEn: Member; }
 const { memberZh, memberEn } = Astro.props;
+const personalPageLink = memberZh.links.personal_page || memberZh.links.homepage;
 const scholarLink = memberZh.links.scholar || memberZh.links.google_scholar;
 ---
 <article class="member reveal">
@@ -38,10 +39,10 @@ const scholarLink = memberZh.links.scholar || memberZh.links.google_scholar;
         </figcaption>
       </figure>
     )}
-    {(memberZh.links.homepage || memberZh.links.github || scholarLink || memberZh.links.email) && (
+    {(personalPageLink || memberZh.links.github || scholarLink || memberZh.links.email) && (
       <div class="member-links">
-        {memberZh.links.homepage && (
-          <a class="member-link" href={memberZh.links.homepage} target="_blank" rel="noreferrer">Home</a>
+        {personalPageLink && (
+          <a class="member-link" href={personalPageLink} target="_blank" rel="noreferrer">Personal</a>
         )}
         {memberZh.links.github && (
           <a class="member-link" href={memberZh.links.github} target="_blank" rel="noreferrer">GitHub</a>

@@ -279,6 +279,16 @@ export const zh: Content = {
         },
       },
       {
+        name: "李梦甜",
+        monogram: "X",
+        role: "学术界导师",
+        affiliation: "上海大学",
+        bio: "研究方向为AI电影。",
+        links: {
+          personal_page: "https://mengtianli.github.io/cv/",
+        },
+      },
+      {
         name: "夏清玲",
         monogram: "X",
         role: "学术界导师",
