@@ -30,6 +30,14 @@ const scholarLink = memberZh.links.scholar || memberZh.links.google_scholar;
     <p class="member-bio">
       <span data-lang="zh">{memberZh.bio}</span><span data-lang="en">{memberEn.bio}</span>
     </p>
+    {memberZh.wechatQr && (
+      <figure class="member-wechat">
+        <img src={memberZh.wechatQr} alt={`${memberZh.name} 微信二维码`} loading="lazy" />
+        <figcaption>
+          <span data-lang="zh">微信二维码</span><span data-lang="en">WeChat QR</span>
+        </figcaption>
+      </figure>
+    )}
     {(memberZh.links.homepage || memberZh.links.github || scholarLink || memberZh.links.email) && (
       <div class="member-links">
         {memberZh.links.homepage && (
@@ -168,6 +176,30 @@ const scholarLink = memberZh.links.scholar || memberZh.links.google_scholar;
   }
   .member-bio { font-size: 13px; color: rgba(214, 229, 241, 0.72); line-height: 1.7; }
   html[lang="en"] .member-bio { line-height: 1.55; }
+  .member-wechat {
+    width: min(148px, 100%);
+    margin: 16px auto 0;
+    padding: 10px 10px 8px;
+    border: 1px solid rgba(139, 178, 203, 0.12);
+    border-radius: 12px;
+    background: rgba(230, 238, 243, 0.04);
+  }
+  .member-wechat img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .member-wechat figcaption {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(206, 220, 229, 0.68);
+  }
   .member-links {
     display: flex;
     flex-wrap: wrap;

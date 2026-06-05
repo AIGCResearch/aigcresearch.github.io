@@ -236,6 +236,7 @@ export const zh: Content = {
         role: "团队成员",
         affiliation: "上海科技大学硕士",
         bio: "研究方向为 AIGC，关注创意人工智能与影视级内容生成。",
+        wechatQr: "/images/6703e9890583c36c70358de568aed799.jpg",
         links: {
           homepage: "https://journey-zhuang.github.io/",
           github: "https://github.com/journey-zhuang",
@@ -248,9 +249,12 @@ export const zh: Content = {
         monogram: "H",
         role: "团队成员",
         affiliation: "—",
-        bio: "简介待补充。",
+        bio: "专注于开源社区贡献（Hugging Face）、企业级数据工作流开发，并在多媒体与视觉生成领域具有深厚的研究积累。",
+        wechatQr: "/images/9a344fabd81afa4267fec428c2be6d52.jpg",
         links: {
+          homepage: "https://github.com/yaoqih",
           github: "https://github.com/yaoqih",
+          email: "1375626371@qq.com",
         },
       },
       {

@@ -223,6 +223,7 @@ export const en: Content = {
         role: "Team Member",
         affiliation: "M.Sc., ShanghaiTech University",
         bio: "Working on AIGC, creative intelligence, and cinematic content generation.",
+        wechatQr: "/images/6703e9890583c36c70358de568aed799.jpg",
         links: {
           homepage: "https://journey-zhuang.github.io/",
           github: "https://github.com/journey-zhuang",
@@ -235,9 +236,12 @@ export const en: Content = {
         monogram: "H",
         role: "Team Member",
         affiliation: "—",
-        bio: "Bio coming soon.",
+        bio: "Focuses on open-source community contributions on Hugging Face, enterprise data workflow development, and multimedia and visual generation research.",
+        wechatQr: "/images/9a344fabd81afa4267fec428c2be6d52.jpg",
         links: {
+          homepage: "https://github.com/yaoqih",
           github: "https://github.com/yaoqih",
+          email: "1375626371@qq.com",
         },
       },
       {
