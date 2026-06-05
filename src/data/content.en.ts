@@ -269,7 +269,7 @@ export const en: Content = {
         name: "Mengtian Li",
         monogram: "X",
         role: "Academic Advisor",
-        affiliation: "Shanghai University",
+        affiliation: "Shanghai University · Shanghai Film Academy",
         bio: "Research on AI filmmaking.",
         links: {
           personal_page: "https://mengtianli.github.io/cv/",
