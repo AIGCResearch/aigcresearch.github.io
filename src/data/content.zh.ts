@@ -286,6 +286,8 @@ export const zh: Content = {
         bio: "研究方向为AI电影。",
         links: {
           personal_page: "https://mengtianli.github.io/cv/",
+          google_scholar: "https://scholar.google.com/citations?user=SFvOV2oAAAAJ&hl=zh-CN",
+
         },
       },
       {
