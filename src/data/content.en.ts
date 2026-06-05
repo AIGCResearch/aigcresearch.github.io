@@ -221,7 +221,7 @@ export const en: Content = {
         name: "Cailin Zhuang",
         monogram: "Z",
         role: "Team Member",
-        affiliation: "M.Sc., ShanghaiTech University",
+        affiliation: "M.Sc., ShanghaiTech University; Ph.D. Year 0, Fudan University",
         bio: "Working on AIGC, creative intelligence, and cinematic content generation.",
         wechatQr: "/images/6703e9890583c36c70358de568aed799.jpg",
         links: {

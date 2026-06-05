@@ -234,7 +234,7 @@ export const zh: Content = {
         name: "庄才林",
         monogram: "Z",
         role: "团队成员",
-        affiliation: "上海科技大学硕士",
+        affiliation: "上海科技大学硕士，复旦大学博0",
         bio: "研究方向为 AIGC，关注创意人工智能与影视级内容生成。",
         wechatQr: "/images/6703e9890583c36c70358de568aed799.jpg",
         links: {
