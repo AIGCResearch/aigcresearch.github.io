@@ -300,6 +300,17 @@ export const zh: Content = {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
         },
       },
+      {
+        name: "朱思语",
+        monogram: "Z",
+        role: "学术界导师",
+        affiliation: "复旦大学",
+        bio: "研究方向为视频世界模型。",
+        links: {
+          personal_page: "https://ai3.fudan.edu.cn/info/1088/1514.htm",
+          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
+        },
+      },
     ],
   },
   contact: {

@@ -286,6 +286,17 @@ export const en: Content = {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
         },
       },
+      {
+        name: "Siyu Zhu",
+        monogram: "Z",
+        role: "Academic Advisor",
+        affiliation: "Fudan University",
+        bio: "Research on video world models.",
+        links: {
+          personal_page: "https://ai3.fudan.edu.cn/info/1088/1514.htm",
+          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
+        },
+      },
     ],
   },
   contact: {
