@@ -165,8 +165,22 @@ export const zh: Content = {
       "每项成果都试图回答一个具体的问题，而不仅仅是一次实验。下面是我们目前最具代表性的方向锚点。",
     items: [
       {
+        id: "act2cut",
+        title: "Act2Cut",
+        venue: "SIGGRAPH Asia 2026",
+        tagline: "多镜头视频叙事的动作连续性建模。",
+        body:
+          "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
+        links: [
+          { label: "Paper", href: "#", disabled: true },
+          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
+          { label: "Code", href: "#", disabled: true },
+        ],
+      },
+      {
         id: "vistorybench",
         title: "ViStoryBench",
+        venue: "CVPR 2026",
         tagline: "面向视觉故事讲述的综合性基准测试。",
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
@@ -180,6 +194,7 @@ export const zh: Content = {
       {
         id: "styleme3d",
         title: "StyleMe3D",
+        venue: "ArXiv 2025",
         tagline: "3D 高斯下的解耦先验风格化。",
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
@@ -199,18 +214,6 @@ export const zh: Content = {
           { label: "Code", href: "https://github.com/AIGCResearch/ShotStudio" },
           { label: "Demo", href: "https://aigcresearch.github.io/ShotStudio/" },
           { label: "Docs", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
-        ],
-      },
-      {
-        id: "act2cut",
-        title: "Act2Cut",
-        tagline: "多镜头视频叙事的动作连续性建模。",
-        body:
-          "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
-        links: [
-          { label: "Paper", href: "#", disabled: true },
-          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
-          { label: "Code", href: "#", disabled: true },
         ],
       },
       {
