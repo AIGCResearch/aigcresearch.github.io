@@ -5,7 +5,7 @@ import PubCard from "./PubCard.astro";
 
 const z = zh.publications;
 const e = en.publications;
-const hiddenIds = new Set(["shotstudio", "act2cut"]);
+const hiddenIds = new Set(["shotstudio"]);
 const visibleZhItems = z.items.filter((item) => !hiddenIds.has(item.id));
 const visibleEnItems = e.items.filter((item) => !hiddenIds.has(item.id));
 ---
