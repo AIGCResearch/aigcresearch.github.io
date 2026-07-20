@@ -152,9 +152,23 @@ export const en: Content = {
       "Each piece of work answers a specific question rather than running an isolated experiment. The following are the anchor points of our current research line.",
     items: [
       {
+        id: "act2cut",
+        title: "Act2Cut",
+        venue: "SIGGRAPH Asia 2026",
+        tagline: "Continuous Multi-shot Video Narrative Match on Action-Cut.",
+        body:
+          "Tackling the long-overlooked “match on action” problem in cinematic language, Act2Cut enables generative video systems to understand action continuity across shots — narrative motion, not just surface frame similarity.",
+        links: [
+          { label: "Paper", href: "#", disabled: true },
+          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
+          { label: "Code", href: "#", disabled: true },
+        ],
+      },
+      {
         id: "vistorybench",
         title: "ViStoryBench",
-        tagline: "A comprehensive benchmark suite for story visualization.",
+        venue: "CVPR 2026",
+        tagline: "A Comprehensive Benchmark Suite for Story Visualization.",
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",
         links: [
@@ -167,7 +181,8 @@ export const en: Content = {
       {
         id: "styleme3d",
         title: "StyleMe3D",
-        tagline: "Stylization with disentangled priors on 3D Gaussians.",
+        venue: "ArXiv 2025",
+        tagline: "Stylization with Disentangled Priors on 3D Gaussians.",
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",
         links: [
@@ -186,18 +201,6 @@ export const en: Content = {
           { label: "Code", href: "https://github.com/AIGCResearch/ShotStudio" },
           { label: "Demo", href: "https://aigcresearch.github.io/ShotStudio/" },
           { label: "Docs", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
-        ],
-      },
-      {
-        id: "act2cut",
-        title: "Act2Cut",
-        tagline: "Continuous multi-shot video narrative — match on action.",
-        body:
-          "Tackling the long-overlooked “match on action” problem in cinematic language, Act2Cut enables generative video systems to understand action continuity across shots — narrative motion, not just surface frame similarity.",
-        links: [
-          { label: "Paper", href: "#", disabled: true },
-          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
-          { label: "Code", href: "#", disabled: true },
         ],
       },
       {
