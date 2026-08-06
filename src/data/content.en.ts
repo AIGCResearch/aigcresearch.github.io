@@ -262,7 +262,7 @@ export const en: Content = {
         affiliation: "B.S. student, Shanghai University",
         bio: "Bio coming soon.",
         links: {},
-      },
+      }
     ],
     advisorsLabel: "Advisors",
     advisors: [
