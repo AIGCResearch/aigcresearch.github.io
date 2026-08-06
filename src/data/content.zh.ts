@@ -275,7 +275,7 @@ export const zh: Content = {
         affiliation: "上海大学本科在读",
         bio: "简介待补充。",
         links: {},
-      },
+      }
     ],
     advisorsLabel: "合作导师",
     advisors: [
