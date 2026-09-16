@@ -117,11 +117,17 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   </div>
   <div class="pub-body">
     <h3 class="pub-title">{itemZh.title}</h3>
+    <p class="pub-venue">
+      <span data-lang="zh">{itemZh.venue}</span>
+      <span data-lang="en">{itemEn.venue}</span>
+    </p>
     <p class="pub-tagline">
-      <span data-lang="zh">{itemZh.tagline}</span><span data-lang="en">{itemEn.tagline}</span>
+      <span data-lang="zh">{itemZh.tagline}</span>
+      <span data-lang="en">{itemEn.tagline}</span>
     </p>
     <p class="pub-desc">
-      <span data-lang="zh">{itemZh.body}</span><span data-lang="en">{itemEn.body}</span>
+      <span data-lang="zh">{itemZh.body}</span>
+      <span data-lang="en">{itemEn.body}</span>
     </p>
     <div class="pub-links">
       {itemZh.links.map((l, i) => {
