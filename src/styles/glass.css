@@ -46,6 +46,14 @@ html[data-theme] body.site-body .nav {
   -webkit-backdrop-filter: blur(22px) saturate(135%);
 }
 
+@media (max-width: 900px) {
+  /* An ancestor backdrop filter confines the dropdown's blur to the nav itself. */
+  html[data-theme] body.site-body .nav.menu-open {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 html[data-theme="dark"] body.site-body .nav { border-color: rgba(219, 234, 244, calc(0.82 * var(--nav-outline-opacity, 0))); }
 html[data-theme="light"] body.site-body .nav { border-color: rgba(155, 195, 218, calc(0.78 * var(--nav-outline-opacity, 0))); }
 
@@ -179,9 +187,16 @@ html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .
 }
 
 html[data-theme="dark"] body.site-body .nav-mobile {
-  background: rgba(4, 16, 37, 0.72);
+  background: linear-gradient(145deg, rgba(17, 43, 73, 0.78), rgba(4, 16, 37, 0.7));
+  box-shadow: 0 18px 42px rgba(2, 9, 23, 0.35), inset 0 1px rgba(226, 241, 250, 0.12);
 }
 
 html[data-theme="light"] body.site-body .nav-mobile {
-  background: rgba(244, 246, 255, 0.74);
+  background: linear-gradient(145deg, rgba(244, 246, 255, 0.84), rgba(244, 246, 255, 0.7));
+  box-shadow: 0 18px 42px rgba(41, 83, 111, 0.18), inset 0 1px rgba(255, 255, 255, 0.58);
+}
+
+html[data-theme] body.site-body .nav-mobile {
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
 }
