@@ -1,8 +1,12 @@
 ---
 import "../styles/global.css";
 import "../styles/motion.css";
+import "../styles/theme.css";
+import "../styles/gold-corners.css";
+import "../styles/glass.css";
 import { zh } from "../data/content.zh";
 import { en } from "../data/content.en";
+import BackgroundAudio from "../components/BackgroundAudio.astro";
 
 const titleZh = zh.meta.title;
 const titleEn = en.meta.title;
@@ -10,32 +14,61 @@ const descZh = zh.meta.description;
 const descEn = en.meta.description;
 ---
 <!doctype html>
-<html lang="zh-CN" data-lang="zh">
+<html lang="zh-CN" data-lang="zh" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#06090F" />
+    <meta name="theme-color" content="#041025" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="canonical" href="https://aigcresearch.github.io/" />
+    <link rel="preload" as="image" href="/images/act2cut-waterfall-collage.avif" fetchpriority="high" />
 
     <title>{titleZh}</title>
     <meta name="description" content={descZh} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aigcresearch.github.io/" />
+    <meta property="og:site_name" content="AIGC Research" />
+    <meta property="og:title" content={titleZh} />
+    <meta property="og:description" content={descZh} />
+    <meta property="og:image" content="https://aigcresearch.github.io/images/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://aigcresearch.github.io/images/social-preview.jpg" />
 
     <!-- Inline early script: read saved lang, set html[data-lang] before paint -->
     <script is:inline>
       (function () {
+        document.documentElement.classList.add("js");
         try {
           var saved = localStorage.getItem("aigcr.lang");
           if (saved === "en" || saved === "zh") {
             document.documentElement.dataset.lang = saved;
             document.documentElement.lang = saved === "en" ? "en" : "zh-CN";
           }
+          var savedTheme = localStorage.getItem("aigcr.theme");
+          if (savedTheme === "light" || savedTheme === "dark") {
+            document.documentElement.dataset.theme = savedTheme;
+            document.querySelector('meta[name="theme-color"]').setAttribute("content", savedTheme === "light" ? "#f4f6ff" : "#041025");
+          }
         } catch (e) {}
       })();
     </script>
   </head>
-  <body>
+  <body class="site-body">
+    <div class="site-background" aria-hidden="true">
+      <img class="site-background-image" src="/images/act2cut-waterfall-collage.avif" alt="" width="960" height="5440" decoding="async" fetchpriority="high" />
+    </div>
+    <a class="skip-link" href="#main">
+      <span data-lang="zh">跳转到主要内容</span><span data-lang="en">Skip to main content</span>
+    </a>
     <slot />
+    <span class="logo-trail" aria-hidden="true"></span>
+    <span class="logo-trail" aria-hidden="true"></span>
+    <span class="logo-trail" aria-hidden="true"></span>
+    <span class="logo-trail" aria-hidden="true"></span>
+    <div class="halo-transfer" aria-hidden="true"></div>
+    <BackgroundAudio />
 
     <!-- Sync <title> + <meta description> + lang attr when toggle changes -->
     <script is:inline define:vars={{ titleZh, titleEn, descZh, descEn }}>
@@ -45,6 +78,10 @@ const descEn = en.meta.description;
           document.title = l === "en" ? titleEn : titleZh;
           var d = document.querySelector('meta[name="description"]');
           if (d) d.setAttribute("content", l === "en" ? descEn : descZh);
+          var ogTitle = document.querySelector('meta[property="og:title"]');
+          if (ogTitle) ogTitle.setAttribute("content", l === "en" ? titleEn : titleZh);
+          var ogDesc = document.querySelector('meta[property="og:description"]');
+          if (ogDesc) ogDesc.setAttribute("content", l === "en" ? descEn : descZh);
           document.documentElement.lang = l === "en" ? "en" : "zh-CN";
         }
         sync();
@@ -62,6 +99,12 @@ const descEn = en.meta.description;
           });
           return;
         }
+        if (!("IntersectionObserver" in window)) {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("in-view");
+          });
+          return;
+        }
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             if (e.isIntersecting) {
@@ -73,6 +116,30 @@ const descEn = en.meta.description;
         document.querySelectorAll(".reveal").forEach(function (el) {
           io.observe(el);
         });
+      })();
+    </script>
+
+    <script is:inline>
+      (function () {
+        var image = document.querySelector(".site-background-image");
+        if (!image || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        var frame = 0;
+        function update() {
+          frame = 0;
+          var speed = window.innerWidth <= 640 ? 0.035 : 0.08;
+          var available = Math.max(0, image.offsetHeight - window.innerHeight);
+          var shift = Math.min(window.scrollY * speed, available);
+          image.style.setProperty("--background-shift", -shift + "px");
+        }
+        function schedule() {
+          if (!frame) frame = window.requestAnimationFrame(update);
+        }
+
+        window.addEventListener("scroll", schedule, { passive: true });
+        window.addEventListener("resize", schedule);
+        image.addEventListener("load", schedule, { once: true });
+        schedule();
       })();
     </script>
   </body>

@@ -1,0 +1,44 @@
+/* Soft yellow light from the upper-right corner, echoing the reference site's cards. */
+html[data-theme="dark"] {
+  --card-gold-glow: radial-gradient(ellipse 320px 240px at 100% 0%, rgba(255, 225, 154, 0.18), rgba(255, 225, 154, 0.1) 28%, rgba(255, 225, 154, 0.035) 54%, transparent 78%);
+}
+html[data-theme="light"] {
+  --card-gold-glow: radial-gradient(ellipse 320px 240px at 100% 0%, rgba(255, 225, 154, 0.53), rgba(255, 225, 154, 0.31) 28%, rgba(255, 225, 154, 0.12) 54%, transparent 78%);
+}
+
+html[data-theme="dark"] body.site-body .section-panel {
+  background-image:
+    radial-gradient(ellipse 420px 300px at 100% 0%, rgba(255, 225, 154, 0.07), transparent 76%),
+    linear-gradient(180deg, #071936, #051228);
+}
+html[data-theme="light"] body.site-body .section-panel {
+  background-image:
+    radial-gradient(ellipse 420px 300px at 100% 0%, rgba(255, 225, 154, 0.22), transparent 76%);
+}
+
+html[data-theme="dark"] body.site-body :is(.pillar, .dir-card, .pub-card, .member, .contact-block) {
+  background-image: var(--card-gold-glow), linear-gradient(180deg, #0a2347, #061832);
+}
+html[data-theme="light"] body.site-body :is(.pillar, .dir-card, .pub-card, .member, .contact-block) {
+  background-image: var(--card-gold-glow);
+}
+html[data-theme="dark"] body.site-body .hero-card {
+  background-image: var(--card-gold-glow), linear-gradient(180deg, #0a2144, #06172e);
+}
+html[data-theme="light"] body.site-body .hero-card {
+  background-image: var(--card-gold-glow);
+}
+
+/* Publication images cover the card's top edge, so carry the glow into them. */
+html[data-theme="dark"] body.site-body .pub-thumb-overlay {
+  background:
+    radial-gradient(ellipse 260px 190px at 100% 0%, rgba(255, 225, 154, 0.26), transparent 76%),
+    linear-gradient(180deg, rgba(4, 13, 23, 0.06), rgba(4, 13, 23, 0.82)),
+    linear-gradient(135deg, transparent 52%, rgba(4, 13, 23, 0.34));
+}
+html[data-theme="light"] body.site-body .pub-thumb-overlay {
+  background:
+    radial-gradient(ellipse 260px 190px at 100% 0%, rgba(255, 225, 154, 0.32), transparent 76%),
+    linear-gradient(180deg, rgba(4, 13, 23, 0.06), rgba(4, 13, 23, 0.82)),
+    linear-gradient(135deg, transparent 52%, rgba(4, 13, 23, 0.34));
+}

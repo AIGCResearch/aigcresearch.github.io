@@ -1,0 +1,96 @@
+<audio id="site-bgm" src="/audio/ambient-loop.wav?v=7" loop preload="auto" aria-hidden="true"></audio>
+
+<script>
+  const audio = document.querySelector<HTMLAudioElement>("#site-bgm");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".sound-toggle");
+
+  if (audio && buttons.length) {
+    let fadeFrame = 0;
+    let attempt = 0;
+    let enabled = true;
+    let autoplayBlocked = false;
+    audio.volume = 0;
+
+    function syncButtons() {
+      if (!audio) return;
+      const playing = !audio.paused;
+      const en = document.documentElement.dataset.lang === "en";
+      const label = playing
+        ? (en ? "Turn off background music" : "关闭背景音乐")
+        : autoplayBlocked
+          ? (en ? "Click to start background music" : "点击开启背景音乐")
+          : (en ? "Turn on background music" : "开启背景音乐");
+      buttons.forEach((button) => {
+        button.setAttribute("aria-label", label);
+        button.setAttribute("title", label);
+        button.setAttribute("aria-pressed", String(playing));
+      });
+    }
+
+    function fadeIn() {
+      if (!audio) return;
+      cancelAnimationFrame(fadeFrame);
+      const started = performance.now();
+      const targetVolume = 0.48;
+      const tick = (now: number) => {
+        if (audio.paused) return;
+        audio.volume = Math.min(targetVolume, targetVolume * (now - started) / 1400);
+        if (audio.volume < targetVolume) fadeFrame = requestAnimationFrame(tick);
+      };
+      fadeFrame = requestAnimationFrame(tick);
+    }
+
+    async function start() {
+      if (!audio || !enabled || !audio.paused) return;
+      const currentAttempt = ++attempt;
+      autoplayBlocked = false;
+      audio.volume = 0;
+      try {
+        await audio.play();
+        if (currentAttempt === attempt && !audio.paused) fadeIn();
+      } catch (error) {
+        if (currentAttempt === attempt) {
+          autoplayBlocked = error instanceof DOMException && error.name === "NotAllowedError";
+        }
+      }
+      syncButtons();
+    }
+
+    // Browsers that block audible autoplay allow play() during a user gesture.
+    // Keep trying on the first interaction unless the visitor turned music off.
+    function startAfterGesture(event: Event) {
+      if (!enabled || !audio?.paused) return;
+      if (event.target instanceof Element && event.target.closest(".sound-toggle")) return;
+      start();
+    }
+
+    document.addEventListener("pointerdown", startAfterGesture, { capture: true });
+    document.addEventListener("keydown", startAfterGesture, { capture: true });
+    document.addEventListener("click", startAfterGesture, { capture: true });
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const button = event.target.closest(".sound-toggle");
+      if (!button || !audio) return;
+      if (audio.paused) {
+        enabled = true;
+        start();
+      } else {
+        enabled = false;
+        autoplayBlocked = false;
+        ++attempt;
+        cancelAnimationFrame(fadeFrame);
+        audio.pause();
+        syncButtons();
+      }
+    });
+
+    audio.addEventListener("play", syncButtons);
+    audio.addEventListener("pause", syncButtons);
+    audio.addEventListener("ended", syncButtons);
+    window.addEventListener("aigcr:langchange", syncButtons);
+    syncButtons();
+
+    if (enabled) start();
+  }
+</script>

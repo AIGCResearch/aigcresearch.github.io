@@ -11,14 +11,14 @@ export const en: Content = {
     brandSub: "AI4C",
     links: [
       { id: "philosophy", label: "Philosophy" },
-      { id: "directions", label: "Directions" },
-      { id: "publications", label: "Publications" },
+      { id: "directions", label: "Lab" },
+      { id: "publications", label: "Pub" },
       { id: "team", label: "Team" },
       { id: "contact", label: "Contact" },
     ],
   },
   hero: {
-    eyebrow: "AI for Creativity Research Team",
+    eyebrow: "AI for Creativity (AI4C) Research",
     headline: "Creative AI Research",
     subhead: "From Workflow to Creative Flow",
     intro:
@@ -30,7 +30,7 @@ export const en: Content = {
   },
   philosophy: {
     eyebrow: "Philosophy",
-    title: "Core Research Vision",
+    title: "Core Philosophy",
     intro:
       "We anchor our research in film-grade animation because cinema is a unified vessel of audio-visual art — music, image, color, narrative, motion, emotion — which makes it the richest multimodal sample for an AI that tries to understand creation rather than merely imitate it.",
     pillars: [
@@ -97,59 +97,70 @@ export const en: Content = {
   // },
 
   directions: {
-    "eyebrow": "Research Directions",
-    "title": "Research Directions",
-    "intro": "Our research advances synergistically along three main threads: General Creative Intelligence explores the boundaries of machine creativity; Intelligent Creative Workflow focuses on unleashing human creative potential; and AI for Science probes the frontiers of life cognition. Together, these pillars form a complete research loop—spanning from creative understanding and production applications to foundational scientific exploration in life cognition.",
-    "items": [
+    eyebrow: "Research Directions",
+    title: "Labs & Studio",
+    intro:
+      "The Creative General Intelligent Lab leads foundational research, the Intelligent Cinema Narrative Lab focuses on applied research, and the StarX Infinite Inspiration Studio specializes in creative practice.",
+    items: [
       {
-        "id": "cgi",
-        "title": "Creative General Intelligence",
-        "subtitle": "Creative General Intelligence",
-        "tagline": "Exploring the boundaries of machine creativity — starting with 'understanding human creation' to endow AI with top-level design and aesthetic reasoning capabilities.",
-        "body": "We aim to break through the traditional limitation of AI being confined to mechanical generation without an understanding of the creative process. This direction not only investigates human intent, processes, and cognitive mechanisms in artistic creation but also strives to grant AI a 'Design Thinking' capability akin to that of human directors or designers.\n\n1. Cross-modal Aesthetic Alignment: Outstanding artworks stem from a holistic imagination of sound, visuals, and narrative. Our core research focuses on the deep alignment of cross-modal design elements—such as text, music, color, emotion, and motion—endowing AI with top-level aesthetic perception and panoramic conceptualization abilities. This enables AI to generate assets while truly understanding the underlying aesthetic logic of creation.\n\n2. Interpretability and Lightweighting of Large Models: We conduct a multi-scale analysis of generative large models—from the micro level (neuron activation patterns), through the meso level (sub-network and attention mechanism synergy), to the macro level (overall generalization and emergent capabilities). By demystifying these 'black boxes,' we guide algorithmic optimization and architectural refinement to achieve efficient, lightweight computing that 'does more with less.'",
-        "tags": [
-          "Multimodal Perception",
-          "Cross-modal Alignment",
-          "Creative Reasoning",
-          "Design Thinking",
-          "Aesthetic Perception"
-        ]
+        id: "cgi",
+        title: "Creative General Intelligent Lab",
+        subtitle: "Creative Intelligence & Brain-inspired AI",
+        tagline: "Exploring the boundaries of machine creativity | Starting with an understanding of human creation, we combine high-level design thinking, brain-inspired insights, and scientific empowerment.",
+        body: `We aim to move beyond traditional AI's limitation of mechanically generating content without understanding creativity. We study the intentions, processes, and cognitive mechanisms behind human artistic creation, equip AI with design thinking akin to that of human directors or designers, and draw on neuroscience to explore next-generation creative intelligence architectures.
+
+1. Cross-modal Aesthetic Alignment: Outstanding artworks emerge from a holistic vision of sound, visuals, and story. We pursue deep alignment across design elements such as text, music, color, emotion, and motion, enabling AI to perceive aesthetics, reason creatively, and conceive works as a whole.
+
+2. Interpretability and Lightweighting of Large Models: We analyze generative models at three scales: micro (neuron activation patterns), meso (coordination among subnetworks and attention mechanisms), and macro (overall generalization and emergent capabilities). By revealing how these black boxes work, we guide algorithmic optimization and architectural refinement to achieve efficient, lightweight computation that does more with less.
+
+3. Brain-inspired Research and Scientific Empowerment: Inward inspiration (simulation-driven brain-inspired research) turns neural mechanisms and brain networks into computable models to explore next-generation intelligent architectures. Outward empowerment (AI-driven neuroscience) uses generative AI and data analysis to advance neuroscience, help investigate neural connectivity and disease mechanisms, identify and solve significant scientific challenges, and promote progress in both AI and brain science.`,
+        tags: ["Multimodal Perception", "Cross-modal Alignment", "Creative Reasoning", "Design Thinking", "Aesthetic Perception", "Brain-inspired Research", "Neuroscience"],
       },
       {
-        "id": "icw",
-        "title": "Intelligent Creative Workflow",
-        "subtitle": "Intelligent Creative Workflow",
-        "tagline": "Exploring the boundaries of human creativity — starting with 'efficient digital asset production' to integrate creative agents into industrial pipelines and liberate human productivity.",
-        "body": "We focus on translating cutting-edge AI capabilities into efficient productivity tools. By addressing the labor-intensive, mechanical tasks in 2D/3D animation and film production, we enable creators to detach from tedious repetitive work and refocus on inspiration itself.\n\n1. Full-dimensional Multimodal Interaction: Our research spans 1D audio, 2D concept art, 3D geometric assets, and 4D spatiotemporal video. Moving beyond single-modality 'Text/Image-to-X' paradigms, we explore interaction methods that align with artists' intuition, such as motion-driven, audio-driven, or multimodal collaborative generation.\n\n2. Revolutionizing Production Paradigms: We promote the deep integration of generative AI with established industrial pipelines. By solving specific pain points—such as visual previews, cold-start 3D modeling, and manual in-betweening—we facilitate a paradigm shift from cumbersome 'workflows' to pure 'creative flow.'",
-        "tags": [
-          "Full-dimensional Multimodal Interaction",
-          "2D/3D/4D Content",
-          "Digital Asset Production",
-          "Film & Animation Workflow",
-          "Industrial Pipeline Integration"
-        ]
+        id: "icn",
+        title: "Intelligent Cinema Narrative Lab",
+        subtitle: "Visual Storytelling & Filmmaking",
+        tagline: "Expanding the boundaries of human creativity | Starting from the goal of empowering human creators, we use intelligent tools to support visual storytelling and cinematic content production.",
+        body: `We focus on visual storytelling and filmmaking, turning cutting-edge AI capabilities into tools creators can use and reducing repetitive work in animation and film production so creators can focus on story and expression.
+
+1. Full-spectrum Multimodal Interaction: We study content forms ranging from audio and concept art to 3D assets and spatiotemporal video, exploring creation driven by motion, audio, and multimodal collaboration.
+
+2. Visual Storytelling and Cinematic Language: For long-form video, we study character consistency, action continuity, plot alignment, and cinematic language to develop intelligent visual methods that support complete storytelling.
+
+3. Creative Workflow in Practice: We rethink and advance the integration of generative AI into filmmaking, uncover overlooked problems in today's creative process, and pioneer AI-native forms of post-production, moving from cumbersome workflows (Workflow) toward free creative flow (Creative Flow).`,
+        tags: ["Full-spectrum Multimodal Interaction", "Visual Storytelling", "Cinematic Language", "Digital Asset Production", "Cinematic Creative Flow", "AI-native Post-production"],
+        team: {
+          name: "ActXCut Team",
+          description: "ActXCut Team is the lab's multi-shot video research team. It studies action continuity and narrative consistency across shots, pioneers the ActXCut research series, and explores AI-native filmmaking and post-production.",
+          logoBase: "/images/logo-actxcut-team",
+        },
       },
       {
-        "id": "ai4s",
-        "title": "AI for Science",
-        "subtitle": "AI for Science / Neuroscience",
-        "tagline": "Exploring the boundaries of life cognition — leveraging neurobiology and cognitive science to foster a bidirectional symbiosis between 'brain-inspired research' and 'scientific empowerment.'",
-        "body": "We focus on the intersection of artificial intelligence and neuroscience. By deeply integrating computational science with biological intelligence, we seek breakthroughs for next-generation AI architectures while utilizing AI technology to expand the boundaries of human understanding of the brain.\n\n1. Inward Inspiration (Simulation-driven Brain-inspired Research): Introducing advanced neuroscience theories, we translate complex biological neural mechanisms into computable mathematical models. By constructing mathematical models and neural network algorithms corresponding to different functional areas and brain networks, we seek architectural breakthroughs in AI models.\n\n2. Outward Empowerment (AI-driven Neuroscience): Utilizing advanced generative AI and data analytics, we give back to neuroscience research. We assist scientists in exploring the complex neural connectivity mechanisms and disease pathologies of the human brain, aiming to solve significant scientific challenges in brain science and promote clinical applications.",
-        "tags": [
-          "Brain-inspired Research",
-          "Neuroscience",
-          "Bidirectional Symbiosis"
-        ]
-      }
-    ]
+        id: "starx",
+        title: "StarX Infinite Inspiration Studio",
+        subtitle: "Creative Practice Studio",
+        tagline: "Exploring the boundaries of human–AI co-creation | Starting by connecting research with creative practice, we turn ideas into works that can be shared and refined.",
+        body: `StarX Infinite Inspiration Studio connects creative intelligence research with real creative practice. We explore how AI can work with visual storytelling and expression, helping ideas become tangible works and bringing lessons from making back into research.
+
+1. Co-creating Ideas: Across story concepts, visual design, and cross-media expression, we explore divergence, convergence, and iteration in human–AI co-creation.
+
+2. Creative Practice: We combine laboratory research with creators' experience to make and refine visual works and creative prototypes that can be shared.
+
+3. Learning from Creation: We draw needs and questions from real creative work to keep improving intelligent tools and visual storytelling methods.`,
+        tags: ["Human-AI Co-creation", "Storytelling", "Cross-media Expression", "Visual Creation", "Creative Practice"],
+        team: {
+          name: "Seek Team | StarX Team",
+          logoBase: "/images/logo-seek-starx-team",
+        },
+      },
+    ],
   },
 
-  
   publications: {
     eyebrow: "Publications & Projects",
     title: "Featured Work",
     intro:
-      "Each piece of work answers a specific question rather than running an isolated experiment. The following are the anchor points of our current research line.",
+      "An overarching vision with focused breakthroughs | Each piece of work starts from a clear research motivation; together, they form a coherent line of inquiry that progressively addresses a series of concrete questions.",
     items: [
       {
         id: "act2cut",
@@ -219,10 +230,12 @@ export const en: Content = {
     title: "Team Members",
     intro:
       "AIGC Research is a small team focused on creative AI, generative models, and cross-disciplinary fundamentals. We collaborate with both industry and academic advisors across the full chain — from foundational questions to deployed creative systems.",
+    membersLabel: "Core Members",
     members: [
       {
         name: "Cailin Zhuang",
         monogram: "Z",
+        avatar: "/images/team/cailin-zhuang.webp",
         role: "Team Member",
         affiliation: "Ph.D. student, Fudan University",
         bio: "Working on AIGC, creative intelligence, and cinematic content generation.",
@@ -269,6 +282,7 @@ export const en: Content = {
       {
         name: "Wei Cheng",
         monogram: "C",
+        avatar: "/images/team/wei-cheng.webp",
         role: "Industry Advisor",
         affiliation: "StepFun · Research Scientist",
         bio: "Research on generative AI.",
@@ -277,42 +291,45 @@ export const en: Content = {
         },
       },
       {
+        name: "Siyu Zhu",
+        monogram: "Z",
+        avatar: "/images/team/siyu-zhu.webp",
+        role: "Academic Advisor",
+        affiliation: "Fudan University · Full Professor\nShanghai Innovation Institute · Full-time Mentor",
+        bio: "",
+        links: {
+          personal_page: "https://sites.google.com/site/zhusiyucs/home",
+          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
+        },
+      },
+      {
         name: "Mengtian Li",
         monogram: "X",
+        avatar: "/images/team/mengtian-li.webp",
         role: "Academic Advisor",
         affiliation: "Shanghai University · Shanghai Film Academy",
         bio: "Research on AI filmmaking.",
         links: {
-          personal_page: "https://mengtianli.github.io/cv/",
+          personal_page: "https://mengtianli.github.io/",
           google_scholar: "https://scholar.google.com/citations?user=SFvOV2oAAAAJ&hl=zh-CN",
         },
       },
       {
         name: "Qingling Xia",
         monogram: "X",
+        avatar: "/images/team/qingling-xia.webp",
         role: "Academic Advisor",
-        affiliation: "Chongqing University of Technology",
+        affiliation: "Chongqing University of Technology · School of AI",
         bio: "Research on biomedical engineering.",
         links: {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
-        },
-      },
-      {
-        name: "Siyu Zhu",
-        monogram: "Z",
-        role: "Academic Advisor",
-        affiliation: "Fudan University",
-        bio: "Research on video world models.",
-        links: {
-          personal_page: "https://ai3.fudan.edu.cn/info/1088/1514.htm",
-          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
         },
       },
     ],
   },
   contact: {
     eyebrow: "Get in Touch",
-    title: "Collaborate with Us",
+    title: "Open to collaboration",
     body:
       "If our research directions, open-source efforts, academic exchanges, or creative production systems resonate with you, we warmly invite you to connect. Let's shape a novel creative world together.",
     email: "journeyzhuang@gmail.com",
@@ -321,14 +338,14 @@ export const en: Content = {
     wechatNote: "Scan to follow AIGC Research",
     socials: [
       { icon: "github", label: "GitHub", href: "https://github.com/AIGCResearch" },
-      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/ViStoryBench" },
-      { icon: "scholar", label: "Scholar", href: "#", disabled: true },
-      { icon: "bilibili", label: "Bilibili", href: "#", disabled: true },
-      { icon: "x", label: "X", href: "#", disabled: true },
+      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/AIGC-Research" },
+      { icon: "youtube", label: "YouTube", href: "https://www.youtube.com/@AIGC_Research" },
+      { icon: "bilibili", label: "Bilibili", href: "https://space.bilibili.com/552581860?spm_id_from=333.337.0.0" },
+      { icon: "x", label: "X", href: "https://x.com/AIGC_Research" },
     ],
   },
   footer: {
-    copyright: "© 2026 AIGC Research · AI4C Team",
+    copyright: "© 2026 AIGC Research",
     tagline: "Shaping a novel creative world.",
   },
   langToggle: { zh: "中", en: "EN" },

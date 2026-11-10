@@ -10,11 +10,10 @@ const visuals: Record<string, { from: string; to: string; motif: string }> = {
   act2cut:             { from: "#7FD7FF", to: "#0B1A2E", motif: "frames" },
   "awesome-paperdaily":{ from: "#B6F5C9", to: "#0B1A2E", motif: "stack" },
 };
-const thumbImages: Record<string, string> = {
-  vistorybench: "/images/vistorybench.png",
-  styleme3d: "/images/styleme3d.png",
-  shotstudio: "/images/shotstudio.png",
-  act2cut: "/images/act2cut.png",
+const thumbImages: Record<string, { src: string; height: number }> = {
+  act2cut: { src: "/images/act2cut-card.webp?v=1174-page1", height: 699 },
+  vistorybench: { src: "/images/vistorybench.webp", height: 696 },
+  styleme3d: { src: "/images/styleme3d.webp", height: 595 },
 };
 const v = visuals[itemZh.id] ?? visuals.vistorybench;
 const thumbImage = thumbImages[itemZh.id];
@@ -25,11 +24,12 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   o: 0.15 + (i % 5) * 0.12,
 }));
 ---
-<article class={`pub-card reveal${itemZh.featured ? " pub-card--featured" : ""}`}>
+<article class="pub-card reveal">
+  <span class="card-hover-ring" aria-hidden="true"></span>
   <div class="pub-thumb-shell" aria-hidden="true">
     <div class="pub-thumb" data-expand-thumb>
       <div class="pub-thumb-bg" style={`background: radial-gradient(120% 100% at 20% 0%, ${v.from}33 0%, transparent 60%), linear-gradient(160deg, ${v.from}22 0%, ${v.to} 80%);`}></div>
-      {thumbImage && <img class="pub-thumb-image" src={thumbImage} alt="" data-expand-image />}
+      {thumbImage && <img class="pub-thumb-image" src={thumbImage.src} alt="" width="760" height={thumbImage.height} loading="lazy" decoding="async" data-expand-image />}
 
       {!thumbImage && v.motif === "storyboard" && (
         <svg class="pub-motif" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
@@ -117,10 +117,12 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   </div>
   <div class="pub-body">
     <h3 class="pub-title">{itemZh.title}</h3>
-    <p class="pub-venue">
-      <span data-lang="zh">{itemZh.venue}</span>
-      <span data-lang="en">{itemEn.venue}</span>
-    </p>
+    {itemZh.venue && (
+      <p class="pub-venue">
+        <span data-lang="zh">{itemZh.venue}</span>
+        <span data-lang="en">{itemEn.venue}</span>
+      </p>
+    )}
     <p class="pub-tagline">
       <span data-lang="zh">{itemZh.tagline}</span>
       <span data-lang="en">{itemEn.tagline}</span>
@@ -238,7 +240,7 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     bottom: 12px;
     left: 14px;
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: var(--type-small);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(232, 238, 247, 0.85);
@@ -253,7 +255,7 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     top: 12px;
     right: 12px;
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: var(--type-small);
     letter-spacing: 0.22em;
     padding: 4px 8px;
     color: rgba(182, 214, 232, 0.84);
@@ -275,15 +277,15 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   .pub-card:hover .pub-thumb-tag { transform: translateY(-6px); }
 
   .pub-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; }
-  .pub-title { font-size: 18px; letter-spacing: 0.01em; }
+  .pub-title { font-size: var(--type-medium); letter-spacing: 0.01em; }
   .pub-tagline {
     color: rgba(178, 214, 232, 0.82);
-    font-size: 12px;
+    font-size: var(--type-small);
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
     line-height: 1.6;
   }
-  .pub-desc { color: rgba(214, 229, 241, 0.72); font-size: 13px; flex-grow: 1; line-height: 1.75; }
+  .pub-desc { color: rgba(214, 229, 241, 0.72); font-size: var(--type-small); flex-grow: 1; line-height: 1.75; }
   html[lang="en"] .pub-desc { line-height: 1.55; }
 
   .pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -292,7 +294,7 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: var(--type-small);
     letter-spacing: 0.08em;
     padding: 6px 10px;
     border-radius: var(--radius-pill);
@@ -310,16 +312,6 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   .pub-link:hover .pub-link-arrow { transform: translateX(3px); }
   .pub-link.is-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 
-  /* Featured strip card */
-  .pub-card--featured { grid-column: 1 / -1; flex-direction: row; }
-  .pub-card--featured .pub-thumb-shell { width: 320px; aspect-ratio: auto; flex-shrink: 0; }
-  .pub-card--featured .pub-thumb { height: 100%; }
-  .pub-card--featured .pub-body { flex: 1; padding: 24px 26px; }
-  @media (max-width: 768px) {
-    .pub-card--featured { flex-direction: column; }
-    .pub-card--featured .pub-thumb-shell { width: 100%; aspect-ratio: 16 / 9; }
-    .pub-card--featured .pub-body { padding: 18px; }
-  }
 </style>
 
 <script>

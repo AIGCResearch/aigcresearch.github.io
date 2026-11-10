@@ -2,7 +2,7 @@ import type { Content } from "./types";
 
 export const zh: Content = {
   meta: {
-    title: "AIGC Research · AI4C 创意人工智能研究组",
+    title: "AIGC Research · AI4C 创意人工智能研究院",
     description:
       "我们致力于推动 AIGC 技术赋能艺术创作与内容生产，围绕通用创意智能与智能创意工作流开展持续研究。",
   },
@@ -18,7 +18,7 @@ export const zh: Content = {
     ],
   },
   hero: {
-    eyebrow: "AI for Creativity Research Team",
+    eyebrow: "AI for Creativity (AI4C) Research",
     headline: "创意人工智能研究计划",
     subhead: "从 工作流 走向 创意流",
     intro:
@@ -30,7 +30,7 @@ export const zh: Content = {
   },
   philosophy: {
     eyebrow: "Philosophy",
-    title: "研究核心理念",
+    title: "核心理念",
     intro:
       "秉持“以 AIGC 技术赋能艺术创作与内容生产，开启独立创作时代”的核心理念，本计划以影视级动画作为研究切入点。电影是视听艺术的综合载体，天然融合音乐、画面、色彩、叙事、动效与情感等多重创作要素，为人工智能理解“创作”提供了极具代表性的多模态样本。",
     pillars: [
@@ -98,71 +98,69 @@ export const zh: Content = {
 
   directions: {
     eyebrow: "Research Directions",
-    title: "研究方向",
+    title: "实验室与工作室",
     intro:
-      "我们的研究围绕三条主线协同推进：通用创意智能关注机器创造力的边界，智能创意工作流关注人类创造力的释放方式，科学智能关注生命认知的边界。三者并行构成从创意理解、生产应用到底层生命认知科学探索的完整研究闭环。",
+      "通用创意智能实验室负责基础研究，智能影像叙事实验室聚焦应用研究，星联无限灵感工作室专注创作实践。",
     items: [
       {
         id: "cgi",
-        title: "通用创意智能",
-        subtitle: "Creative General Intelligence",
-        tagline: "探索机器创造力的边界 —— 从“理解人类创作”出发，赋予AI顶层设计与美学推理的能力。",
-        body:
-          "我们旨在打破传统AI“只能机械生成、无法理解创作”的局限。本方向不仅研究人类在艺术创作中的意图、过程与认知机制，更致力于让AI真正具备类似人类导演或设计师的“设计思维 (Design Thinking)”。\
-          \
-          1. 跨模态美学对齐：优秀的艺术作品源于对声音、画面与故事的整体想象。我们的研究核心是实现文字、音乐、色彩、情感与动态效果等跨模态设计元素的深度对齐，赋予AI顶层的美学感知和全景式构思能力，使其不仅能生成素材，更能理解创作背后的美学逻辑。\
-          2. 大模型的可解释性与轻量化： 从微观（神经元激活表征）、中观（子网络与注意力机制协同）到宏观（整体泛化与涌现能力）三个尺度，深度剖析生成式大模型的内在机理。通过揭示这些“黑盒”规律，指导算法优化与架构精简，实现“以小博大”的高效、轻量化计算。",
-        tags: [
-          "多模态感知",
-          "跨模态对齐",
-          "创作推理",
-          "设计思维",
-          "美学感知",
-        ],
+        title: "通用创意智能实验室",
+        subtitle: "Creative General Intelligent Lab",
+        tagline: "探索机器创造力的边界｜从“理解人类创作”出发，融合顶层设计思维、类脑启发与科学赋能。",
+        body: `我们旨在打破传统 AI“只能机械生成、无法理解创作”的局限，研究人类艺术创作的意图、过程与认知机制，赋予AI类似人类导演或设计师的“设计思维 (Design Thinking)”，并借鉴神经科学探索下一代创意智能架构。
+
+1. 跨模态美学对齐：优秀的艺术作品源于对声音、画面与故事的整体想象。我们致力于文字、音乐、色彩、情感与动态效果等设计元素的深度对齐，赋予 AI 美学感知、创作推理与全景构思能力。
+
+2. 大模型的可解释性与轻量化：从微观（神经元激活表征）、中观（子网络与注意力机制协同）到宏观（整体泛化与涌现能力）三个尺度，深度剖析生成式大模型的内在机理。通过揭示这些“黑盒”规律，指导算法优化与架构精简，实现“以小博大”的高效、轻量化计算。
+
+3. 类脑启发与科学赋能：向内借鉴 (仿真驱动的类脑研究)：将神经机制与脑网络转化为可计算模型，探索下一代智能架构；向外赋能 (AI驱动的神经科学)：同时运用生成式 AI 与数据分析反哺神经科学研究，辅助探索神经连接及疾病机理研究，发掘并解决具有重大价值的科学难题，促进 AI 与脑科学双向发展。`,
+        tags: ["多模态感知", "跨模态对齐", "创作推理", "设计思维", "美学感知", "类脑研究", "神经科学"],
       },
       {
-        id: "icw",
-        title: "智能创意工作流",
-        subtitle: "Intelligent Creative Workflow",
-        tagline: "探索人类创造力的边界 —— 从“数字资产高效生产”出发，将创意智能体融入工业流水线，解放人类生产力。",
-        body:
-          "我们专注于将前沿的AI能力转化为高效的生产力工具。通过解决2D/3D动画及影视制作中耗时费力的机械性劳动，让创作者从繁琐的重复性工作中抽离出来，专注于灵感本身。\
-          \
-          1. 全维度多模态交互： 我们的研究横跨一维音频、二维原画、三维几何资产到四维时空视频。通过打破单一的“图文驱动 (Text/Image-to-X)”局限，拓展更符合艺术家直觉的交互方式（如动作、音频或多模态协同驱动）。\
-          2. 生产应用范式的革命： 推动生成式AI与现有成熟工业流流水线的深度融合，解决视觉预览、冷启动3D建模、手工补间帧等具体痛点，实现从繁琐的“工作流 (Workflow)”到纯粹的“创意流 (Creative Flow)”的范式转变。",
-        tags: [
-          "全维度多模态交互",
-          "2D/3D/4D 内容",
-          "数字资产生产",
-          "影视动画工作流",
-          "工业流水线融合",
-        ],
+        id: "icn",
+        title: "智能影像叙事实验室",
+        subtitle: "Intelligent Cinema Narrative Lab",
+        tagline: "拓展人类创造力的边界｜从\"赋能人类创作\"出发，以智能工具支持影像叙事与影视级内容生产。",
+        body: `我们聚焦影像叙事与影视创作，将前沿 AI 能力转化为创作者可用的工具，减少动画和影视制作中的重复劳动，让创作者更专注于故事与表达。
+
+1. 全维度多模态交互：研究从音频、原画、三维资产到时空视频的内容形态，探索动作、音频与多模态协同驱动的创作方式。
+
+2. 影像叙事与镜头语言：围绕长视频下的角色一致性、动作连续性、剧情对齐与镜头语言，研究能够服务完整故事表达的智能影像方法。
+
+3. 创作流程落地：重新思考并推动生成式 AI 融入影视制作流程，发掘当下创作流中的"灯下黑"问题，开创AI原生的后期制作新形态，从繁琐工作流（Workflow）走向自由创意流（Creative Flow）。`,
+        tags: ["全维度多模态交互", "影像叙事", "镜头语言", "数字资产生产", "影视创意流", "AI原生后期制作"],
+        team: {
+          name: "ActXCut Team",
+          description: "ActXCut Team 是智能影像叙事实验室的连续多镜头视频研发团队，围绕跨镜头动作连续性与叙事一致性，开创ActXCut系列研究工作，探索 AI 原生的影像创作与后期制作。",
+          logoBase: "/images/logo-actxcut-team",
+        },
       },
       {
-        id: "ai4s",
-        title: "科学智能",
-        subtitle: "AI for Science / Neuroscience",
-        tagline: "探索生命认知的边界 —— 借鉴神经生物学与认知科学，开展“类脑研究”与“科学赋能”的双向互哺。",
-        body:
-          "我们聚焦于人工智能与神经科学的交叉前沿。通过将计算科学与生物智能深度结合，寻找下一代AI架构的突破口，同时利用AI技术拓展人类对大脑的认知边界。\
-          \
-          1. 向内借鉴 (仿真驱动的类脑研究)： 引入前沿神经科学理论，将复杂的生物学神经机制转化为可计算的数学模型。通过构建对应大脑不同功能区及脑网络的数学模型与神经网络算法，寻求AI模型架构层面的突破。\
-          2. 向外赋能 (AI驱动的神经科学)： 利用先进的生成式AI与数据分析技术，反哺神经科学研究。辅助科学家探索人类大脑复杂的神经连接机制和疾病机理，在脑科学领域发掘并解决具有重大价值的科学难题，并推动临床应用。",
-        tags: [
-          "类脑研究",
-          "神经科学",
-          "双向互哺",
-        ],
+        id: "starx",
+        title: "星联无限灵感工作室",
+        subtitle: "StarX Infinite Inspiration Studio",
+        tagline: "探索人机共创的边界｜从“连接研究与创作”出发，让无限灵感成为可展示、可迭代的作品。",
+        body: `星联无限灵感工作室连接创意智能研究与真实创作实践，探索人工智能技术与影像、故事及视觉表达的融合，让灵感从构思走向作品，并将创作中的经验反馈给研究。
+
+1. 灵感共创：围绕故事构思、视觉设计与跨媒介表达，探索人机协同创作的发散、收敛与迭代。
+
+2. 作品实践：结合实验室研究与创作者经验，制作并迭代可展示的影像作品与创意原型。
+
+3. 创作反馈：从真实创作过程提炼需求与问题，推动智能创作工具和影像叙事方法持续改进。`,
+        tags: ["人机共创", "故事表达", "跨媒介表达", "影像创作", "作品实践"],
+        team: {
+          name: "Seek Team | StarX Team",
+          logoBase: "/images/logo-seek-starx-team",
+        },
       },
     ],
   },
 
-  
   publications: {
     eyebrow: "Publications & Projects",
     title: "代表成果",
     intro:
-      "每项成果都试图回答一个具体的问题，而不仅仅是一次实验。下面是我们目前最具代表性的方向锚点。",
+      "整体布局与单点突破｜每项工作都有清晰的研究动机，彼此衔接成一条连贯的研究脉络，逐步回答一系列具体问题。",
     items: [
       {
         id: "act2cut",
@@ -232,10 +230,12 @@ export const zh: Content = {
     title: "团队成员",
     intro:
       "AIGC Research 由一支关注创意人工智能、生成式模型与跨学科基础研究的小型团队组成，并与工业界、学术界导师保持持续合作，共同推进从基础问题到创作系统落地的全链路研究。",
+    membersLabel: "核心成员",
     members: [
       {
         name: "庄才林",
         monogram: "Z",
+        avatar: "/images/team/cailin-zhuang.webp",
         role: "团队成员",
         affiliation: "复旦大学在读博士",
         bio: "研究方向为 AIGC，关注创意人工智能与影视级内容生成。",
@@ -282,6 +282,7 @@ export const zh: Content = {
       {
         name: "程巍",
         monogram: "C",
+        avatar: "/images/team/wei-cheng.webp",
         role: "工业界导师",
         affiliation: "阶跃星辰 · 研究科学家",
         bio: "研究方向为生成式人工智能。",
@@ -290,13 +291,26 @@ export const zh: Content = {
         },
       },
       {
+        name: "朱思语",
+        monogram: "Z",
+        avatar: "/images/team/siyu-zhu.webp",
+        role: "学术界导师",
+        affiliation: "复旦大学·正教授\n上海创智学院·全时导师",
+        bio: "",
+        links: {
+          personal_page: "https://sites.google.com/site/zhusiyucs/home",
+          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
+        },
+      },
+      {
         name: "李梦甜",
         monogram: "X",
+        avatar: "/images/team/mengtian-li.webp",
         role: "学术界导师",
         affiliation: "上海大学 · 上海电影学院",
         bio: "研究方向为AI电影。",
         links: {
-          personal_page: "https://mengtianli.github.io/cv/",
+          personal_page: "https://mengtianli.github.io/",
           google_scholar: "https://scholar.google.com/citations?user=SFvOV2oAAAAJ&hl=zh-CN",
 
         },
@@ -304,22 +318,12 @@ export const zh: Content = {
       {
         name: "夏清玲",
         monogram: "X",
+        avatar: "/images/team/qingling-xia.webp",
         role: "学术界导师",
-        affiliation: "重庆理工大学",
+        affiliation: "重庆理工大学·两江人工智能学院",
         bio: "研究方向为生物医学工程。",
         links: {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
-        },
-      },
-      {
-        name: "朱思语",
-        monogram: "Z",
-        role: "学术界导师",
-        affiliation: "复旦大学",
-        bio: "研究方向为视频世界模型。",
-        links: {
-          personal_page: "https://ai3.fudan.edu.cn/info/1088/1514.htm",
-          google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
         },
       },
     ],
@@ -335,14 +339,14 @@ export const zh: Content = {
     wechatNote: "扫码关注 AIGC Research",
     socials: [
       { icon: "github", label: "GitHub", href: "https://github.com/AIGCResearch" },
-      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/ViStoryBench" },
-      { icon: "scholar", label: "Scholar", href: "#", disabled: true },
-      { icon: "bilibili", label: "Bilibili", href: "#", disabled: true },
-      { icon: "x", label: "X", href: "#", disabled: true },
+      { icon: "huggingface", label: "Hugging Face", href: "https://huggingface.co/AIGC-Research" },
+      { icon: "youtube", label: "YouTube", href: "https://www.youtube.com/@AIGC_Research" },
+      { icon: "bilibili", label: "Bilibili", href: "https://space.bilibili.com/552581860?spm_id_from=333.337.0.0" },
+      { icon: "x", label: "X", href: "https://x.com/AIGC_Research" },
     ],
   },
   footer: {
-    copyright: "© 2026 AIGC Research · AI4C Team",
+    copyright: "© 2026 AIGC Research",
     tagline: "Shaping a novel creative world.",
   },
   langToggle: { zh: "中", en: "EN" },

@@ -1,0 +1,54 @@
+<button class="theme-toggle" type="button" aria-label="切换为浅色模式" aria-pressed="false" title="切换为浅色模式">
+  <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+  </svg>
+  <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 999px;
+    color: inherit;
+    transition: color 180ms ease, background-color 180ms ease;
+  }
+  .theme-toggle:hover { background: rgba(127, 193, 223, 0.16); }
+  :global(html[data-theme="dark"]) .theme-icon--moon,
+  :global(html[data-theme="light"]) .theme-icon--sun { display: none; }
+</style>
+
+<script>
+  function syncThemeToggles() {
+    const light = document.documentElement.dataset.theme === "light";
+    const en = document.documentElement.dataset.lang === "en";
+    const label = light
+      ? (en ? "Switch to dark mode" : "切换为深色模式")
+      : (en ? "Switch to light mode" : "切换为浅色模式");
+    document.querySelectorAll<HTMLButtonElement>(".theme-toggle").forEach((button) => {
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
+      button.setAttribute("aria-pressed", String(light));
+    });
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", light ? "#f4f6ff" : "#041025");
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest<HTMLButtonElement>(".theme-toggle");
+    if (!button) return;
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("aigcr.theme", next); } catch (e) {}
+    syncThemeToggles();
+  });
+
+  window.addEventListener("aigcr:langchange", syncThemeToggles);
+  syncThemeToggles();
+</script>

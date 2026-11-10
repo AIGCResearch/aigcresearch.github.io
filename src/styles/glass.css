@@ -1,0 +1,187 @@
+/* Translucent surfaces keep the page-wide artwork visible through the content. */
+@property --nav-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+html[data-theme="dark"] {
+  --glass-panel: radial-gradient(ellipse 420px 300px at 100% 0%, rgba(255, 225, 154, 0.07), transparent 76%), linear-gradient(160deg, rgba(7, 25, 54, 0.48), rgba(4, 16, 37, 0.4));
+  --glass-card: var(--card-gold-glow), linear-gradient(160deg, rgba(10, 35, 71, 0.56), rgba(5, 18, 40, 0.48));
+  --glass-small: rgba(11, 34, 66, 0.46);
+}
+
+html[data-theme="light"] {
+  --glass-panel: radial-gradient(ellipse 420px 300px at 100% 0%, rgba(255, 225, 154, 0.2), transparent 76%), linear-gradient(160deg, rgba(244, 246, 255, 0.56), rgba(244, 246, 255, 0.48));
+  --glass-card: var(--card-gold-glow), linear-gradient(160deg, rgba(244, 246, 255, 0.65), rgba(244, 246, 255, 0.52));
+  --glass-small: rgba(244, 246, 255, 0.56);
+}
+
+html[data-theme] body.site-body .section-panel {
+  background: var(--glass-panel);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+}
+
+html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card, .contact-block) {
+  background: var(--glass-card);
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+}
+
+html[data-theme] body.site-body .hero-capabilities {
+  background: var(--glass-small);
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+}
+
+html[data-theme] body.site-body :is(.dir-team, .dir-index, .tag, .pillar-icon, .pub-link, .member-link, .member-wechat, .social, .contact-email .btn-primary, .pub-thumb-tag) {
+  background: var(--glass-small);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+}
+
+html[data-theme] body.site-body .nav {
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+}
+
+html[data-theme="dark"] body.site-body .nav { border-color: rgba(219, 234, 244, calc(0.82 * var(--nav-outline-opacity, 0))); }
+html[data-theme="light"] body.site-body .nav { border-color: rgba(155, 195, 218, calc(0.78 * var(--nav-outline-opacity, 0))); }
+
+.logo-transfer {
+  position: fixed;
+  z-index: 61;
+  top: var(--logo-transfer-top, -200px);
+  left: var(--logo-transfer-left, 50vw);
+  width: var(--logo-transfer-size, 220px);
+  aspect-ratio: 2163 / 2149;
+  transform: translate(-50%, -50%);
+  opacity: var(--logo-transfer-opacity, 0);
+  pointer-events: none;
+}
+
+.logo-transfer img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-transfer--light { opacity: 0; }
+html[data-theme="light"] .logo-transfer--light { opacity: 1; }
+html[data-theme="light"] .logo-transfer--dark { opacity: 0; }
+
+.halo-transfer {
+  position: fixed;
+  z-index: 59;
+  top: var(--halo-transfer-top, -200px);
+  left: var(--halo-transfer-left, 50vw);
+  width: var(--halo-transfer-size, 150px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: var(--halo-transfer-opacity, 0);
+  background: conic-gradient(from -45deg, #2fd5c6, #e1ea2f, #26d3bc, #02a4da, #2fd5c6);
+  -webkit-mask-image: radial-gradient(circle, transparent 25%, #000 42%, rgba(0, 0, 0, 0.62) 53%, transparent 68%);
+  mask-image: radial-gradient(circle, transparent 25%, #000 42%, rgba(0, 0, 0, 0.62) 53%, transparent 68%);
+  filter: blur(13px);
+  transition: opacity 100ms linear;
+  animation: halo-transfer-breathe 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes halo-transfer-breathe {
+  from { transform: translate(-50%, -50%) scale(0.76); }
+  to { transform: translate(-50%, -50%) scale(1.12); }
+}
+
+.logo-trail {
+  position: fixed;
+  z-index: 58;
+  top: -200px;
+  left: 50vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(from -45deg, #2fd5c6, #e1ea2f, #26d3bc, #02a4da, #2fd5c6);
+  -webkit-mask-image: radial-gradient(circle, transparent 10%, #000 38%, transparent 72%);
+  mask-image: radial-gradient(circle, transparent 10%, #000 38%, transparent 72%);
+  filter: blur(13px);
+  transition: opacity 240ms ease-out;
+}
+
+html.trail-active .logo-trail { opacity: var(--trail-opacity, 0); }
+
+/* The navigation frame and rising cards share one moving logo-colored rim. */
+html[data-theme] body.site-body .nav::before,
+html[data-theme] body.site-body .card-hover-ring {
+  background: conic-gradient(from var(--nav-border-angle) at 50% 50%,
+    #2fd5c6 0deg,
+    #e1ea2f 90deg,
+    #26d3bc 180deg,
+    #02a4da 270deg,
+    #2fd5c6 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+html[data-theme] body.site-body .nav::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--halo-progress, 0);
+  transition: opacity 120ms linear;
+  animation: nav-border-spin 6s linear infinite;
+}
+
+html[data-theme] body.site-body .hero-card { position: relative; }
+
+html[data-theme] body.site-body .card-hover-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out);
+}
+
+html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) {
+  border-color: transparent;
+}
+
+html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring {
+  opacity: 1;
+  animation: nav-border-spin 6s linear infinite;
+}
+
+@keyframes nav-border-spin {
+  to { --nav-border-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .halo-transfer,
+  .logo-transfer,
+  .logo-trail { display: none; }
+  html[data-theme] body.site-body .nav::before,
+  html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring { animation: none; }
+}
+
+html[data-theme="dark"] body.site-body .nav-mobile {
+  background: rgba(4, 16, 37, 0.72);
+}
+
+html[data-theme="light"] body.site-body .nav-mobile {
+  background: rgba(244, 246, 255, 0.74);
+}

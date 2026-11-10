@@ -2,365 +2,338 @@
 import { zh } from "../data/content.zh";
 import { en } from "../data/content.en";
 import LangToggle from "./LangToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import SoundToggle from "./SoundToggle.astro";
 
 const linksZh = zh.nav.links;
 const linksEn = en.nav.links;
 ---
 <header class="nav" id="nav">
   <div class="nav-shell">
-    <div class="nav-inner container">
-      <a class="brand" href="#top" aria-label="AIGC Research">
-        <span class="brand-logo" aria-hidden="true">
-          <img src="/images/创意人工智能研究组.png" alt="" width="175" height="47" />
-        </span>
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="AIGC Research · 返回顶部">
+        <img class="brand-logo brand-logo--light" src="/images/logo-nav-light.webp" alt="" width="1200" height="320" decoding="sync" />
+        <img class="brand-logo brand-logo--dark" src="/images/logo-nav-dark.webp" alt="" width="1200" height="320" decoding="sync" />
+        <img class="brand-logo brand-logo--icon brand-logo--light" src="/images/logo-nav-light.webp" alt="" width="1200" height="320" decoding="sync" />
+        <img class="brand-logo brand-logo--icon brand-logo--dark" src="/images/logo-nav-dark.webp" alt="" width="1200" height="320" decoding="sync" />
       </a>
 
-      <nav class="nav-links" aria-label="Sections">
-        {linksZh.map((l, i) => (
-          <a href={`#${l.id}`}>
-            <span data-lang="zh">{l.label}</span>
+      <div class="nav-university-seal">
+        <img class="nav-university-logo--light" src="/images/fudan-university-logo.webp" alt="复旦大学 / Fudan University" width="320" height="320" decoding="async" />
+        <img class="nav-university-logo--dark" src="/images/fudan-university-logo-dark-blue.webp" alt="" width="320" height="320" decoding="async" />
+      </div>
+
+      <nav class="nav-links" aria-label="页面导航">
+        {linksZh.map((link, i) => (
+          <a href={`#${link.id}`}>
+            <span data-lang="zh">{link.label}</span>
             <span data-lang="en">{linksEn[i].label}</span>
           </a>
         ))}
+        <LangToggle />
+        <ThemeToggle />
+        <SoundToggle />
       </nav>
 
-      <div class="nav-tools">
-        <LangToggle />
-        <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button class="nav-burger" type="button" aria-label="打开导航菜单" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+        <span data-lang="zh">菜单</span><span data-lang="en">Menu</span>
+      </button>
+      <div class="nav-mobile-sound"><SoundToggle /></div>
     </div>
 
-    <div class="nav-mobile">
-      <div class="nav-mobile-label">
-        <span data-lang="zh">导航</span>
-        <span data-lang="en">Navigation</span>
-      </div>
-      <nav class="nav-mobile-links" aria-label="Mobile Sections">
-        {linksZh.map((l, i) => (
-          <a href={`#${l.id}`}>
-            <span data-lang="zh">{l.label}</span>
+    <div class="nav-mobile" id="mobile-nav">
+      <nav class="nav-mobile-links" aria-label="移动端导航">
+        {linksZh.map((link, i) => (
+          <a href={`#${link.id}`}>
+            <span data-lang="zh">{link.label}</span>
             <span data-lang="en">{linksEn[i].label}</span>
           </a>
         ))}
       </nav>
+      <div class="nav-mobile-tools">
+        <div class="nav-mobile-tool">
+          <span data-lang="zh">语言</span><span data-lang="en">Language</span>
+          <LangToggle />
+        </div>
+        <div class="nav-mobile-tool">
+          <span data-lang="zh">外观</span><span data-lang="en">Appearance</span>
+          <ThemeToggle />
+        </div>
+      </div>
     </div>
   </div>
 </header>
+<div class="logo-transfer" aria-hidden="true">
+  <img class="logo-transfer--light" src="/images/logo-hero-light.webp" alt="" width="720" height="715" decoding="sync" />
+  <img class="logo-transfer--dark" src="/images/logo-hero-dark.webp" alt="" width="720" height="715" decoding="sync" />
+</div>
 
 <style>
   .nav {
-    --nav-progress: 0;
-    --nav-side-gap: 0px;
-    --nav-top-gap: 0px;
+    --nav-shrink: 0px;
+    --nav-top: 0px;
+    --nav-radius-top: 0px;
+    --nav-radius-bottom: 14px;
+    --nav-alpha: 0.62;
+    --nav-shadow-alpha: 0;
     position: fixed;
-    inset: 0 0 auto 0;
+    top: var(--nav-top);
+    left: 50%;
     z-index: 60;
-    pointer-events: none;
-    padding-top: var(--nav-top-gap);
+    width: calc(100% - var(--nav-shrink));
+    transform: translateX(-50%);
+    border: 1px solid rgba(112, 190, 224, 0.26);
+    border-top-color: rgba(112, 190, 224, 0.08);
+    border-radius: var(--nav-radius-top) var(--nav-radius-top) var(--nav-radius-bottom) var(--nav-radius-bottom);
+    background: rgba(12, 41, 62, var(--nav-alpha));
+    box-shadow: 0 10px 28px rgba(2, 13, 24, var(--nav-shadow-alpha));
+    backdrop-filter: blur(16px) saturate(135%);
+    -webkit-backdrop-filter: blur(16px) saturate(135%);
+    color: #edf6fa;
+    transition: width 350ms ease, top 350ms ease, border-radius 350ms ease, background-color 350ms ease, box-shadow 350ms ease;
   }
 
-  .nav-shell {
-    pointer-events: auto;
-    width: 100%;
-    max-width: calc(100vw - (var(--nav-side-gap) * 2));
-    margin-inline: auto;
-  }
+  .nav-shell { position: relative; }
 
-  .nav-inner.container {
+  .nav-inner {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    width: 100%;
-    max-width: none;
-    margin-inline: 0;
-    min-height: calc(76px - (14px * var(--nav-progress)));
-    padding:
-      calc(14px - (2px * var(--nav-progress)))
-      calc(28px - (8px * var(--nav-progress)));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 1px solid rgba(160, 214, 255, calc(0.18 * var(--nav-progress)));
-    border-right: 1px solid rgba(160, 214, 255, calc(0.18 * var(--nav-progress)));
-    border-top: 1px solid rgba(160, 214, 255, calc(0.18 * var(--nav-progress)));
-    background: rgba(2, 10, 20, 0.62);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    transform-origin: top center;
-    border-radius: calc(30px * var(--nav-progress));
-    box-shadow:
-      0 calc(28px * var(--nav-progress)) calc(64px * var(--nav-progress)) rgba(0, 0, 0, calc(0.34 * var(--nav-progress))),
-      0 0 0 1px rgba(129, 223, 255, calc(0.06 * var(--nav-progress))),
-      inset 0 1px 0 rgba(255, 255, 255, calc(0.08 * var(--nav-progress))),
-      inset 0 calc(-10px * var(--nav-progress)) calc(24px * var(--nav-progress)) rgba(59, 164, 255, calc(0.08 * var(--nav-progress)));
-    transform:
-      translateY(calc(2px * var(--nav-progress)))
-      scale(calc(1 - (0.038 * var(--nav-progress))));
-  }
-
-  .nav-inner.container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-      radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.08), transparent 45%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 44%);
-    opacity: calc(0.28 + (0.32 * var(--nav-progress)));
-    pointer-events: none;
-    transform: scaleY(calc(1 - (0.06 * var(--nav-progress))));
-  }
-
-  .nav-inner.container::after {
-    content: "";
-    position: absolute;
-    inset: auto 14% -22px;
-    height: 36px;
-    border-radius: 999px;
-    background:
-      radial-gradient(circle, rgba(112, 225, 255, 0.32), transparent 62%),
-      radial-gradient(circle, rgba(109, 156, 255, 0.2), transparent 74%);
-    opacity: calc(1 * var(--nav-progress));
-    transform:
-      scaleX(calc(0.72 + (0.36 * var(--nav-progress))))
-      scaleY(calc(0.82 + (0.26 * var(--nav-progress))));
-    filter: blur(18px);
-    pointer-events: none;
+    gap: 22px;
+    width: min(900px, calc(100% - 38px));
+    height: 74px;
+    margin-inline: auto;
   }
 
   .brand {
+    position: relative;
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    min-width: 175px;
-    z-index: 1;
-    transform:
-      translateX(calc(-8px * var(--nav-progress)))
-      scale(calc(1 - (0.03 * var(--nav-progress))));
+    width: 208px;
+    aspect-ratio: 1200 / 320;
   }
 
   .brand-logo {
-    width: 175px;
-    height: 47px;
-    flex-shrink: 0;
-  }
-
-  .brand-logo img {
+    display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: left center;
-    transform: scale(calc(1 - (0.05 * var(--nav-progress))));
-    filter:
-      brightness(calc(1 + (0.12 * var(--nav-progress))))
-      saturate(calc(1 + (0.08 * var(--nav-progress))));
+    clip-path: inset(0 0 0 27%);
+    transition: opacity 180ms ease;
   }
+  .brand-logo--icon {
+    clip-path: inset(0 72% 0 0);
+    opacity: var(--nav-icon-opacity, 1);
+  }
+  .brand-logo--light { opacity: 0; }
+  :global(html[data-theme="light"]) .brand-logo--light { opacity: 1; }
+  :global(html[data-theme="light"]) .brand-logo--dark { opacity: 0; }
+  .brand-logo--icon.brand-logo--dark { opacity: var(--nav-icon-opacity, 1); }
+  :global(html[data-theme="light"]) .brand-logo--icon.brand-logo--light { opacity: var(--nav-icon-opacity, 1); }
+  :global(html[data-theme="light"]) .brand-logo--icon.brand-logo--dark { opacity: 0; }
+
+  .nav-university-seal {
+    display: grid;
+    place-items: center;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    margin-left: auto;
+    pointer-events: none;
+  }
+  .nav-university-seal img {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .nav-university-logo--dark { display: none; }
+  :global(html[data-theme="dark"]) .nav-university-logo--light { display: none; }
+  :global(html[data-theme="dark"]) .nav-university-logo--dark { display: block; filter: brightness(1.2); }
 
   .nav-links {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 6px;
-    border-radius: 999px;
-    border: 1px solid rgba(170, 221, 255, calc(0.1 + (0.08 * var(--nav-progress))));
-    background: rgba(255, 255, 255, calc(0.05 + (0.02 * var(--nav-progress))));
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, calc(0.05 + (0.03 * var(--nav-progress)))),
-      0 calc(12px * var(--nav-progress)) calc(28px * var(--nav-progress)) rgba(0, 0, 0, calc(0.2 * var(--nav-progress)));
-    transform-origin: center center;
-    transform:
-      translate(-50%, -50%)
-      scale(calc(1 - (0.08 * var(--nav-progress))));
+    gap: 3px;
   }
+
+  .nav-mobile-sound { display: none; }
 
   .nav-links a {
-    padding: 9px 15px;
-    border-radius: 999px;
-    color: rgba(228, 237, 246, 0.58);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    line-height: 1;
-    text-transform: uppercase;
-    transition:
-      color 180ms var(--ease-out),
-      background-color 180ms var(--ease-out),
-      box-shadow 180ms var(--ease-out),
-      transform 180ms var(--ease-out);
-  }
-
-  .nav-links a:hover {
-    color: rgba(255, 255, 255, 0.92);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 2px 14px rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
-  }
-
-  .nav-tools {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
-    min-width: 175px;
-    z-index: 1;
-    transform:
-      translateX(calc(8px * var(--nav-progress)))
-      scale(calc(1 - (0.04 * var(--nav-progress))));
+    min-height: 42px;
+    padding: 8px 11px;
+    border-radius: 999px;
+    color: rgba(237, 246, 250, 0.73);
+    font-size: var(--type-small);
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    transition: color 180ms ease, background-color 180ms ease;
   }
 
-  .nav-tools :global(.lang-toggle) {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #ffffff;
+    background: rgba(237, 246, 250, 0.11);
+  }
+
+  .nav-links a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #ffe19a;
+  }
+
+  .nav-links :global(.lang-toggle),
+  .nav-mobile-tools :global(.lang-toggle) {
+    min-width: 42px;
+    min-height: 42px;
+    padding: 7px 9px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #edf6fa;
+    font-size: var(--type-small);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links :global(.lang-toggle):hover,
+  .nav-mobile-tools :global(.lang-toggle):hover {
+    background: rgba(237, 246, 250, 0.11);
+    color: #ffffff;
   }
 
   .nav-burger {
     display: none;
-    width: 42px;
-    height: 42px;
     align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    transition: border-color 180ms var(--ease-out), background-color 180ms var(--ease-out);
-  }
-
-  .nav-burger:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .nav-burger span {
-    position: absolute;
-    width: 16px;
-    height: 1.5px;
-    border-radius: 999px;
-    background: rgba(236, 242, 248, 0.92);
-    transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
-  }
-
-  .nav-burger span:nth-child(1) { transform: translateY(-5px); }
-  .nav-burger span:nth-child(3) { transform: translateY(5px); }
-
-  .nav-mobile {
-    display: none;
-    padding: 10px 18px 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(2, 10, 20, 0.84);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-  }
-
-  .nav-mobile-label {
-    padding: 4px 6px 10px;
-    color: rgba(229, 238, 247, 0.35);
-    font-size: 10px;
+    gap: 9px;
+    min-height: 44px;
+    padding: 7px 4px;
+    color: #edf6fa;
+    font-size: var(--type-small);
     font-weight: 700;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    letter-spacing: 0.025em;
   }
 
-  .nav-mobile-links {
-    display: grid;
-    gap: 8px;
-  }
-
-  .nav-mobile-links a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 46px;
-    padding: 0 14px;
-    border-radius: 14px;
-    border: 1px solid transparent;
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(236, 242, 248, 0.82);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    transition: border-color 180ms var(--ease-out), background-color 180ms var(--ease-out);
-  }
-
-  .nav-mobile-links a:hover {
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .nav.menu-open .nav-mobile {
+  .menu-icon { display: grid; gap: 5px; }
+  .menu-icon i {
     display: block;
+    width: 19px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 180ms ease;
   }
+  .nav.menu-open .menu-icon i:first-child { transform: translateY(3.25px) rotate(45deg); }
+  .nav.menu-open .menu-icon i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
 
-  .nav.menu-open .nav-burger span:nth-child(1) { transform: rotate(45deg); }
-  .nav.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
-  .nav.menu-open .nav-burger span:nth-child(3) { transform: rotate(-45deg); }
+  .nav-mobile { display: none; }
 
-  @media (max-width: 980px) {
+  @media (max-width: 900px) {
+    .nav-inner { width: calc(100% - 30px); height: 70px; gap: 12px; }
+    .brand { width: 180px; }
+    .nav-university-seal { flex-basis: 46px; width: 46px; height: 46px; }
     .nav-links { display: none; }
-    .nav-burger { display: inline-flex; position: relative; }
-    .nav-inner.container {
-      min-height: 72px;
-      padding-inline: 16px;
-    }
-    .brand {
-      min-width: 0;
-      max-width: calc(100vw - 148px);
-    }
-    .brand-logo {
-      width: min(170px, 100%);
-      height: auto;
-      aspect-ratio: 175 / 47;
-    }
-    .nav-tools {
-      min-width: 0;
-      gap: 8px;
-    }
-  }
+    .nav-burger { display: inline-flex; }
+    .nav-mobile-sound { display: flex; align-items: center; }
 
-  @media (max-width: 768px) {
-    .nav {
-      padding-inline: 0;
-    }
-    .nav-inner.container {
-      min-height: 68px;
-      padding: 12px 14px;
-    }
-    .brand-logo {
-      width: 148px;
-    }
-    .nav-tools :global(.lang-toggle) {
-      padding-inline: 10px;
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .nav-inner.container {
-      gap: 10px;
-    }
-    .brand-logo {
-      width: 136px;
-    }
-    .nav-tools :global(.lang-toggle) {
-      padding-inline: 9px;
-      gap: 4px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-    }
     .nav-mobile {
-      padding-inline: 14px;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      display: block;
+      width: min(260px, 60vw);
+      padding: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(127, 193, 223, 0);
+      border-radius: 18px;
+      background: rgba(10, 38, 57, 0.97);
+      box-shadow: 0 12px 30px rgba(2, 13, 24, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px) scale(0.97);
+      transform-origin: top right;
+      transition: opacity 240ms ease, transform 300ms ease, visibility 0s linear 300ms, border-color 240ms ease;
     }
+
+    .nav.menu-open .nav-mobile {
+      border-color: rgba(127, 193, 223, 0.55);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      transition: opacity 240ms ease, transform 300ms ease, border-color 240ms ease;
+    }
+
+    .nav-mobile-links { display: grid; gap: 2px; }
     .nav-mobile-links a {
-      min-height: 44px;
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      color: rgba(237, 246, 250, 0.78);
+      font-size: var(--type-small);
+      font-weight: 700;
+      letter-spacing: 0.025em;
+      transition: color 180ms ease, background-color 180ms ease;
     }
+    .nav-mobile-links a:hover,
+    .nav-mobile-links a.active { color: #ffffff; background: rgba(237, 246, 250, 0.11); }
+    .nav-mobile-links a.active::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffe19a;
+    }
+
+    .nav-mobile-tools {
+      display: grid;
+      gap: 2px;
+      margin-top: 8px;
+      padding: 8px 5px 0 12px;
+      border-top: 1px solid rgba(127, 193, 223, 0.24);
+      color: rgba(237, 246, 250, 0.68);
+      font-size: var(--type-small);
+    }
+    .nav-mobile-tool {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .brand { width: 160px; }
+  }
+
+  @media (max-width: 420px) {
+    .brand { width: min(140px, calc(50% - 38px)); }
+    .nav-university-seal { flex-basis: 34px; width: 34px; height: 34px; }
+    .nav-burger > [data-lang] { display: none; }
+  }
+
+  @media (max-width: 330px) {
+    .nav-university-seal { display: none; }
   }
 </style>
 
@@ -368,43 +341,191 @@ const linksEn = en.nav.links;
   (function () {
     var nav = document.getElementById("nav");
     if (!nav) return;
+    var burger = nav.querySelector(".nav-burger");
+    var links = Array.from(nav.querySelectorAll('.nav-links a[href^="#"], .nav-mobile-links a[href^="#"]'));
+    var sections = [];
     var ticking = false;
+    var heroLogo = null;
+    var root = document.documentElement;
+    var trails = [];
+    var trailTimeout = null;
+
+    function collectSections() {
+      heroLogo = document.querySelector(".hero-logo-wrap");
+      trails = Array.from(document.querySelectorAll(".logo-trail"));
+      sections = Array.from(nav.querySelectorAll('.nav-links a[href^="#"]')).map(function (link) {
+        return { id: link.getAttribute("href"), element: document.querySelector(link.getAttribute("href")) };
+      }).filter(function (item) { return item.element; });
+    }
+
+    function syncLabels() {
+      var en = document.documentElement.dataset.lang === "en";
+      var open = nav.classList.contains("menu-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", en ? (open ? "Close navigation menu" : "Open navigation menu") : (open ? "关闭导航菜单" : "打开导航菜单"));
+      nav.querySelector(".brand").setAttribute("aria-label", en ? "AIGC Research · Back to top" : "AIGC Research · 返回顶部");
+      nav.querySelector(".nav-links").setAttribute("aria-label", en ? "Sections" : "页面导航");
+      nav.querySelector(".nav-mobile-links").setAttribute("aria-label", en ? "Mobile sections" : "移动端导航");
+    }
+
+    function updateActive() {
+      var marker = Math.min(Math.max(window.innerHeight * 0.38, 150), 320);
+      var current = null;
+      sections.forEach(function (item) {
+        if (item.element.getBoundingClientRect().top <= marker) current = item.id;
+      });
+      links.forEach(function (link) {
+        var active = link.getAttribute("href") === current;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }
+
+    function smoothstep(start, end, value) {
+      var t = Math.min(Math.max((value - start) / (end - start), 0), 1);
+      return t * t * (3 - 2 * t);
+    }
+
+    function cubicBezier(start, control1, control2, end, t) {
+      var inverse = 1 - t;
+      return inverse * inverse * inverse * start
+        + 3 * inverse * inverse * t * control1
+        + 3 * inverse * t * t * control2
+        + t * t * t * end;
+    }
 
     function applyProgress() {
       ticking = false;
-      var maxScroll = 180;
-      var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-      var maxInset = window.innerWidth <= 768 ? 8 : Math.min(window.innerWidth * 0.12, 230);
-      var topGap = window.innerWidth <= 768 ? 8 : 12;
+      var mobile = window.innerWidth <= 900;
+      var progress = Math.min(Math.max(window.scrollY / (mobile ? 110 : 140), 0), 1);
+      var targetWidth = Math.min(920, Math.max(260, window.innerWidth - (mobile ? 28 : 36)));
+      nav.style.setProperty("--nav-shrink", ((window.innerWidth - targetWidth) * progress).toFixed(2) + "px");
+      nav.style.setProperty("--nav-top", (12 * progress).toFixed(2) + "px");
+      nav.style.setProperty("--nav-radius-top", (999 * progress).toFixed(2) + "px");
+      nav.style.setProperty("--nav-radius-bottom", (14 + 985 * progress).toFixed(2) + "px");
+      nav.style.setProperty("--nav-alpha", (0.62 - 0.08 * progress).toFixed(3));
+      nav.style.setProperty("--nav-shadow-alpha", (0.26 * progress).toFixed(3));
+      nav.style.setProperty("--nav-outline-opacity", progress.toFixed(3));
 
-      nav.style.setProperty("--nav-progress", progress.toFixed(4));
-      nav.style.setProperty("--nav-side-gap", (maxInset * progress).toFixed(2) + "px");
-      nav.style.setProperty("--nav-top-gap", (topGap * progress).toFixed(2) + "px");
+      if (heroLogo) {
+        var logoRect = heroLogo.getBoundingClientRect();
+        var brandRect = nav.querySelector(".brand").getBoundingClientRect();
+        var logoX = logoRect.left + logoRect.width / 2;
+        var navX = brandRect.left + brandRect.width * (160 / 1200);
+        var logoY = logoRect.top + logoRect.height / 2;
+        var navY = brandRect.top + brandRect.height / 2;
+        var travel = Math.max(160, logoY + window.scrollY - navY);
+        var haloProgress = Math.min(Math.max(window.scrollY / travel, 0), 1);
+        var startY = logoY + window.scrollY - 0.22 * travel;
+        var entryX = Math.max(42, (window.innerWidth - targetWidth) / 2 - 52);
+        var entryY = navY + (mobile ? 40 : 22);
+        var outerControlX = Math.max(4, entryX - (mobile ? 38 : 80));
+        var outerControlY = entryY + Math.max(50, (startY - navY) * 0.35);
+        function flightPoint(atProgress) {
+          if (atProgress <= 0.22) return { x: logoX, y: startY + (0.22 - atProgress) * travel };
+          if (atProgress < 0.78) {
+            var outerTime = (atProgress - 0.22) / 0.56;
+            return {
+              x: cubicBezier(logoX, logoX - (logoX - entryX) * 0.25, outerControlX, entryX, outerTime),
+              y: cubicBezier(startY, startY - 20, outerControlY, entryY, outerTime),
+            };
+          } else {
+            var entryTime = Math.min((atProgress - 0.78) / 0.2, 1);
+            var tangentScale = 0.2 / 0.56;
+            return {
+              x: cubicBezier(entryX, entryX + (entryX - outerControlX) * tangentScale, navX - 34, navX, entryTime),
+              y: cubicBezier(entryY, entryY + (entryY - outerControlY) * tangentScale, navY, navY, entryTime),
+            };
+          }
+        }
+        var flight = flightPoint(haloProgress);
+        var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var logoOpacity = 1 - smoothstep(0.08, 0.22, haloProgress);
+        var flightOpacity = smoothstep(0.08, 0.22, haloProgress) * (1 - smoothstep(0.9, 0.995, haloProgress));
+        var navIconOpacity = 1 - smoothstep(0.16, 0.32, haloProgress) + smoothstep(0.88, 0.995, haloProgress);
+        if (reducedMotion) { logoOpacity = 1; flightOpacity = 0; navIconOpacity = 1; }
+        var rim = smoothstep(0.78, 0.995, haloProgress);
+        var transfer = 0.5 * flightOpacity;
+        var startSize = Math.min(270, logoRect.width * 1.2);
+        var endSize = brandRect.width * (320 / 1200);
+        root.style.setProperty("--hero-logo-opacity", logoOpacity.toFixed(3));
+        root.style.setProperty("--nav-icon-opacity", Math.min(navIconOpacity, 1).toFixed(3));
+        root.style.setProperty("--logo-transfer-left", flight.x.toFixed(1) + "px");
+        root.style.setProperty("--logo-transfer-top", flight.y.toFixed(1) + "px");
+        root.style.setProperty("--logo-transfer-size", (logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, haloProgress)).toFixed(1) + "px");
+        root.style.setProperty("--logo-transfer-opacity", flightOpacity.toFixed(3));
+        root.style.setProperty("--halo-progress", rim.toFixed(3));
+        root.style.setProperty("--hero-halo-dark-opacity", (0.7 * logoOpacity).toFixed(3));
+        root.style.setProperty("--hero-halo-light-opacity", (0.85 * logoOpacity).toFixed(3));
+        root.style.setProperty("--halo-transfer-left", flight.x.toFixed(1) + "px");
+        root.style.setProperty("--halo-transfer-top", flight.y.toFixed(1) + "px");
+        root.style.setProperty("--halo-transfer-size", (startSize + (endSize * 1.45 - startSize) * smoothstep(0.2, 0.82, haloProgress)).toFixed(1) + "px");
+        root.style.setProperty("--halo-transfer-opacity", transfer.toFixed(3));
+        var trailStrength = reducedMotion ? 0 : smoothstep(0.24, 0.38, haloProgress) * (1 - smoothstep(0.92, 1, haloProgress)) * flightOpacity;
+        trails.forEach(function (trail, index) {
+          var pastProgress = Math.max(0, haloProgress - (index + 1) * 0.045);
+          var past = flightPoint(pastProgress);
+          var pastSize = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, pastProgress);
+          trail.style.left = past.x.toFixed(1) + "px";
+          trail.style.top = past.y.toFixed(1) + "px";
+          trail.style.width = (pastSize * (1.05 + index * 0.12)).toFixed(1) + "px";
+          trail.style.setProperty("--trail-opacity", (trailStrength * [0.58, 0.44, 0.32, 0.22][index]).toFixed(3));
+        });
+      }
+      updateActive();
     }
 
     function onScroll() {
+      root.classList.add("trail-active");
+      window.clearTimeout(trailTimeout);
+      trailTimeout = window.setTimeout(function () { root.classList.remove("trail-active"); }, 420);
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
     }
 
-    applyProgress();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    var burger = nav.querySelector(".nav-burger");
-    if (burger) {
-      burger.addEventListener("click", function () {
-        var open = nav.classList.toggle("menu-open");
-        burger.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    }
-
-    nav.querySelectorAll(".nav-links a, .nav-mobile-links a").forEach(function (a) {
-      a.addEventListener("click", function () {
+    burger.addEventListener("click", function () {
+      nav.classList.toggle("menu-open");
+      syncLabels();
+    });
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
         nav.classList.remove("menu-open");
-        if (burger) burger.setAttribute("aria-expanded", "false");
+        syncLabels();
       });
     });
+    document.addEventListener("pointerdown", function (event) {
+      if (nav.classList.contains("menu-open") && !nav.contains(event.target)) {
+        nav.classList.remove("menu-open");
+        syncLabels();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("menu-open")) {
+        nav.classList.remove("menu-open");
+        syncLabels();
+        burger.focus();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900 && nav.classList.contains("menu-open")) {
+        nav.classList.remove("menu-open");
+        syncLabels();
+      }
+      onScroll();
+    });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("aigcr:langchange", syncLabels);
+    syncLabels();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () {
+        collectSections();
+        applyProgress();
+      }, { once: true });
+    } else {
+      collectSections();
+      applyProgress();
+    }
   })();
 </script>

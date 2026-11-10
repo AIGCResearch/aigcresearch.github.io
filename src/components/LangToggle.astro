@@ -2,10 +2,9 @@
 import { zh } from "../data/content.zh";
 const labels = zh.langToggle;
 ---
-<button class="lang-toggle" type="button" aria-label="Toggle language">
-  <span class="lang-opt" data-target="zh">{labels.zh}</span>
-  <span class="lang-sep">/</span>
-  <span class="lang-opt" data-target="en">{labels.en}</span>
+<button class="lang-toggle" type="button" aria-label="Switch to English">
+  <span data-lang="zh">{labels.zh}</span>
+  <span data-lang="en">{labels.en}</span>
 </button>
 
 <style>
@@ -13,45 +12,41 @@ const labels = zh.langToggle;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    min-width: 58px;
-    min-height: 42px;
-    padding: 0 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    color: rgba(229, 238, 247, 0.62);
+    min-width: 38px;
+    min-height: 38px;
+    padding: 7px 9px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #edf6fa;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--type-small);
     font-weight: 700;
-    letter-spacing: 0.14em;
-    transition:
-      border-color 160ms var(--ease-out),
-      color 160ms var(--ease-out),
-      background-color 160ms var(--ease-out);
+    letter-spacing: 0.02em;
+    transition: color 180ms ease, background-color 180ms ease;
   }
-  .lang-toggle:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.92);
-  }
-  .lang-sep { color: rgba(232, 238, 247, 0.28); }
-  .lang-opt { transition: color 160ms var(--ease-out); }
-  html[data-lang="zh"] .lang-opt[data-target="zh"],
-  html[data-lang="en"] .lang-opt[data-target="en"] {
-    color: #ffffff;
-  }
+
+  .lang-toggle:hover { color: #ffffff; background: rgba(237, 246, 250, 0.11); }
 </style>
 
-<script is:inline>
-  document.querySelectorAll(".lang-toggle").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var cur = document.documentElement.dataset.lang || "zh";
-      var next = cur === "zh" ? "en" : "zh";
-      document.documentElement.dataset.lang = next;
-      try { localStorage.setItem("aigcr.lang", next); } catch (e) {}
-      window.dispatchEvent(new CustomEvent("aigcr:langchange", { detail: { lang: next } }));
+<script>
+  function syncLangToggles() {
+    const en = document.documentElement.dataset.lang === "en";
+    document.querySelectorAll<HTMLButtonElement>(".lang-toggle").forEach((button) => {
+      button.setAttribute("aria-label", en ? "切换为中文" : "Switch to English");
     });
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest<HTMLButtonElement>(".lang-toggle");
+    if (!button) return;
+    const next = document.documentElement.dataset.lang === "en" ? "zh" : "en";
+    document.documentElement.dataset.lang = next;
+    try { localStorage.setItem("aigcr.lang", next); } catch (e) {}
+    window.dispatchEvent(new CustomEvent("aigcr:langchange", { detail: { lang: next } }));
   });
+
+  window.addEventListener("aigcr:langchange", syncLangToggles);
+  syncLangToggles();
 </script>

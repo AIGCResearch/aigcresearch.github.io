@@ -3,6 +3,13 @@ import { zh } from "../data/content.zh";
 import { en } from "../data/content.en";
 const z = zh.directions;
 const e = en.directions;
+const splitBody = (body: string) => {
+  const [intro, ...points] = body.trim().split(/\s+(?=\d\.\s)/);
+  return { intro, points: points.map((point) => point.replace(/^\d\.\s*/, "")) };
+};
+const bodyZh = z.items.map((item) => splitBody(item.body));
+const bodyEn = e.items.map((item) => splitBody(item.body));
+const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN" : "StarX";
 ---
 <section class="section directions" id="directions" aria-labelledby="directions-title">
   <hr class="section-divider" />
@@ -27,20 +34,24 @@ const e = en.directions;
     <div class="dir-grid">
       {z.items.map((d, i) => (
         <article class="dir-card reveal">
+          <span class="card-hover-ring" aria-hidden="true"></span>
           <span class="dir-card-watermark" aria-hidden="true">
-            {i === 0 ? "CGI" : i === 1 ? "ICW" : "AI4S"}
+            {directionMark(d.id)}
           </span>
           <header class="dir-head">
-            <span class="dir-index">{String(i + 1).padStart(2, "0")}</span>
-            <div>
+            <span class="dir-index" aria-hidden="true">
+              <span>{directionMark(d.id)}</span>
+              <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
+            </span>
+            <div class="dir-heading">
               <h3 class="dir-title">
                 <span data-lang="zh">{d.title}</span>
                 <span data-lang="en">{e.items[i].title}</span>
               </h3>
-              <p class="dir-subtitle">
-                <span data-lang="zh">{d.subtitle}</span>
-                <span data-lang="en">{e.items[i].subtitle}</span>
-              </p>
+              <div class="dir-logo-wrap" aria-hidden="true">
+                <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+                <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+              </div>
             </div>
           </header>
           <p class="dir-tagline">
@@ -48,10 +59,16 @@ const e = en.directions;
             <span data-lang="zh">{d.tagline}</span>
             <span data-lang="en">{e.items[i].tagline}</span>
           </p>
-          <p class="dir-body">
-            <span data-lang="zh">{d.body}</span>
-            <span data-lang="en">{e.items[i].body}</span>
-          </p>
+          <div class="dir-body">
+            <div data-lang="zh">
+              <p>{bodyZh[i].intro}</p>
+              <ol>{bodyZh[i].points.map((point) => <li>{point}</li>)}</ol>
+            </div>
+            <div data-lang="en">
+              <p>{bodyEn[i].intro}</p>
+              <ol>{bodyEn[i].points.map((point) => <li>{point}</li>)}</ol>
+            </div>
+          </div>
           <ul class="dir-tags">
             {d.tags.map((t, ti) => (
               <li class="tag">
@@ -60,6 +77,20 @@ const e = en.directions;
               </li>
             ))}
           </ul>
+          {d.team && e.items[i].team && (
+            <aside class="dir-team" aria-label={d.team.name}>
+              <div class="dir-team-logo-wrap" aria-hidden="true">
+                <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+                <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+              </div>
+              {d.team.description && e.items[i].team.description && (
+                <p class="dir-team-description">
+                  <span data-lang="zh">{d.team.description}</span>
+                  <span data-lang="en">{e.items[i].team.description}</span>
+                </p>
+              )}
+            </aside>
+          )}
         </article>
       ))}
     </div>
@@ -83,13 +114,27 @@ const e = en.directions;
   .lede {
     max-width: 860px;
     color: rgba(220, 233, 243, 0.78);
-    font-size: 16px;
+    font-size: var(--type-small);
     margin-top: 18px;
     line-height: 1.85;
   }
   html[lang="en"] .lede { line-height: 1.65; }
 
   .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (min-width: 861px) {
+    .dir-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      column-gap: 36px;
+      align-items: start;
+    }
+    .dir-card:last-child:nth-child(odd) .dir-head { grid-column: 1; grid-row: 1; }
+    .dir-card:last-child:nth-child(odd) .dir-tagline { grid-column: 1; grid-row: 2; }
+    .dir-card:last-child:nth-child(odd) .dir-body { grid-column: 2; grid-row: 1 / span 2; }
+    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; }
+    .dir-card:last-child:nth-child(odd) .dir-team { grid-column: 1 / -1; }
+  }
   .dir-card {
     position: relative;
     padding: 32px 28px 28px;
@@ -137,7 +182,7 @@ const e = en.directions;
     top: 18px;
     right: 20px;
     font-family: var(--font-mono);
-    font-size: 66px;
+    font-size: var(--type-large);
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -146,23 +191,37 @@ const e = en.directions;
     user-select: none;
   }
 
-  .dir-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
+  .dir-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+  .dir-heading { flex: 1; min-width: 0; }
+  .dir-logo-wrap { position: relative; width: 85%; max-width: 350px; aspect-ratio: 1164 / 264; }
+  .dir-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
+  .dir-logo--light { opacity: 0; }
+  :global(html[data-theme="light"]) .dir-logo--light { opacity: 1; }
+  :global(html[data-theme="light"]) .dir-logo--dark { opacity: 0; }
   .dir-index {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 90px;
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    padding: 5px 12px;
-    border-radius: 6px;
+    font-size: var(--type-medium);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+    padding: 9px 14px;
+    border-radius: 8px;
     background: rgba(145, 185, 208, 0.08);
     border: 1px solid rgba(145, 185, 208, 0.16);
     color: rgba(181, 215, 234, 0.86);
     flex-shrink: 0;
   }
-  .dir-title { font-size: 24px; letter-spacing: 0.01em; }
-  .dir-subtitle { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: rgba(200, 220, 236, 0.64); margin-top: 4px; text-transform: uppercase; }
+  .dir-index-kind { font-size: var(--type-small); font-weight: 500; letter-spacing: 0.06em; }
+  .dir-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
   .dir-tagline {
-    font-size: 15px;
+    font-size: var(--type-small);
     color: rgba(177, 214, 233, 0.82);
     margin-bottom: 14px;
     display: inline-flex;
@@ -170,13 +229,29 @@ const e = en.directions;
     gap: 10px;
   }
   .dir-tagline-decor { font-family: var(--font-mono); font-weight: 700; opacity: 0.7; }
-  .dir-body { color: rgba(214, 229, 241, 0.74); font-size: 14px; line-height: 1.8; }
+  .dir-body { color: rgba(214, 229, 241, 0.74); font-size: var(--type-small); line-height: 1.8; }
+  .dir-body ol { display: grid; gap: 10px; margin: 14px 0 0; padding-left: 1.5em; }
+  .dir-body li { padding-left: 3px; }
   html[lang="en"] .dir-body { line-height: 1.6; }
+  .dir-team {
+    margin-top: 22px;
+    padding: 18px 20px;
+    border: 1px solid var(--surface-border-strong);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+  .dir-team-logo-wrap { position: relative; width: 100%; max-width: 400px; margin-inline: auto; aspect-ratio: 1200 / 236; }
+  .dir-card:last-child .dir-team-logo-wrap { max-width: 580px; }
+  .dir-team-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
+  .dir-team-logo--light { opacity: 0; }
+  :global(html[data-theme="light"]) .dir-team-logo--light { opacity: 1; }
+  :global(html[data-theme="light"]) .dir-team-logo--dark { opacity: 0; }
+  .dir-team-description { margin: 10px 0 0; color: var(--text-muted); font-size: var(--type-small); line-height: 1.75; }
 
   .dir-tags { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: var(--type-small);
     letter-spacing: 0.1em;
     padding: 5px 10px;
     border-radius: var(--radius-pill);
@@ -191,7 +266,12 @@ const e = en.directions;
   @media (max-width: 860px) {
     .dir-grid { grid-template-columns: 1fr; gap: 18px; }
     .dir-card { padding: 32px 24px; }
-    .dir-card-watermark { font-size: 56px; top: 18px; right: 20px; }
+    .dir-card-watermark { font-size: var(--type-large); top: 18px; right: 20px; }
     .section-panel { padding: 24px 20px 28px; }
+  }
+  @media (max-width: 480px) {
+    .dir-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .dir-heading { width: 100%; }
+    .dir-index { min-width: 82px; padding: 8px 12px; }
   }
 </style>

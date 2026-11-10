@@ -5,7 +5,7 @@ import PubCard from "./PubCard.astro";
 
 const z = zh.publications;
 const e = en.publications;
-const hiddenIds = new Set(["shotstudio", "act2cut"]);
+const hiddenIds = new Set(["shotstudio"]);
 const visibleZhItems = z.items.filter((item) => !hiddenIds.has(item.id));
 const visibleEnItems = e.items.filter((item) => !hiddenIds.has(item.id));
 ---
@@ -54,7 +54,7 @@ const visibleEnItems = e.items.filter((item) => !hiddenIds.has(item.id));
   .lede {
     max-width: 860px;
     color: rgba(220, 233, 243, 0.78);
-    font-size: 16px;
+    font-size: var(--type-small);
     margin-top: 18px;
     line-height: 1.85;
   }

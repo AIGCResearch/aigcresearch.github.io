@@ -1,10 +1,10 @@
 :root {
-  --bg-deep: #04111D;
-  --bg-nebula-1: #0A243C;
-  --bg-nebula-2: #143A5B;
+  --bg-deep: #041025;
+  --bg-nebula-1: #09265E;
+  --bg-nebula-2: #0A2A5C;
 
-  --surface: rgba(13, 37, 61, 0.62);
-  --surface-strong: rgba(13, 37, 61, 0.82);
+  --surface: rgba(6, 20, 47, 0.82);
+  --surface-strong: #071A36;
   --surface-border: rgba(120, 203, 255, 0.12);
   --surface-border-strong: rgba(120, 203, 255, 0.32);
 
@@ -33,5 +33,16 @@
   --font-en: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
   --font-mono: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
 
+  --type-large: clamp(36px, 4.2vw, 56px);
+  --type-medium: 20px;
+  --type-small: 14px;
+
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --type-large: 36px;
+    --type-medium: 18px;
+  }
 }

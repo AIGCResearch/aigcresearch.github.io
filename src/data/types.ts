@@ -9,11 +9,17 @@ export type Direction = {
   tagline: string;
   body: string;
   tags: string[];
+  team?: {
+    name: string;
+    description?: string;
+    logoBase: string;
+  };
 };
 
 export type Publication = {
   id: string;
   title: string;
+  venue?: string;
   tagline: string;
   body: string;
   links: Link[];
@@ -76,6 +82,7 @@ export type Content = {
     eyebrow: string;
     title: string;
     intro: string;
+    membersLabel: string;
     members: Member[];
     advisorsLabel: string;
     advisors: Member[];
