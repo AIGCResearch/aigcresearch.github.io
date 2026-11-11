@@ -146,7 +146,7 @@ Examine overlooked pain points across filmmaking, build new forms of AI-native p
         id: "starx",
         title: "StarX Infinite Inspiration Studio",
         subtitle: "Creative Practice Studio",
-        tagline: "Shaping a New World of Creativity: Bringing Ideas to Life across Academia, Industry, Research, and Creative Practice",
+        tagline: "Shaping a New Creative World: Bringing Ideas to Life across Academia, Industry, Research, and Creative Practice",
         body: `StarX Studio connects creative intelligence research with real creative practice. We explore deeper integration of AI with film, story, and visual expression, carry ideas from concept to finished work, and feed hands-on creative experience back into technical research.
 
 1. Idea Co-creation
@@ -356,7 +356,7 @@ Identify creative pain points and technical needs from real production workflows
   },
   footer: {
     copyright: "© 2026 AIGC Research",
-    tagline: "Shaping a new world of creativity.",
+    tagline: "Shaping a New Creative World.",
   },
   langToggle: { zh: "中", en: "EN" },
 };
