@@ -9,6 +9,7 @@ const linksZh = zh.nav.links;
 const linksEn = en.nav.links;
 ---
 <header class="nav" id="nav">
+  <span class="nav-sweep" aria-hidden="true"></span>
   <div class="nav-shell">
     <div class="nav-inner">
       <a class="brand" href="#top" aria-label="AIGC Research · 返回顶部">
@@ -361,17 +362,18 @@ const linksEn = en.nav.links;
     var trails = [];
     var trailTimeout = null;
     var lastScrollY = window.scrollY;
-    var trailStartScrollY = window.scrollY;
+    var trailActive = false;
+    var trailLastSampleScrollY = window.scrollY;
+    var trailNeedsStart = false;
+    var nextTrailIndex = 0;
     var trailDirection = 0;
+    var navLogoInside = null;
 
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
       heroAnchor = document.querySelector(".hero-logo-anchor");
       syncMobileHero();
       trails = Array.from(document.querySelectorAll(".logo-trail"));
-      trails.forEach(function (trail, index) {
-        trail.style.setProperty("--trail-fade-delay", ((trails.length - index - 1) * 90) + "ms");
-      });
       sections = Array.from(nav.querySelectorAll('.nav-links a[href^="#"]')).map(function (link) {
         return { id: link.getAttribute("href"), element: document.querySelector(link.getAttribute("href")) };
       }).filter(function (item) { return item.element; });
@@ -427,6 +429,14 @@ const linksEn = en.nav.links;
         + t * t * t * end;
     }
 
+    function clearTrails() {
+      trails.forEach(function (trail) {
+        trail.getAnimations().forEach(function (animation) { animation.cancel(); });
+        trail.style.visibility = "hidden";
+      });
+      nextTrailIndex = 0;
+    }
+
     function applyProgress() {
       ticking = false;
       var mobile = window.innerWidth <= 900;
@@ -472,6 +482,26 @@ const linksEn = en.nav.links;
           }
         }
         var flight = flightPoint(haloProgress);
+        var navRect = nav.getBoundingClientRect();
+        var insideNav = flight.x >= navRect.left && flight.x <= navRect.right
+          && flight.y >= navRect.top && flight.y <= navRect.bottom;
+        var outsideNav = flight.x < navRect.left - 6 || flight.x > navRect.right + 6
+          || flight.y < navRect.top - 6 || flight.y > navRect.bottom + 6;
+        if (navLogoInside === null) {
+          navLogoInside = insideNav;
+        } else if (!navLogoInside && insideNav) {
+          navLogoInside = true;
+          if (!reducedMotion) {
+            nav.classList.remove("is-sweep-exit");
+            nav.classList.add("is-sweep-enter");
+          }
+        } else if (navLogoInside && outsideNav) {
+          navLogoInside = false;
+          if (!reducedMotion) {
+            nav.classList.remove("is-sweep-enter");
+            nav.classList.add("is-sweep-exit");
+          }
+        }
         heroLogo.classList.toggle("is-desktop-flight", !mobile && !reducedMotion && haloProgress > 0);
         var logoOpacity = haloProgress > 0 ? 0 : 1;
         var flightOpacity = haloProgress > 0 ? 1 - smoothstep(0.9, 0.995, haloProgress) : 0;
@@ -498,23 +528,42 @@ const linksEn = en.nav.links;
         root.style.setProperty("--halo-progress", rim.toFixed(3));
         root.style.setProperty("--hero-halo-dark-opacity", (0.7 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
         root.style.setProperty("--hero-halo-light-opacity", (0.85 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
-        var trailStrength = reducedMotion ? 0 : smoothstep(0.015, 0.09, haloProgress) * (1 - smoothstep(0.92, 1, haloProgress)) * (flyingMobileLogo ? mobileHeroOpacity : flightOpacity);
-        var trailStart = Math.min(Math.max(trailStartScrollY / travel, 0), 1);
-        var travelled = (haloProgress - trailStart) * trailDirection;
-        trails.forEach(function (trail, index) {
-          var offset = 0.012 + index * (mobile ? 0.045 : 0.06);
-          var visible = root.classList.contains("trail-active") && travelled > offset + 0.003;
-          if (visible) {
-            var pastProgress = haloProgress - trailDirection * offset;
-            var past = flightPoint(pastProgress);
-            var pastSize = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, pastProgress);
-            trail.style.left = past.x.toFixed(1) + "px";
-            trail.style.top = past.y.toFixed(1) + "px";
-            trail.style.width = (pastSize * (mobile ? 1.05 + index * 0.12 : 0.9 + index * 0.035)).toFixed(1) + "px";
+        if (trailActive && !reducedMotion && trails.length) {
+          // Leave each ring where the logo passed; large scroll jumps emit from start to end in order.
+          var travelledSinceSample = window.scrollY - trailLastSampleScrollY;
+          var spacing = Math.max(10, travel * 0.04);
+          var count = Math.min(Math.floor(Math.abs(travelledSinceSample) / spacing), trails.length - (trailNeedsStart ? 1 : 0));
+          var startingSegment = trailNeedsStart;
+          function emitTrail(atScrollY, delay) {
+            var atProgress = Math.min(Math.max(atScrollY / travel, 0), 1);
+            var strength = 1 - smoothstep(0.92, 1, atProgress);
+            if (strength <= 0.01) return;
+            var point = flightPoint(atProgress);
+            var size = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, atProgress);
+            var trail = trails[nextTrailIndex];
+            trail.getAnimations().forEach(function (animation) { animation.cancel(); });
+            trail.style.left = point.x.toFixed(1) + "px";
+            trail.style.top = point.y.toFixed(1) + "px";
+            trail.style.width = (size * (mobile ? 1.12 : 0.98)).toFixed(1) + "px";
+            trail.style.visibility = "visible";
+            trail.animate([
+              { opacity: 0, offset: 0 },
+              { opacity: (0.82 * strength).toFixed(3), offset: 0.08 },
+              { opacity: 0, offset: 1 }
+            ], { duration: 520, delay: delay, easing: "linear", fill: "both" });
+            nextTrailIndex = (nextTrailIndex + 1) % trails.length;
           }
-          trail.style.visibility = visible ? "visible" : "hidden";
-          trail.style.setProperty("--trail-opacity", (visible ? trailStrength * [0.82, 0.64, 0.48, 0.34][index] : 0).toFixed(3));
-        });
+          if (trailNeedsStart) {
+            emitTrail(trailLastSampleScrollY, 0);
+            trailNeedsStart = false;
+          }
+          if (count) {
+            for (var index = 1; index <= count; index++) {
+              emitTrail(trailLastSampleScrollY + travelledSinceSample * index / count, (index - (startingSegment ? 0 : 1)) * 45);
+            }
+            trailLastSampleScrollY = window.scrollY;
+          }
+        }
       }
       updateActive();
     }
@@ -524,19 +573,17 @@ const linksEn = en.nav.links;
       var delta = currentScrollY - lastScrollY;
       if (Math.abs(delta) < 0.5) return;
       var direction = Math.sign(delta);
-      if (!root.classList.contains("trail-active") || direction !== trailDirection) {
-        trailStartScrollY = lastScrollY;
+      if (!trailActive || direction !== trailDirection) {
+        clearTrails();
+        trailLastSampleScrollY = lastScrollY;
+        trailNeedsStart = true;
         trailDirection = direction;
-        trails.forEach(function (trail) {
-          trail.style.visibility = "hidden";
-          trail.style.setProperty("--trail-opacity", "0");
-        });
       }
       lastScrollY = currentScrollY;
-      root.classList.add("trail-active");
+      trailActive = true;
       window.clearTimeout(trailTimeout);
       trailTimeout = window.setTimeout(function () {
-        root.classList.remove("trail-active");
+        trailActive = false;
       }, 160);
       if (ticking) return;
       ticking = true;
@@ -572,9 +619,12 @@ const linksEn = en.nav.links;
         syncLabels();
       }
       syncMobileHero();
+      navLogoInside = null;
       window.clearTimeout(trailTimeout);
-      root.classList.remove("trail-active");
-      trailStartScrollY = window.scrollY;
+      trailActive = false;
+      clearTrails();
+      trailLastSampleScrollY = window.scrollY;
+      trailNeedsStart = false;
       trailDirection = 0;
       lastScrollY = window.scrollY;
       if (ticking) return;

@@ -57,6 +57,52 @@ html[data-theme] body.site-body .nav {
 html[data-theme="dark"] body.site-body .nav { border-color: rgba(219, 234, 244, calc(0.82 * var(--nav-outline-opacity, 0))); }
 html[data-theme="light"] body.site-body .nav { border-color: rgba(155, 195, 218, calc(0.78 * var(--nav-outline-opacity, 0))); }
 
+html[data-theme] body.site-body .nav-sweep {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+html[data-theme] body.site-body .nav-shell { z-index: 1; }
+
+html[data-theme] body.site-body .nav-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(90deg,
+    transparent 34%,
+    rgba(47, 213, 198, 0.12) 40%,
+    rgba(47, 213, 198, 0.48) 46%,
+    rgba(225, 234, 47, 0.44) 50%,
+    rgba(2, 164, 218, 0.42) 55%,
+    transparent 67%);
+  filter: blur(9px);
+}
+
+html[data-theme] body.site-body .nav.is-sweep-enter .nav-sweep::before {
+  animation: nav-sweep-enter 620ms ease-in-out both;
+}
+
+html[data-theme] body.site-body .nav.is-sweep-exit .nav-sweep::before {
+  animation: nav-sweep-exit 620ms ease-in-out both;
+}
+
+@keyframes nav-sweep-enter {
+  0% { transform: translateX(-100%); opacity: 0; }
+  16%, 84% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes nav-sweep-exit {
+  0% { transform: translateX(100%); opacity: 0; }
+  16%, 84% { opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+
 .logo-transfer {
   position: fixed;
   z-index: 61;
@@ -210,13 +256,7 @@ html[data-theme="light"] .logo-transfer--dark { opacity: 0; }
   -webkit-mask-image: radial-gradient(circle, transparent 28%, #000 42%, #000 53%, transparent 68%);
   mask-image: radial-gradient(circle, transparent 28%, #000 42%, #000 53%, transparent 68%);
   filter: blur(9px);
-  transition: opacity 220ms ease-out var(--trail-fade-delay, 0ms);
-}
-
-html.trail-active .logo-trail {
-  opacity: var(--trail-opacity, 0);
-  transition-duration: 70ms;
-  transition-delay: 0ms;
+  will-change: opacity;
 }
 
 @media (min-width: 901px) {
@@ -225,7 +265,6 @@ html.trail-active .logo-trail {
     mask-image: radial-gradient(circle, transparent 38%, #000 45%, #000 52%, transparent 59%);
     filter: blur(3px);
   }
-  html.trail-active .logo-trail { transition-duration: 0ms; }
 }
 
 /* The navigation frame and rising cards share one moving logo-colored rim. */
@@ -246,6 +285,7 @@ html[data-theme] body.site-body .card-hover-ring {
 html[data-theme] body.site-body .nav::before {
   content: "";
   position: absolute;
+  z-index: 2;
   inset: -1px;
   padding: 1.5px;
   border-radius: inherit;
@@ -282,6 +322,7 @@ html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nav-sweep { display: none; }
   .halo-transfer,
   .logo-transfer,
   .logo-trail { display: none; }
