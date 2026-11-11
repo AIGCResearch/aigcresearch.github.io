@@ -65,6 +65,7 @@ const linksEn = en.nav.links;
   </div>
 </header>
 <div class="logo-transfer" aria-hidden="true">
+  <div class="halo-transfer"></div>
   <img class="logo-transfer--light" src="/images/logo-hero-light.webp" alt="" width="720" height="715" decoding="sync" />
   <img class="logo-transfer--dark" src="/images/logo-hero-dark.webp" alt="" width="720" height="715" decoding="sync" />
 </div>
@@ -459,7 +460,6 @@ const linksEn = en.nav.links;
         var navIconOpacity = 1 - smoothstep(0.16, 0.32, haloProgress) + smoothstep(0.88, 0.995, haloProgress);
         if (reducedMotion) { logoOpacity = 1; flightOpacity = 0; navIconOpacity = 1; }
         var rim = smoothstep(0.78, 0.995, haloProgress);
-        var transfer = 0.5 * flightOpacity;
         var endSize = brandRect.width * (320 / 1200);
         root.style.setProperty("--hero-logo-opacity", logoOpacity.toFixed(3));
         root.style.setProperty("--nav-icon-opacity", Math.min(navIconOpacity, 1).toFixed(3));
@@ -470,7 +470,6 @@ const linksEn = en.nav.links;
         root.style.setProperty("--halo-progress", rim.toFixed(3));
         root.style.setProperty("--hero-halo-dark-opacity", (0.7 * logoOpacity).toFixed(3));
         root.style.setProperty("--hero-halo-light-opacity", (0.85 * logoOpacity).toFixed(3));
-        root.style.setProperty("--halo-transfer-opacity", transfer.toFixed(3));
         var trailStrength = reducedMotion ? 0 : smoothstep(0.24, 0.38, haloProgress) * (1 - smoothstep(0.92, 1, haloProgress)) * flightOpacity;
         trails.forEach(function (trail, index) {
           var pastProgress = Math.min(Math.max(haloProgress - scrollDirection * (index + 1) * 0.045, 0), 1);

@@ -83,16 +83,15 @@ html[data-theme="light"] .logo-transfer--light { opacity: 1; }
 html[data-theme="light"] .logo-transfer--dark { opacity: 0; }
 
 .halo-transfer {
-  position: fixed;
-  z-index: 59;
-  top: var(--logo-transfer-top, -200px);
-  left: var(--logo-transfer-left, 50vw);
-  width: calc(var(--logo-transfer-size, 220px) * 1.16);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 116%;
   aspect-ratio: 1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  opacity: var(--halo-transfer-opacity, 0);
+  opacity: 0.5;
   background: conic-gradient(from -45deg, #2fd5c6, #e1ea2f, #26d3bc, #02a4da, #2fd5c6);
   -webkit-mask-image: radial-gradient(circle, transparent 29%, #000 43%, rgba(0, 0, 0, 0.62) 53%, transparent 65%);
   mask-image: radial-gradient(circle, transparent 29%, #000 43%, rgba(0, 0, 0, 0.62) 53%, transparent 65%);
