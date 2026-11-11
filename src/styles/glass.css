@@ -69,6 +69,21 @@ html[data-theme="light"] body.site-body .nav { border-color: rgba(155, 195, 218,
   pointer-events: none;
 }
 
+/* On mobile the real hero logo and its halo fly together; the anchor keeps its place in the page. */
+html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight {
+  position: fixed;
+  z-index: 61;
+  top: var(--logo-transfer-top, -200px);
+  left: var(--logo-transfer-left, 50vw);
+  width: var(--logo-transfer-size, 220px);
+  height: auto;
+  aspect-ratio: 2163 / 2149;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  opacity: var(--mobile-hero-opacity, 1);
+  pointer-events: none;
+}
+
 .logo-transfer img {
   position: absolute;
   inset: 0;
