@@ -20,6 +20,12 @@ html, body {
 
 html[data-lang="en"] body { font-family: var(--font-en); }
 
+html[data-lang="en"] :is(.member-role, .member-link, .tag) {
+  font-family: var(--font-en);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
 /* A fixed collage moves behind the content at a slower scroll speed. */
 body {
   position: relative;

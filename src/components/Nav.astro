@@ -422,6 +422,18 @@ const linksEn = en.nav.links;
       nav.style.setProperty("--nav-shadow-alpha", (0.26 * progress).toFixed(3));
       nav.style.setProperty("--nav-outline-opacity", progress.toFixed(3));
 
+      if (mobile) {
+        root.style.setProperty("--hero-logo-opacity", "1");
+        root.style.setProperty("--hero-halo-dark-opacity", "0.7");
+        root.style.setProperty("--hero-halo-light-opacity", "0.85");
+        root.style.setProperty("--logo-transfer-opacity", "0");
+        root.style.setProperty("--nav-icon-opacity", "1");
+        root.style.setProperty("--halo-progress", "0");
+        trails.forEach(function (trail) { trail.style.setProperty("--trail-opacity", "0"); });
+        updateActive();
+        return;
+      }
+
       if (heroLogo) {
         var logoRect = heroLogo.getBoundingClientRect();
         var brandRect = nav.querySelector(".brand").getBoundingClientRect();
