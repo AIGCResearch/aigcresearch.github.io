@@ -359,9 +359,10 @@ const linksEn = en.nav.links;
     var root = document.documentElement;
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var trails = [];
+    var trailHistory = [];
     var trailTimeout = null;
     var lastScrollY = window.scrollY;
-    var scrollDirection = 1;
+    var lastFlight = null;
 
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
@@ -498,14 +499,20 @@ const linksEn = en.nav.links;
         root.style.setProperty("--hero-halo-dark-opacity", (0.7 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
         root.style.setProperty("--hero-halo-light-opacity", (0.85 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
         var trailStrength = reducedMotion ? 0 : smoothstep(0.24, 0.38, haloProgress) * (1 - smoothstep(0.92, 1, haloProgress)) * (flyingMobileLogo ? mobileHeroOpacity : flightOpacity);
+        if (root.classList.contains("trail-active") && lastFlight && Math.hypot(flight.x - lastFlight.x, flight.y - lastFlight.y) > 0.5) {
+          trailHistory.unshift(lastFlight);
+          trailHistory.length = Math.min(trailHistory.length, trails.length);
+        }
+        lastFlight = { x: flight.x, y: flight.y, size: logoSize };
         trails.forEach(function (trail, index) {
-          var pastProgress = Math.min(Math.max(haloProgress - scrollDirection * (index + 1) * 0.045, 0), 1);
-          var past = flightPoint(pastProgress);
-          var pastSize = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, pastProgress);
-          trail.style.left = past.x.toFixed(1) + "px";
-          trail.style.top = past.y.toFixed(1) + "px";
-          trail.style.width = (pastSize * (1.05 + index * 0.12)).toFixed(1) + "px";
-          trail.style.setProperty("--trail-opacity", (trailStrength * [0.58, 0.44, 0.32, 0.22][index]).toFixed(3));
+          var past = trailHistory[index];
+          if (past) {
+            trail.style.left = past.x.toFixed(1) + "px";
+            trail.style.top = past.y.toFixed(1) + "px";
+            trail.style.width = (past.size * (1.05 + index * 0.12)).toFixed(1) + "px";
+          }
+          trail.style.visibility = past ? "visible" : "hidden";
+          trail.style.setProperty("--trail-opacity", (past ? trailStrength * [0.58, 0.44, 0.32, 0.22][index] : 0).toFixed(3));
         });
       }
       updateActive();
@@ -513,12 +520,21 @@ const linksEn = en.nav.links;
 
     function onScroll() {
       var currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY + 0.5) scrollDirection = 1;
-      else if (currentScrollY < lastScrollY - 0.5) scrollDirection = -1;
+      if (Math.abs(currentScrollY - lastScrollY) < 0.5) return;
       lastScrollY = currentScrollY;
+      if (!root.classList.contains("trail-active")) {
+        trailHistory.length = 0;
+        trails.forEach(function (trail) {
+          trail.style.visibility = "hidden";
+          trail.style.setProperty("--trail-opacity", "0");
+        });
+      }
       root.classList.add("trail-active");
       window.clearTimeout(trailTimeout);
-      trailTimeout = window.setTimeout(function () { root.classList.remove("trail-active"); }, 160);
+      trailTimeout = window.setTimeout(function () {
+        root.classList.remove("trail-active");
+        trailHistory.length = 0;
+      }, 160);
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
@@ -553,7 +569,13 @@ const linksEn = en.nav.links;
         syncLabels();
       }
       syncMobileHero();
-      onScroll();
+      window.clearTimeout(trailTimeout);
+      root.classList.remove("trail-active");
+      trailHistory.length = 0;
+      lastScrollY = window.scrollY;
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(applyProgress);
     });
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("aigcr:langchange", syncLabels);

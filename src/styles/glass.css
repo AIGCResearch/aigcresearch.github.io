@@ -107,6 +107,53 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
   }
 }
 
+/* The desktop logo gains a quieter pulse on its image, while the existing halo stays in place. */
+@media (min-width: 901px) {
+  html[data-theme] body.site-body .hero-logo-wrap:not(.is-mobile-flight) .hero-logo,
+  html[data-theme] body.site-body .logo-transfer img {
+    --desktop-logo-glow-negative: calc(-1 * var(--desktop-logo-glow-shift));
+    filter:
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(47, 213, 198, 0.26))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(225, 234, 47, 0.26))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(38, 211, 188, 0.26))
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(2, 164, 218, 0.26));
+  }
+
+  html[data-theme] body.site-body .hero-logo-wrap:not(.is-mobile-flight) .hero-logo {
+    --desktop-logo-glow-shift: clamp(11px, 1.3vw, 17px);
+    --desktop-logo-glow-blur: clamp(14px, 1.7vw, 22px);
+  }
+
+  html[data-theme] body.site-body .logo-transfer img {
+    --desktop-logo-glow-shift: clamp(3px, calc(var(--logo-transfer-size, 220px) * 0.08), 17px);
+    --desktop-logo-glow-blur: clamp(4px, calc(var(--logo-transfer-size, 220px) * 0.1), 22px);
+  }
+}
+
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  html[data-theme] body.site-body .hero-logo-wrap:not(.is-mobile-flight) .hero-logo,
+  html[data-theme] body.site-body .logo-transfer img {
+    animation: desktop-logo-self-glow 2.8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes desktop-logo-self-glow {
+  from {
+    filter:
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(47, 213, 198, 0.14))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(225, 234, 47, 0.14))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(38, 211, 188, 0.14))
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(2, 164, 218, 0.14));
+  }
+  to {
+    filter:
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(47, 213, 198, 0.40))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-negative) var(--desktop-logo-glow-blur) rgba(225, 234, 47, 0.40))
+      drop-shadow(var(--desktop-logo-glow-shift) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(38, 211, 188, 0.40))
+      drop-shadow(var(--desktop-logo-glow-negative) var(--desktop-logo-glow-shift) var(--desktop-logo-glow-blur) rgba(2, 164, 218, 0.40));
+  }
+}
+
 .logo-transfer img {
   position: absolute;
   inset: 0;
