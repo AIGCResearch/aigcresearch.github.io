@@ -97,6 +97,8 @@ html[data-theme="light"] body.site-body .hero-card:hover {
   box-shadow: var(--shadow-card-hover);
 }
 html[data-theme="light"] body.site-body .hero-card-body { color: #4d697a; }
+html[data-theme="light"] body.site-body .hero-card-note { color: #44718a; }
+html[data-theme="light"] body.site-body .hero-card-points li::marker { color: #44718a; }
 html[data-theme="light"] body.site-body .hero-card-link,
 html[data-theme="light"] body.site-body .hero-card-icon { color: #176c94; }
 html[data-theme="light"] body.site-body .hero-card-link::after {

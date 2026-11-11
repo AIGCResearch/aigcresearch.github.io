@@ -1,12 +1,31 @@
 ---
-const quickCards = [
+type QuickCard = {
+  id: string;
+  icon: string;
+  titleZh: string;
+  titleEn: string;
+  noteZh: string;
+  noteEn: string;
+  bodyZh: string;
+  bodyEn: string;
+  secondZh?: string;
+  secondEn?: string;
+  ctaZh: string;
+  ctaEn: string;
+};
+
+const quickCards: QuickCard[] = [
   {
     id: "philosophy",
     icon: "mission",
     titleZh: "研究理念",
     titleEn: "Research Philosophy",
+    noteZh: "回答为什么要做的问题。",
+    noteEn: "Why we do it.",
     bodyZh: "探索机器创造力的边界，拓展人类创造力的边界，塑造一个全新的创意世界。",
     bodyEn: "Explore the boundaries of machine creativity, expand the boundaries of human creativity, and shape a new world of creativity.",
+    secondZh: "探索下一代创意智能体与生产力工具，构建开放可持续的创作生态。",
+    secondEn: "Explore next-generation creative agents and productivity tools to build an open, sustainable creative ecosystem.",
     ctaZh: "了解更多",
     ctaEn: "Learn More",
   },
@@ -15,8 +34,10 @@ const quickCards = [
     icon: "future",
     titleZh: "研究方向",
     titleEn: "Research Directions",
-    bodyZh: "探索下一代创意智能体与生产工具，构建开放、可持续的创作生态。",
-    bodyEn: "Exploring the next generation of creative agents and production tools.",
+    noteZh: "回答做什么、怎么做的问题。",
+    noteEn: "What we do and how.",
+    bodyZh: "面向基础研究的通用创意智能实验室，聚焦应用研究的智能影像叙事实验室，专注创作实践的星联无限灵感工作室。",
+    bodyEn: "The Creative General Intelligent Lab pursues foundational research, the Intelligent Cinema Narrative Lab focuses on applied research, and the StarX Infinite Inspiration Studio specializes in creative practice.",
     ctaZh: "探索未来",
     ctaEn: "Explore Future",
   },
@@ -25,8 +46,10 @@ const quickCards = [
     icon: "publication",
     titleZh: "研究成果",
     titleEn: "Research Publications",
-    bodyZh: "围绕AIGC、电影制作与世界模型等方向的持续研究，从问题定义、方法设计到系统落地。",
-    bodyEn: "Ongoing work on AIGC, filmmaking, and world model, et.al.",
+    noteZh: "回答做出了什么的问题。",
+    noteEn: "What we have achieved.",
+    bodyZh: "围绕AIGC、电影制作与世界模型等方向，从问题定义、方法设计、数据构建、模型训练到系统落地。",
+    bodyEn: "Across AIGC, filmmaking, and world models, our work spans problem definition, method design, data construction, model training, and deployment.",
     ctaZh: "浏览成果",
     ctaEn: "View Publications",
   },
@@ -35,6 +58,8 @@ const quickCards = [
     icon: "team",
     titleZh: "研究团队",
     titleEn: "Research Team",
+    noteZh: "回答哪些人在做的问题。",
+    noteEn: "Who is doing the work.",
     bodyZh: "跨学科、小而精的研究与创作团队，探索未来创意智能的可能性。",
     bodyEn: "A exquisite and interdisciplinary team exploring the future of creative intelligence together.",
     ctaZh: "认识团队",
@@ -165,10 +190,27 @@ const filledIcons = new Set(["publication"]);
               </svg>
             </span>
           </div>
-          <p class="hero-card-body">
-            <span data-lang="zh">{card.bodyZh}</span>
-            <span data-lang="en">{card.bodyEn}</span>
+          <p class="hero-card-note">
+            <span data-lang="zh">{card.noteZh}</span>
+            <span data-lang="en">{card.noteEn}</span>
           </p>
+          {card.secondZh ? (
+            <div class="hero-card-body">
+              <ol class="hero-card-points" data-lang="zh">
+                <li>{card.bodyZh}</li>
+                <li>{card.secondZh}</li>
+              </ol>
+              <ol class="hero-card-points" data-lang="en">
+                <li>{card.bodyEn}</li>
+                <li>{card.secondEn}</li>
+              </ol>
+            </div>
+          ) : (
+            <p class="hero-card-body">
+              <span data-lang="zh">{card.bodyZh}</span>
+              <span data-lang="en">{card.bodyEn}</span>
+            </p>
+          )}
           <span class="hero-card-link">
             <span data-lang="zh">{card.ctaZh}</span>
             <span data-lang="en">{card.ctaEn}</span>
@@ -441,11 +483,26 @@ const filledIcons = new Set(["publication"]);
   }
 
   .hero-card-body {
-    margin-top: 16px;
+    margin-top: 12px;
     color: rgba(217, 230, 243, 0.82);
     font-size: var(--type-small);
     line-height: 1.8;
     flex: 1;
+  }
+
+  .hero-card-points {
+    margin: 0;
+    padding-left: 1.35em;
+  }
+
+  .hero-card-points li + li { margin-top: 8px; }
+  .hero-card-points li::marker { color: rgba(146, 211, 229, 0.86); }
+
+  .hero-card-note {
+    margin-top: 7px;
+    color: rgba(146, 211, 229, 0.86);
+    font-size: var(--type-small);
+    line-height: 1.5;
   }
 
   .hero-card-link {

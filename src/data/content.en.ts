@@ -160,7 +160,7 @@ export const en: Content = {
     eyebrow: "Publications & Projects",
     title: "Featured Work",
     intro:
-      "An overarching vision with focused breakthroughs | Each piece of work starts from a clear research motivation; together, they form a coherent line of inquiry that progressively addresses a series of concrete questions.",
+      "An overarching vision with focused breakthroughs | Each piece of work has a clear research motivation; together, they form a coherent line of inquiry, where each step sets off the next like dominoes, progressively revealing and answering a series of concrete questions.",
     items: [
       {
         id: "act2cut",

@@ -160,7 +160,7 @@ export const zh: Content = {
     eyebrow: "Publications & Projects",
     title: "代表成果",
     intro:
-      "整体布局与单点突破｜每项工作都有清晰的研究动机，彼此衔接成一条连贯的研究脉络，逐步回答一系列具体问题。",
+      "整体布局与单点突破｜每项工作都有清晰的研究动机，彼此衔接成一条连贯的研究脉络，如多米诺骨牌般逐步发现并回答一系列具体问题。",
     items: [
       {
         id: "act2cut",
