@@ -367,7 +367,7 @@ const linksEn = en.nav.links;
     var trailNeedsStart = false;
     var nextTrailIndex = 0;
     var trailDirection = 0;
-    var navLogoInside = null;
+    var navLogoDocked = null;
 
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
@@ -482,21 +482,18 @@ const linksEn = en.nav.links;
           }
         }
         var flight = flightPoint(haloProgress);
-        var navRect = nav.getBoundingClientRect();
-        var insideNav = flight.x >= navRect.left && flight.x <= navRect.right
-          && flight.y >= navRect.top && flight.y <= navRect.bottom;
-        var outsideNav = flight.x < navRect.left - 6 || flight.x > navRect.right + 6
-          || flight.y < navRect.top - 6 || flight.y > navRect.bottom + 6;
-        if (navLogoInside === null) {
-          navLogoInside = insideNav;
-        } else if (!navLogoInside && insideNav) {
-          navLogoInside = true;
+        // The flight path reaches the brand icon at 0.98 and stays there.
+        var logoDocked = haloProgress >= 0.98;
+        if (navLogoDocked === null) {
+          navLogoDocked = logoDocked;
+        } else if (!navLogoDocked && logoDocked) {
+          navLogoDocked = true;
           if (!reducedMotion) {
             nav.classList.remove("is-sweep-exit");
             nav.classList.add("is-sweep-enter");
           }
-        } else if (navLogoInside && outsideNav) {
-          navLogoInside = false;
+        } else if (navLogoDocked && !logoDocked) {
+          navLogoDocked = false;
           if (!reducedMotion) {
             nav.classList.remove("is-sweep-enter");
             nav.classList.add("is-sweep-exit");
@@ -619,7 +616,7 @@ const linksEn = en.nav.links;
         syncLabels();
       }
       syncMobileHero();
-      navLogoInside = null;
+      navLogoDocked = null;
       window.clearTimeout(trailTimeout);
       trailActive = false;
       clearTrails();

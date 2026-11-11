@@ -74,21 +74,23 @@ html[data-theme] body.site-body .nav-sweep::before {
   inset: 0;
   opacity: 0;
   background: linear-gradient(90deg,
-    transparent 34%,
-    rgba(47, 213, 198, 0.12) 40%,
-    rgba(47, 213, 198, 0.48) 46%,
-    rgba(225, 234, 47, 0.44) 50%,
-    rgba(2, 164, 218, 0.42) 55%,
-    transparent 67%);
-  filter: blur(9px);
+    transparent 20%,
+    rgba(47, 213, 198, 0.16) 27%,
+    rgba(47, 213, 198, 0.50) 36%,
+    rgba(225, 234, 47, 0.52) 47%,
+    rgba(38, 211, 188, 0.52) 58%,
+    rgba(2, 164, 218, 0.48) 69%,
+    rgba(2, 164, 218, 0.14) 76%,
+    transparent 83%);
+  filter: blur(11px);
 }
 
 html[data-theme] body.site-body .nav.is-sweep-enter .nav-sweep::before {
-  animation: nav-sweep-enter 620ms ease-in-out both;
+  animation: nav-sweep-enter 850ms ease-in-out both;
 }
 
 html[data-theme] body.site-body .nav.is-sweep-exit .nav-sweep::before {
-  animation: nav-sweep-exit 620ms ease-in-out both;
+  animation: nav-sweep-exit 850ms ease-in-out both;
 }
 
 @keyframes nav-sweep-enter {
