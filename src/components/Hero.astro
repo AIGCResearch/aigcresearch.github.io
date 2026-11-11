@@ -80,10 +80,11 @@ const quickCards: QuickCard[] = [
 ];
 
 const capabilityItems = [
-  { icon: "vision", zh: "视觉与图形学", en: "CV & CG" },
-  { icon: "film", zh: "影视制作", en: "TV & Filmmaking" },
-  { icon: "screen", zh: "世界模型", en: "World Model" },
-  { icon: "share", zh: "创意智能", en: "Creative Intelligence" },
+  { icon: "vision", zh: "计算机视觉", en: "Computer Vision" },
+  { icon: "graphics", zh: "计算机图形学", en: "Computer Graphics" },
+  { icon: "filmmaking", zh: "影视制作", en: "TV & Filmmaking" },
+  { icon: "world", zh: "世界模型", en: "World Model" },
+  { icon: "intelligence", zh: "创意智能", en: "Creative Intelligence" },
   { icon: "palette", zh: "智能艺术", en: "Intelligent Art" },
 ];
 
@@ -115,31 +116,40 @@ const iconPaths: Record<string, string[]> = {
     "M14 7.5h.01",
   ],
   vision: [
-    "M4 5h5",
-    "M15 5h5",
-    "M4 19h5",
-    "M15 19h5",
+    "M8 4H5a1 1 0 0 0-1 1v3",
+    "M16 4h3a1 1 0 0 1 1 1v3",
+    "M8 20H5a1 1 0 0 1-1-1v-3",
+    "M16 20h3a1 1 0 0 0 1-1v-3",
     "M3 12s3.5-5 9-5 9 5 9 5-3.5 5-9 5-9-5-9-5Z",
+    "M12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z",
+  ],
+  graphics: [
+    "m12 3 9 5-9 5-9-5 9-5Z",
+    "M3 8v8l9 5 9-5V8",
+    "M12 13v8",
+  ],
+  filmmaking: [
+    "M3 8h18v12H3z",
+    "M3 8l3-4h15l-3 4",
+    "m7 4 3 4",
+    "m14 4 3 4",
+  ],
+  world: [
+    "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
+    "M3.6 9h16.8",
+    "M3.6 15h16.8",
+    "M12 3c2.3 2.5 3.5 5.5 3.5 9S14.3 18.5 12 21c-2.3-2.5-3.5-5.5-3.5-9S9.7 5.5 12 3Z",
+  ],
+  intelligence: [
     "M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z",
-  ],
-  film: [
-    "M3 5h18v14H3z",
-    "M7 5v14",
-    "M17 5v14",
-    "M7 9h10",
-    "M7 15h10",
-  ],
-  screen: [
-    "M3 4h18v12H3z",
-    "M8 20h8",
-    "M12 16v4",
-  ],
-  share: [
-    "M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-    "M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-    "M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-    "m8.6 10.8 6.8-4.1",
-    "m8.6 13.2 6.8 4.1",
+    "M5 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M19 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M5 17.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M19 17.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "m10.6 10.6-4.5-4.5",
+    "m13.4 10.6 4.5-4.5",
+    "m10.6 13.4-4.5 4.5",
+    "m13.4 13.4 4.5 4.5",
   ],
 };
 
@@ -575,7 +585,6 @@ const filledIcons = new Set(["publication"]);
   .hero-capabilities {
     margin: 44px auto 0;
     width: 100%;
-    max-width: 1140px;
     padding: 18px 26px 22px;
     border-radius: 18px;
     border: 1px solid rgba(116, 201, 255, 0.17);
@@ -611,7 +620,7 @@ const filledIcons = new Set(["publication"]);
 
   .hero-capabilities-list {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     padding: 0;
     margin: 16px 0 0;
     list-style: none;
@@ -671,6 +680,12 @@ const filledIcons = new Set(["publication"]);
   @media (max-width: 980px) {
     .hero { min-height: auto; padding-top: 132px; padding-bottom: 24px; }
     .hero-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 769px) and (max-width: 1050px) {
+    .hero-capabilities-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .hero-capability:nth-child(3n+4) { border-left: 0; }
+    .hero-capability:nth-child(n+4) { border-top: 1px solid rgba(133, 185, 214, 0.18); }
   }
 
   @media (max-width: 768px) {
