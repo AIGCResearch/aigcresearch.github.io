@@ -106,28 +106,35 @@ export const en: Content = {
         id: "cgi",
         title: "Creative General Intelligent Lab",
         subtitle: "Creative Intelligence & Brain-inspired AI",
-        tagline: "Exploring the boundaries of machine creativity | Starting with an understanding of human creation, we combine high-level design thinking, brain-inspired insights, and scientific empowerment.",
-        body: `We aim to move beyond traditional AI's limitation of mechanically generating content without understanding creativity. We study the intentions, processes, and cognitive mechanisms behind human artistic creation, equip AI with design thinking akin to that of human directors or designers, and draw on neuroscience to explore next-generation creative intelligence architectures.
+        tagline: "Machine Creativity Research: From Mechanical Generation to Design Thinking",
+        body: `Starting from an understanding of human creation, we aim to move beyond the limits of traditional AI. We combine high-level design thinking, brain-inspired insights, and scientific advances to study creative intent and cognition, giving AI creative intelligence akin to that of a director or designer.
 
-1. Cross-modal Aesthetic Alignment: Outstanding artworks emerge from a holistic vision of sound, visuals, and story. We pursue deep alignment across design elements such as text, music, color, emotion, and motion, enabling AI to perceive aesthetics, reason creatively, and conceive works as a whole.
+1. Cross-modal Aesthetic Alignment
+Align text, music, color, emotion, and motion to equip AI with aesthetic perception, creative reasoning, and the ability to conceive works as a whole.
 
-2. Interpretability and Lightweighting of Large Models: We analyze generative models at three scales: micro (neuron activation patterns), meso (coordination among subnetworks and attention mechanisms), and macro (overall generalization and emergent capabilities). By revealing how these black boxes work, we guide algorithmic optimization and architectural refinement to achieve efficient, lightweight computation that does more with less.
+2. Interpretability and Efficiency
+Analyze the black-box mechanisms of large models across micro, meso, and macro scales. Use these insights to optimize architectures and achieve efficient, lightweight computation that does more with less.
 
-3. Brain-inspired Research and Scientific Empowerment: Inward inspiration (simulation-driven brain-inspired research) turns neural mechanisms and brain networks into computable models to explore next-generation intelligent architectures. Outward empowerment (AI-driven neuroscience) uses generative AI and data analysis to advance neuroscience, help investigate neural connectivity and disease mechanisms, identify and solve significant scientific challenges, and promote progress in both AI and brain science.`,
-        tags: ["Multimodal Perception", "Cross-modal Alignment", "Creative Reasoning", "Design Thinking", "Aesthetic Perception", "Brain-inspired Research", "Neuroscience"],
+3. Brain-inspired Insights and Two-way Empowerment
+Inward exploration: Turn the neural mechanisms of creativity into computable models to develop next-generation creative intelligence architectures.
+Outward scientific impact: Use generative AI to advance neuroscience and help tackle major questions about neural connectivity, disease mechanisms, and the neural basis of creativity.`,
+        tags: ["Cross-modal Aesthetics", "Design Thinking", "Interpretability", "Efficiency", "Brain-inspired Research", "Neuroscience"],
       },
       {
         id: "icn",
         title: "Intelligent Cinema Narrative Lab",
         subtitle: "Visual Storytelling & Filmmaking",
-        tagline: "Expanding the boundaries of human creativity | Starting from the goal of empowering human creators, we use intelligent tools to support visual storytelling and cinematic content production.",
-        body: `We focus on visual storytelling and filmmaking, turning cutting-edge AI capabilities into tools creators can use and reducing repetitive work in animation and film production so creators can focus on story and expression.
+        tagline: "Cinematic Creative Intelligence: From Cumbersome Workflows to Free Creative Flow",
+        body: `Starting from the goal of empowering human creators, we turn cutting-edge AI capabilities into practical tools for visual storytelling and cinematic content production. We aim to free creators from repetitive work so they can focus on story and expression, while exploring a new paradigm for AI-native post-production.
 
-1. Full-spectrum Multimodal Interaction: We study content forms ranging from audio and concept art to 3D assets and spatiotemporal video, exploring creation driven by motion, audio, and multimodal collaboration.
+1. Full-spectrum Multimodal Interaction
+Connect the full range of media, from audio and concept art to 3D assets and spatiotemporal video, and explore efficient creation driven by motion, sound, and multimodal collaboration.
 
-2. Visual Storytelling and Cinematic Language: For long-form video, we study character consistency, action continuity, plot alignment, and cinematic language to develop intelligent visual methods that support complete storytelling.
+2. Visual Storytelling and Cinematic Language
+Address the challenges of character consistency, action continuity, and plot alignment in long-form video, developing intelligent video generation that supports complete stories and cinematic composition.
 
-3. Creative Workflow in Practice: We rethink and advance the integration of generative AI into filmmaking, uncover overlooked problems in today's creative process, and pioneer AI-native forms of post-production, moving from cumbersome workflows (Workflow) toward free creative flow (Creative Flow).`,
+3. Reshaping Creative Production
+Examine overlooked pain points across filmmaking, build new forms of AI-native post-production, and move from Workflow to Creative Flow.`,
         tags: ["Full-spectrum Multimodal Interaction", "Visual Storytelling", "Cinematic Language", "Digital Asset Production", "Cinematic Creative Flow", "AI-native Post-production"],
         team: {
           name: "ActXCut Team",
@@ -139,15 +146,18 @@ export const en: Content = {
         id: "starx",
         title: "StarX Infinite Inspiration Studio",
         subtitle: "Creative Practice Studio",
-        tagline: "Exploring the boundaries of human–AI co-creation | Starting by connecting research with creative practice, we turn ideas into works that can be shared and refined.",
-        body: `StarX Infinite Inspiration Studio connects creative intelligence research with real creative practice. We explore how AI can work with visual storytelling and expression, helping ideas become tangible works and bringing lessons from making back into research.
+        tagline: "StarX Studio: Bringing Ideas to Life across Academia, Industry, Research, and Creation",
+        body: `StarX Studio connects creative intelligence research with real creative practice. We explore deeper integration of AI with film, story, and visual expression, carry ideas from concept to finished work, and feed hands-on creative experience back into technical research.
 
-1. Co-creating Ideas: Across story concepts, visual design, and cross-media expression, we explore divergence, convergence, and iteration in human–AI co-creation.
+1. Idea Co-creation
+Across story concepts, visual design, and cross-media expression, explore how people and AI interact throughout divergence, convergence, and iteration.
 
-2. Creative Practice: We combine laboratory research with creators' experience to make and refine visual works and creative prototypes that can be shared.
+2. Creative Production
+Combine leading laboratory research with creators' firsthand experience to develop and continually refine compelling, practical visual works and creative prototypes.
 
-3. Learning from Creation: We draw needs and questions from real creative work to keep improving intelligent tools and visual storytelling methods.`,
-        tags: ["Human-AI Co-creation", "Storytelling", "Cross-media Expression", "Visual Creation", "Creative Practice"],
+3. Creative Feedback
+Identify creative pain points and technical needs from real production workflows, feeding them back to drive continued advances in intelligent tools and visual storytelling methods.`,
+        tags: ["Human-AI Co-creation", "Visual Design", "Cross-media Expression", "Creative Production", "Creative Feedback"],
         team: {
           name: "Seek Team | StarX Team",
           logoBase: "/images/logo-seek-starx-team",

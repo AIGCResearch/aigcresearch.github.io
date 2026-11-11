@@ -1,4 +1,5 @@
 @import "@fontsource-variable/outfit/wght.css";
+@import "./aigc-narrow.css";
 @import "@fontsource-variable/noto-sans-sc/wght.css";
 @import "./tokens.css";
 
@@ -106,6 +107,9 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 .skip-link:hover { color: #04111d; }
 
 h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+html[data-lang="zh"] :is(h1, h2, h3, h4, .hero-side-title, .hero-capability-title) {
+  font-family: var(--font-zh-display);
+}
 h1 { font-size: var(--type-large); line-height: 1.18; }
 h2 { font-size: var(--type-large); line-height: 1.25; }
 h3 { font-size: var(--type-medium); line-height: 1.35; }

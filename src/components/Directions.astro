@@ -5,7 +5,13 @@ const z = zh.directions;
 const e = en.directions;
 const splitBody = (body: string) => {
   const [intro, ...points] = body.trim().split(/\s+(?=\d\.\s)/);
-  return { intro, points: points.map((point) => point.replace(/^\d\.\s*/, "")) };
+  return {
+    intro,
+    points: points.map((point) => {
+      const [heading, ...details] = point.replace(/^\d\.\s*/, "").split(/\n+/).map((line) => line.trim()).filter(Boolean);
+      return { heading, details };
+    }),
+  };
 };
 const bodyZh = z.items.map((item) => splitBody(item.body));
 const bodyEn = e.items.map((item) => splitBody(item.body));
@@ -62,11 +68,11 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
           <div class="dir-body">
             <div data-lang="zh">
               <p>{bodyZh[i].intro}</p>
-              <ol>{bodyZh[i].points.map((point) => <li>{point}</li>)}</ol>
+              <ol>{bodyZh[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol>
             </div>
             <div data-lang="en">
               <p>{bodyEn[i].intro}</p>
-              <ol>{bodyEn[i].points.map((point) => <li>{point}</li>)}</ol>
+              <ol>{bodyEn[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol>
             </div>
           </div>
           <ul class="dir-tags">
@@ -232,6 +238,8 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
   .dir-body { color: rgba(214, 229, 241, 0.74); font-size: var(--type-small); line-height: 1.8; }
   .dir-body ol { display: grid; gap: 10px; margin: 14px 0 0; padding-left: 1.5em; }
   .dir-body li { padding-left: 3px; }
+  .dir-body li strong { display: block; color: var(--text-primary); font-weight: 600; }
+  .dir-point-line { display: block; }
   html[lang="en"] .dir-body { line-height: 1.6; }
   .dir-team {
     margin-top: 22px;
