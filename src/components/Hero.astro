@@ -436,7 +436,7 @@ const filledIcons = new Set(["publication"]);
 
   .hero-subtitle {
     margin-top: 4px;
-    font-size: var(--type-medium);
+    font-size: clamp(24px, 2.2vw, 30px);
     line-height: 1.35;
     color: rgba(225, 240, 250, 0.9);
     text-shadow: 0 6px 26px rgba(0, 0, 0, 0.32);
@@ -694,7 +694,7 @@ const filledIcons = new Set(["publication"]);
     }
 
     .hero-title { font-size: var(--type-large); }
-    .hero-subtitle { font-size: var(--type-medium); }
+    .hero-subtitle { font-size: clamp(21px, 5.2vw, 24px); }
     .hero-values { letter-spacing: 0.1em; }
     .hero-cards { grid-template-columns: 1fr; }
     .hero-card { min-height: auto; }
