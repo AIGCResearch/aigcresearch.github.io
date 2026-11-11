@@ -347,7 +347,7 @@ export const zh: Content = {
   },
   footer: {
     copyright: "© 2026 AIGC Research",
-    tagline: "Shaping a novel creative world.",
+    tagline: "塑造一个全新的创意世界。",
   },
   langToggle: { zh: "中", en: "EN" },
 };
