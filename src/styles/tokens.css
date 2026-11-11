@@ -32,7 +32,7 @@
   --font-zh: "Outfit Variable", "Smiley Sans", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-zh-display: var(--font-zh);
   --font-en: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
-  --font-mono: "Smiley Sans", "Outfit Variable", "Noto Sans SC Variable", sans-serif;
+  --font-mono: var(--font-en);
 
   --type-large: clamp(36px, 4.2vw, 56px);
   --type-medium: 20px;
@@ -41,8 +41,8 @@
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-html[data-lang="en"] {
-  --font-mono: var(--font-en);
+html[data-lang="zh"] {
+  --font-mono: "Smiley Sans", "Outfit Variable", "Noto Sans SC Variable", sans-serif;
 }
 
 @media (max-width: 768px) {

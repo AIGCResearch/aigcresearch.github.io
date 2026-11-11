@@ -7,6 +7,7 @@ import "../styles/glass.css";
 import { zh } from "../data/content.zh";
 import { en } from "../data/content.en";
 import BackgroundAudio from "../components/BackgroundAudio.astro";
+import outfitLatin from "@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url";
 
 const titleZh = zh.meta.title;
 const titleEn = en.meta.title;
@@ -22,6 +23,7 @@ const descEn = en.meta.description;
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <link rel="canonical" href="https://aigcresearch.github.io/" />
     <link rel="preload" as="image" href="/images/act2cut-waterfall-collage.avif" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href={outfitLatin} crossorigin="anonymous" />
 
     <title>{titleEn}</title>
     <meta name="description" content={descEn} />

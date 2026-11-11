@@ -1,4 +1,4 @@
-@import "@fontsource-variable/outfit/wght.css";
+@import "./outfit.css";
 @import "./smiley-sans.css";
 @import "@fontsource-variable/noto-sans-sc/wght.css";
 @import "./tokens.css";
@@ -19,12 +19,7 @@ html, body {
 }
 
 html[data-lang="en"] body { font-family: var(--font-en); }
-
-html[data-lang="en"] :is(.member-role, .member-link, .tag) {
-  font-family: var(--font-en);
-  letter-spacing: 0.02em;
-  text-transform: none;
-}
+html[data-lang="en"] [data-lang="en"] { font-family: var(--font-en); }
 
 /* A fixed collage moves behind the content at a slower scroll speed. */
 body {
