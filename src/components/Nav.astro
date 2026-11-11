@@ -355,6 +355,9 @@ const linksEn = en.nav.links;
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
       trails = Array.from(document.querySelectorAll(".logo-trail"));
+      trails.forEach(function (trail, index) {
+        trail.style.setProperty("--trail-fade-delay", ((trails.length - index - 1) * 90) + "ms");
+      });
       sections = Array.from(nav.querySelectorAll('.nav-links a[href^="#"]')).map(function (link) {
         return { id: link.getAttribute("href"), element: document.querySelector(link.getAttribute("href")) };
       }).filter(function (item) { return item.element; });
@@ -485,7 +488,7 @@ const linksEn = en.nav.links;
       lastScrollY = currentScrollY;
       root.classList.add("trail-active");
       window.clearTimeout(trailTimeout);
-      trailTimeout = window.setTimeout(function () { root.classList.remove("trail-active"); }, 420);
+      trailTimeout = window.setTimeout(function () { root.classList.remove("trail-active"); }, 160);
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
