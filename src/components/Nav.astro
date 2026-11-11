@@ -482,10 +482,13 @@ const linksEn = en.nav.links;
           }
         }
         var flight = flightPoint(haloProgress);
-        // The flight path reaches the brand icon at 0.98 and stays there.
-        var logoDocked = haloProgress >= 0.98;
+        // The flight reaches the brand icon at 0.98; wait for the nav's own resize to finish too.
+        var navRect = nav.getBoundingClientRect();
+        var navSettled = Math.abs(navRect.width - targetWidth) < 1
+          && Math.abs(navRect.top - 12 * progress) < 1;
+        var logoDocked = haloProgress >= 0.98 && navSettled;
         if (navLogoDocked === null) {
-          navLogoDocked = logoDocked;
+          navLogoDocked = haloProgress >= 0.98;
         } else if (!navLogoDocked && logoDocked) {
           navLogoDocked = true;
           if (!reducedMotion) {
@@ -629,6 +632,12 @@ const linksEn = en.nav.links;
       window.requestAnimationFrame(applyProgress);
     });
     window.addEventListener("scroll", onScroll, { passive: true });
+    nav.addEventListener("transitionend", function (event) {
+      if (event.target !== nav || (event.propertyName !== "width" && event.propertyName !== "top")) return;
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(applyProgress);
+    });
     window.addEventListener("aigcr:langchange", syncLabels);
     syncLabels();
     if (document.readyState === "loading") {
