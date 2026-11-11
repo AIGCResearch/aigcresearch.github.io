@@ -486,7 +486,11 @@ const linksEn = en.nav.links;
         root.style.setProperty("--logo-transfer-top", flight.y.toFixed(1) + "px");
         root.style.setProperty("--logo-transfer-size", logoSize.toFixed(1) + "px");
         if (flyingMobileLogo) {
-          heroLogo.style.setProperty("--mobile-glow-blur", Math.max(4, logoSize * 0.11).toFixed(1) + "px");
+          heroLogo.style.setProperty("--mobile-glow-inner", Math.max(4, logoSize * 0.14).toFixed(1) + "px");
+          heroLogo.style.setProperty("--mobile-glow-outer", Math.max(8, logoSize * 0.24).toFixed(1) + "px");
+          var glowShift = Math.max(2, logoSize * 0.085);
+          heroLogo.style.setProperty("--mobile-glow-shift", glowShift.toFixed(1) + "px");
+          heroLogo.style.setProperty("--mobile-glow-negative", (-glowShift).toFixed(1) + "px");
         }
         root.style.setProperty("--logo-transfer-opacity", flyingMobileLogo ? "0" : flightOpacity.toFixed(3));
         root.style.setProperty("--mobile-hero-opacity", mobileHeroOpacity.toFixed(3));
