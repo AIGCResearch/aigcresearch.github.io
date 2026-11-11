@@ -32,7 +32,7 @@
   --font-zh: "Outfit Variable", "Smiley Sans", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-zh-display: var(--font-zh);
   --font-en: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
-  --font-mono: var(--font-zh);
+  --font-mono: "Smiley Sans", "Outfit Variable", "Noto Sans SC Variable", sans-serif;
 
   --type-large: clamp(36px, 4.2vw, 56px);
   --type-medium: 20px;

@@ -145,6 +145,13 @@ const linksEn = en.nav.links;
     margin-left: auto;
     pointer-events: none;
   }
+  :global(html[data-lang="zh"]) .nav-university-seal {
+    position: absolute;
+    left: 50%;
+    margin-left: 0;
+    transform: translateX(-50%);
+  }
+  :global(html[data-lang="zh"]) .nav-links { margin-left: auto; }
   .nav-university-seal img {
     grid-area: 1 / 1;
     width: 100%;
@@ -246,6 +253,7 @@ const linksEn = en.nav.links;
     .nav-university-seal { flex-basis: 46px; width: 46px; height: 46px; }
     .nav-links { display: none; }
     .nav-burger { display: inline-flex; }
+    :global(html[data-lang="zh"]) .nav-burger { margin-left: auto; }
     .nav-mobile-sound { display: flex; align-items: center; }
 
     .nav-mobile {
@@ -452,7 +460,6 @@ const linksEn = en.nav.links;
         if (reducedMotion) { logoOpacity = 1; flightOpacity = 0; navIconOpacity = 1; }
         var rim = smoothstep(0.78, 0.995, haloProgress);
         var transfer = 0.5 * flightOpacity;
-        var startSize = Math.min(270, logoRect.width * 1.2);
         var endSize = brandRect.width * (320 / 1200);
         root.style.setProperty("--hero-logo-opacity", logoOpacity.toFixed(3));
         root.style.setProperty("--nav-icon-opacity", Math.min(navIconOpacity, 1).toFixed(3));
@@ -463,9 +470,6 @@ const linksEn = en.nav.links;
         root.style.setProperty("--halo-progress", rim.toFixed(3));
         root.style.setProperty("--hero-halo-dark-opacity", (0.7 * logoOpacity).toFixed(3));
         root.style.setProperty("--hero-halo-light-opacity", (0.85 * logoOpacity).toFixed(3));
-        root.style.setProperty("--halo-transfer-left", flight.x.toFixed(1) + "px");
-        root.style.setProperty("--halo-transfer-top", flight.y.toFixed(1) + "px");
-        root.style.setProperty("--halo-transfer-size", (startSize + (endSize * 1.45 - startSize) * smoothstep(0.2, 0.82, haloProgress)).toFixed(1) + "px");
         root.style.setProperty("--halo-transfer-opacity", transfer.toFixed(3));
         var trailStrength = reducedMotion ? 0 : smoothstep(0.24, 0.38, haloProgress) * (1 - smoothstep(0.92, 1, haloProgress)) * flightOpacity;
         trails.forEach(function (trail, index) {

@@ -85,18 +85,18 @@ html[data-theme="light"] .logo-transfer--dark { opacity: 0; }
 .halo-transfer {
   position: fixed;
   z-index: 59;
-  top: var(--halo-transfer-top, -200px);
-  left: var(--halo-transfer-left, 50vw);
-  width: var(--halo-transfer-size, 150px);
+  top: var(--logo-transfer-top, -200px);
+  left: var(--logo-transfer-left, 50vw);
+  width: calc(var(--logo-transfer-size, 220px) * 1.16);
   aspect-ratio: 1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: var(--halo-transfer-opacity, 0);
   background: conic-gradient(from -45deg, #2fd5c6, #e1ea2f, #26d3bc, #02a4da, #2fd5c6);
-  -webkit-mask-image: radial-gradient(circle, transparent 25%, #000 42%, rgba(0, 0, 0, 0.62) 53%, transparent 68%);
-  mask-image: radial-gradient(circle, transparent 25%, #000 42%, rgba(0, 0, 0, 0.62) 53%, transparent 68%);
-  filter: blur(13px);
+  -webkit-mask-image: radial-gradient(circle, transparent 29%, #000 43%, rgba(0, 0, 0, 0.62) 53%, transparent 65%);
+  mask-image: radial-gradient(circle, transparent 29%, #000 43%, rgba(0, 0, 0, 0.62) 53%, transparent 65%);
+  filter: blur(10px);
   transition: opacity 100ms linear;
   animation: halo-transfer-breathe 2.8s ease-in-out infinite alternate;
 }

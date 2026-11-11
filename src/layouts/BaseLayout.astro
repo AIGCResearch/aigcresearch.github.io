@@ -14,7 +14,7 @@ const descZh = zh.meta.description;
 const descEn = en.meta.description;
 ---
 <!doctype html>
-<html lang="zh-CN" data-lang="zh" data-theme="dark">
+<html lang="en" data-lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,13 +23,13 @@ const descEn = en.meta.description;
     <link rel="canonical" href="https://aigcresearch.github.io/" />
     <link rel="preload" as="image" href="/images/act2cut-waterfall-collage.avif" fetchpriority="high" />
 
-    <title>{titleZh}</title>
-    <meta name="description" content={descZh} />
+    <title>{titleEn}</title>
+    <meta name="description" content={descEn} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aigcresearch.github.io/" />
     <meta property="og:site_name" content="AIGC Research" />
-    <meta property="og:title" content={titleZh} />
-    <meta property="og:description" content={descZh} />
+    <meta property="og:title" content={titleEn} />
+    <meta property="og:description" content={descEn} />
     <meta property="og:image" content="https://aigcresearch.github.io/images/social-preview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -74,7 +74,7 @@ const descEn = en.meta.description;
     <script is:inline define:vars={{ titleZh, titleEn, descZh, descEn }}>
       (function () {
         function sync() {
-          var l = document.documentElement.dataset.lang || "zh";
+          var l = document.documentElement.dataset.lang || "en";
           document.title = l === "en" ? titleEn : titleZh;
           var d = document.querySelector('meta[name="description"]');
           if (d) d.setAttribute("content", l === "en" ? descEn : descZh);
