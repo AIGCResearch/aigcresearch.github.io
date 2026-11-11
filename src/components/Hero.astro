@@ -10,6 +10,8 @@ type QuickCard = {
   bodyEn: string;
   secondZh?: string;
   secondEn?: string;
+  pointsZh?: string[];
+  pointsEn?: string[];
   ctaZh: string;
   ctaEn: string;
 };
@@ -26,8 +28,8 @@ const quickCards: QuickCard[] = [
     bodyEn: "Explore the boundaries of machine creativity, expand the boundaries of human creativity, and shape a new world of creativity.",
     secondZh: "探索下一代创意智能体与生产力工具，构建开放可持续的创作生态。",
     secondEn: "Explore next-generation creative agents and productivity tools to build an open, sustainable creative ecosystem.",
-    ctaZh: "了解更多",
-    ctaEn: "Learn More",
+    ctaZh: "探索未来",
+    ctaEn: "Explore Future",
   },
   {
     id: "directions",
@@ -38,8 +40,18 @@ const quickCards: QuickCard[] = [
     noteEn: "What we do and how.",
     bodyZh: "面向基础研究的通用创意智能实验室，聚焦应用研究的智能影像叙事实验室，专注创作实践的星联无限灵感工作室。",
     bodyEn: "The Creative General Intelligent Lab pursues foundational research, the Intelligent Cinema Narrative Lab focuses on applied research, and the StarX Infinite Inspiration Studio specializes in creative practice.",
-    ctaZh: "探索未来",
-    ctaEn: "Explore Future",
+    pointsZh: [
+      "面向基础研究的通用创意智能实验室。",
+      "聚焦应用研究的智能影像叙事实验室。",
+      "专注创作实践的星联无限灵感工作室。",
+    ],
+    pointsEn: [
+      "The Creative General Intelligent Lab pursues foundational research.",
+      "The Intelligent Cinema Narrative Lab focuses on applied research.",
+      "The StarX Infinite Inspiration Studio specializes in creative practice.",
+    ],
+    ctaZh: "了解更多",
+    ctaEn: "Learn More",
   },
   {
     id: "publications",
@@ -68,10 +80,11 @@ const quickCards: QuickCard[] = [
 ];
 
 const capabilityItems = [
-  { icon: "palette", zh: "AI × 艺术", en: "AI × Art" },
+  { icon: "vision", zh: "视觉与图形学", en: "CV & CG" },
   { icon: "film", zh: "影视制作", en: "TV & Filmmaking" },
   { icon: "screen", zh: "世界模型", en: "World Model" },
   { icon: "share", zh: "创意智能", en: "Creative Intelligence" },
+  { icon: "palette", zh: "智能艺术", en: "Intelligent Art" },
 ];
 
 const iconPaths: Record<string, string[]> = {
@@ -100,6 +113,14 @@ const iconPaths: Record<string, string[]> = {
     "M7.5 10h.01",
     "M10 7.5h.01",
     "M14 7.5h.01",
+  ],
+  vision: [
+    "M4 5h5",
+    "M15 5h5",
+    "M4 19h5",
+    "M15 19h5",
+    "M3 12s3.5-5 9-5 9 5 9 5-3.5 5-9 5-9-5-9-5Z",
+    "M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z",
   ],
   film: [
     "M3 5h18v14H3z",
@@ -194,7 +215,16 @@ const filledIcons = new Set(["publication"]);
             <span data-lang="zh">{card.noteZh}</span>
             <span data-lang="en">{card.noteEn}</span>
           </p>
-          {card.secondZh ? (
+          {card.pointsZh ? (
+            <div class="hero-card-body">
+              <ol class="hero-card-points" data-lang="zh">
+                {card.pointsZh.map((point) => <li>{point}</li>)}
+              </ol>
+              <ol class="hero-card-points" data-lang="en">
+                {card.pointsEn?.map((point) => <li>{point}</li>)}
+              </ol>
+            </div>
+          ) : card.secondZh ? (
             <div class="hero-card-body">
               <ol class="hero-card-points" data-lang="zh">
                 <li>{card.bodyZh}</li>
@@ -581,7 +611,7 @@ const filledIcons = new Set(["publication"]);
 
   .hero-capabilities-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     padding: 0;
     margin: 16px 0 0;
     list-style: none;
@@ -656,7 +686,7 @@ const filledIcons = new Set(["publication"]);
     .hero-capabilities { margin-top: 38px; padding: 18px; }
     .hero-capabilities-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hero-capability { justify-content: flex-start; min-height: 60px; padding: 10px 8px; }
-    .hero-capability:nth-child(3) { border-left: 0; }
+    .hero-capability:nth-child(2n+3) { border-left: 0; }
     .hero-capability:nth-child(n+3) { border-top: 1px solid rgba(133, 185, 214, 0.18); }
     .hero-capability-icon { width: 34px; height: 34px; padding: 7px; }
     .hero-side-title { font-size: var(--type-medium); }
