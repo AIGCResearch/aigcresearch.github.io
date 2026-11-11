@@ -82,25 +82,18 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight {
   transform: translate(-50%, -50%);
   opacity: var(--mobile-hero-opacity, 1);
   pointer-events: none;
-  animation: mobile-hero-glow 2.8s ease-in-out infinite alternate;
 }
 
+/* Reuse the desktop ring glow inside the logo that flies into the navigation. */
 html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
-  display: none;
+  top: 50%;
+  width: 235%;
+  filter: blur(var(--mobile-glow-blur, 18px));
+  opacity: 0.8;
 }
 
-/* The glow is painted from the same logo layer that moves across the viewport. */
-@keyframes mobile-hero-glow {
-  from {
-    filter:
-      drop-shadow(0 0 var(--mobile-glow-inner, 22px) rgba(47, 213, 198, 0.48))
-      drop-shadow(0 0 var(--mobile-glow-outer, 38px) rgba(225, 234, 47, 0.28));
-  }
-  to {
-    filter:
-      drop-shadow(0 0 var(--mobile-glow-inner, 22px) rgba(47, 213, 198, 0.88))
-      drop-shadow(0 0 var(--mobile-glow-outer, 38px) rgba(225, 234, 47, 0.50));
-  }
+html[data-theme="light"] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
+  opacity: 0.85;
 }
 
 .logo-transfer img {
