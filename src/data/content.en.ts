@@ -106,7 +106,7 @@ export const en: Content = {
         id: "cgi",
         title: "Creative General Intelligent Lab",
         subtitle: "Creative Intelligence & Brain-inspired AI",
-        tagline: "Machine Creativity Research: From Mechanical Generation to Design Thinking",
+        tagline: "Exploring the Boundaries of Machine Creativity: From Mechanical Generation to Design Thinking",
         body: `Starting from an understanding of human creation, we aim to move beyond the limits of traditional AI. We combine high-level design thinking, brain-inspired insights, and scientific advances to study creative intent and cognition, giving AI creative intelligence akin to that of a director or designer.
 
 1. Cross-modal Aesthetic Alignment
@@ -124,7 +124,7 @@ Outward scientific impact: Use generative AI to advance neuroscience and help ta
         id: "icn",
         title: "Intelligent Cinema Narrative Lab",
         subtitle: "Visual Storytelling & Filmmaking",
-        tagline: "Cinematic Creative Intelligence: From Cumbersome Workflows to Free Creative Flow",
+        tagline: "Expanding the Boundaries of Human Creativity: From Cumbersome Workflows to Free Creative Flow",
         body: `Starting from the goal of empowering human creators, we turn cutting-edge AI capabilities into practical tools for visual storytelling and cinematic content production. We aim to free creators from repetitive work so they can focus on story and expression, while exploring a new paradigm for AI-native post-production.
 
 1. Full-spectrum Multimodal Interaction
@@ -146,7 +146,7 @@ Examine overlooked pain points across filmmaking, build new forms of AI-native p
         id: "starx",
         title: "StarX Infinite Inspiration Studio",
         subtitle: "Creative Practice Studio",
-        tagline: "StarX Studio: Bringing Ideas to Life across Academia, Industry, Research, and Creation",
+        tagline: "Shaping a New World of Creativity: Bringing Ideas to Life across Academia, Industry, Research, and Creative Practice",
         body: `StarX Studio connects creative intelligence research with real creative practice. We explore deeper integration of AI with film, story, and visual expression, carry ideas from concept to finished work, and feed hands-on creative experience back into technical research.
 
 1. Idea Co-creation

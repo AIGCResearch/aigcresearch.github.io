@@ -106,7 +106,7 @@ export const zh: Content = {
         id: "cgi",
         title: "通用创意智能实验室",
         subtitle: "Creative General Intelligent Lab",
-        tagline: "机器创造力研究：从“机械生成”到“设计思维”",
+        tagline: "探索机器创造力的边界：从“机械生成”到“设计思维”",
         body: `从“理解人类创作”出发，我们旨在打破传统 AI 的局限，融合顶层设计思维、类脑启发与科学赋能，研究人类创作意图与认知机制，赋予 AI 类似导演或设计师的创造性智能。
 
 1. 跨模态美学对齐
@@ -124,7 +124,7 @@ export const zh: Content = {
         id: "icn",
         title: "智能影像叙事实验室",
         subtitle: "Intelligent Cinema Narrative Lab",
-        tagline: "影视创意智能：从“繁琐工作流”到“自由创意流”",
+        tagline: "拓展人类创造力的边界：从“繁琐工作流”到“自由创意流”",
         body: `从"赋能人类创作"出发，我们旨在将前沿 AI 能力转化为创作者可用的智能工具，以支持影像叙事与影视级内容生产，让创作者更专注于故事与表达而非受制于重复劳动，并探索AI时代的原生后期制作范式。
 
 1. 全维度多模态交互
@@ -146,7 +146,7 @@ export const zh: Content = {
         id: "starx",
         title: "星联无限灵感工作室",
         subtitle: "StarX Infinite Inspiration Studio",
-        tagline: "星联工作室：产学研创的灵感落地",
+        tagline: "塑造全新的创意世界：产学研创的灵感落地",
         body: `StarX Studio 旨在连接创意智能研究与真实创作实践，探索人工智能与影像、故事及视觉表达的深度融合，实现从“构思”到“作品”的全程贯穿，并以真实创作经验反哺技术研究。
 
 1. 灵感共创

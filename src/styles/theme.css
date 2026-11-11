@@ -141,6 +141,7 @@ html[data-theme="light"] body.site-body .pillar-icon {
   color: #28769c;
 }
 html[data-theme="light"] body.site-body .pillar-body,
+html[data-theme="light"] body.site-body .dir-intro,
 html[data-theme="light"] body.site-body .dir-body,
 html[data-theme="light"] body.site-body .pub-desc,
 html[data-theme="light"] body.site-body .member-bio { color: #4b6878; }

@@ -44,36 +44,36 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
           <span class="dir-card-watermark" aria-hidden="true">
             {directionMark(d.id)}
           </span>
-          <header class="dir-head">
-            <span class="dir-index" aria-hidden="true">
-              <span>{directionMark(d.id)}</span>
-              <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
-            </span>
-            <div class="dir-heading">
-              <h3 class="dir-title">
-                <span data-lang="zh">{d.title}</span>
-                <span data-lang="en">{e.items[i].title}</span>
-              </h3>
-              <div class="dir-logo-wrap" aria-hidden="true">
-                <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
-                <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+          <div class="dir-copy">
+            <header class="dir-head">
+              <span class="dir-index" aria-hidden="true">
+                <span>{directionMark(d.id)}</span>
+                <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
+              </span>
+              <div class="dir-heading">
+                <h3 class="dir-title">
+                  <span data-lang="zh">{d.title}</span>
+                  <span data-lang="en">{e.items[i].title}</span>
+                </h3>
+                <div class="dir-logo-wrap" aria-hidden="true">
+                  <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+                  <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+                </div>
               </div>
+            </header>
+            <p class="dir-tagline">
+              <span class="dir-tagline-decor" aria-hidden="true">»</span>
+              <span data-lang="zh">{d.tagline}</span>
+              <span data-lang="en">{e.items[i].tagline}</span>
+            </p>
+            <div class="dir-intro">
+              <p data-lang="zh">{bodyZh[i].intro}</p>
+              <p data-lang="en">{bodyEn[i].intro}</p>
             </div>
-          </header>
-          <p class="dir-tagline">
-            <span class="dir-tagline-decor" aria-hidden="true">»</span>
-            <span data-lang="zh">{d.tagline}</span>
-            <span data-lang="en">{e.items[i].tagline}</span>
-          </p>
+          </div>
           <div class="dir-body">
-            <div data-lang="zh">
-              <p>{bodyZh[i].intro}</p>
-              <ol>{bodyZh[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol>
-            </div>
-            <div data-lang="en">
-              <p>{bodyEn[i].intro}</p>
-              <ol>{bodyEn[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol>
-            </div>
+            <div data-lang="zh"><ol>{bodyZh[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
+            <div data-lang="en"><ol>{bodyEn[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
           </div>
           <ul class="dir-tags">
             {d.tags.map((t, ti) => (
@@ -135,11 +135,10 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
       column-gap: 36px;
       align-items: start;
     }
-    .dir-card:last-child:nth-child(odd) .dir-head { grid-column: 1; grid-row: 1; }
-    .dir-card:last-child:nth-child(odd) .dir-tagline { grid-column: 1; grid-row: 2; }
-    .dir-card:last-child:nth-child(odd) .dir-body { grid-column: 2; grid-row: 1 / span 2; }
-    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; }
-    .dir-card:last-child:nth-child(odd) .dir-team { grid-column: 1 / -1; }
+    .dir-card:last-child:nth-child(odd) .dir-copy { grid-column: 1; grid-row: 1; }
+    .dir-card:last-child:nth-child(odd) .dir-body { grid-column: 2; grid-row: 1; margin-top: 0; }
+    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; grid-row: 2; }
+    .dir-card:last-child:nth-child(odd) .dir-team { grid-column: 1 / -1; grid-row: 3; }
   }
   .dir-card {
     position: relative;
@@ -235,12 +234,13 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     gap: 10px;
   }
   .dir-tagline-decor { font-family: var(--font-mono); font-weight: 700; opacity: 0.7; }
-  .dir-body { color: rgba(214, 229, 241, 0.74); font-size: var(--type-small); line-height: 1.8; }
-  .dir-body ol { display: grid; gap: 10px; margin: 14px 0 0; padding-left: 1.5em; }
+  .dir-intro, .dir-body { color: rgba(214, 229, 241, 0.74); font-size: var(--type-small); line-height: 1.8; }
+  .dir-body { margin-top: 14px; }
+  .dir-body ol { display: grid; gap: 10px; margin: 0; padding-left: 1.5em; }
   .dir-body li { padding-left: 3px; }
   .dir-body li strong { display: block; color: var(--text-primary); font-weight: 600; }
   .dir-point-line { display: block; }
-  html[lang="en"] .dir-body { line-height: 1.6; }
+  html[lang="en"] :is(.dir-intro, .dir-body) { line-height: 1.6; }
   .dir-team {
     margin-top: 22px;
     padding: 18px 20px;

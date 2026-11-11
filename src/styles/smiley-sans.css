@@ -1,0 +1,8 @@
+/* Smiley Sans by atelierAnchor, SIL Open Font License 1.1. */
+@font-face {
+  font-family: "Smiley Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/smiley-sans/SmileySans-Oblique.woff2") format("woff2");
+}
