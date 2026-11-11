@@ -29,9 +29,9 @@
   --pad-section-desktop: 120px;
   --pad-section-mobile: 64px;
 
-  --font-zh: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
-  --font-en: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
-  --font-mono: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
+  --font-zh: "Outfit Variable", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-en: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
+  --font-mono: "Outfit Variable", "Noto Sans SC Variable", sans-serif;
 
   --type-large: clamp(36px, 4.2vw, 56px);
   --type-medium: 20px;

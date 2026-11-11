@@ -1,3 +1,5 @@
+@import "@fontsource-variable/outfit/wght.css";
+@import "@fontsource-variable/noto-sans-sc/wght.css";
 @import "./tokens.css";
 
 *, *::before, *::after { box-sizing: border-box; }
