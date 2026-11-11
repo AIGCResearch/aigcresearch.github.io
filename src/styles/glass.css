@@ -82,6 +82,25 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight {
   transform: translate(-50%, -50%);
   opacity: var(--mobile-hero-opacity, 1);
   pointer-events: none;
+  animation: mobile-hero-glow 2.8s ease-in-out infinite alternate;
+}
+
+html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
+  display: none;
+}
+
+/* The glow is painted from the same logo layer that moves across the viewport. */
+@keyframes mobile-hero-glow {
+  from {
+    filter:
+      drop-shadow(0 0 var(--mobile-glow-inner, 22px) rgba(47, 213, 198, 0.48))
+      drop-shadow(0 0 var(--mobile-glow-outer, 38px) rgba(225, 234, 47, 0.28));
+  }
+  to {
+    filter:
+      drop-shadow(0 0 var(--mobile-glow-inner, 22px) rgba(47, 213, 198, 0.88))
+      drop-shadow(0 0 var(--mobile-glow-outer, 38px) rgba(225, 234, 47, 0.50));
+  }
 }
 
 .logo-transfer img {

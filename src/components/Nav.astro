@@ -479,11 +479,16 @@ const linksEn = en.nav.links;
         var mobileHeroOpacity = 1 - smoothstep(0.88, 0.995, haloProgress);
         var rim = smoothstep(0.78, 0.995, haloProgress);
         var endSize = brandRect.width * (320 / 1200);
+        var logoSize = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, haloProgress);
         root.style.setProperty("--hero-logo-opacity", flyingMobileLogo ? "1" : logoOpacity.toFixed(3));
         root.style.setProperty("--nav-icon-opacity", Math.min(navIconOpacity, 1).toFixed(3));
         root.style.setProperty("--logo-transfer-left", flight.x.toFixed(1) + "px");
         root.style.setProperty("--logo-transfer-top", flight.y.toFixed(1) + "px");
-        root.style.setProperty("--logo-transfer-size", (logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, haloProgress)).toFixed(1) + "px");
+        root.style.setProperty("--logo-transfer-size", logoSize.toFixed(1) + "px");
+        if (flyingMobileLogo) {
+          heroLogo.style.setProperty("--mobile-glow-inner", Math.max(4, logoSize * 0.14).toFixed(1) + "px");
+          heroLogo.style.setProperty("--mobile-glow-outer", Math.max(8, logoSize * 0.24).toFixed(1) + "px");
+        }
         root.style.setProperty("--logo-transfer-opacity", flyingMobileLogo ? "0" : flightOpacity.toFixed(3));
         root.style.setProperty("--mobile-hero-opacity", mobileHeroOpacity.toFixed(3));
         root.style.setProperty("--halo-progress", rim.toFixed(3));
