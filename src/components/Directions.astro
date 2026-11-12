@@ -50,7 +50,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
                 <span>{directionMark(d.id)}</span>
                 <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
               </span>
-              <div class="dir-heading">
+              <div class:list={["dir-heading", { "dir-heading--starx": d.id === "starx" }]}>
                 <h3 class="dir-title">
                   <span data-lang="zh">{d.title}</span>
                   <span data-lang="en">{e.items[i].title}</span>
@@ -59,6 +59,12 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
                   <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                   <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                 </div>
+                {d.id === "starx" && d.team && (
+                  <div class="dir-team-logo-wrap" role="img" aria-label={d.team.name}>
+                    <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+                    <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+                  </div>
+                )}
               </div>
             </header>
             <p class="dir-tagline">
@@ -66,14 +72,23 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
               <span data-lang="zh">{d.tagline}</span>
               <span data-lang="en">{e.items[i].tagline}</span>
             </p>
-            <div class="dir-intro">
-              <p data-lang="zh">{bodyZh[i].intro}</p>
-              <p data-lang="en">{bodyEn[i].intro}</p>
-            </div>
+            <button class="dir-toggle" type="button" aria-expanded="false" aria-controls={`dir-details-${d.id}`}>
+              <span class="dir-toggle-collapsed"><span data-lang="zh">展开正文</span><span data-lang="en">Read More</span></span>
+              <span class="dir-toggle-expanded"><span data-lang="zh">收起正文</span><span data-lang="en">Show Less</span></span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7" /></svg>
+            </button>
           </div>
-          <div class="dir-body">
-            <div data-lang="zh"><ol>{bodyZh[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
-            <div data-lang="en"><ol>{bodyEn[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
+          <div class="dir-details" id={`dir-details-${d.id}`} aria-hidden="true">
+            <div class="dir-details-inner">
+              <div class="dir-intro">
+                <p data-lang="zh">{bodyZh[i].intro}</p>
+                <p data-lang="en">{bodyEn[i].intro}</p>
+              </div>
+              <div class="dir-body">
+                <div data-lang="zh"><ol>{bodyZh[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
+                <div data-lang="en"><ol>{bodyEn[i].points.map((point) => <li>{point.details.length ? <><strong>{point.heading}</strong>{point.details.map((line) => <span class="dir-point-line">{line}</span>)}</> : point.heading}</li>)}</ol></div>
+              </div>
+            </div>
           </div>
           <ul class="dir-tags">
             {d.tags.map((t, ti) => (
@@ -83,7 +98,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
               </li>
             ))}
           </ul>
-          {d.team && e.items[i].team && (
+          {d.id !== "starx" && d.team && e.items[i].team && (
             <aside class="dir-team" aria-label={d.team.name}>
               <div class="dir-team-logo-wrap" aria-hidden="true">
                 <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
@@ -126,7 +141,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
   }
   html[lang="en"] .lede { line-height: 1.65; }
 
-  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 18px; }
   @media (min-width: 861px) {
     .dir-card:last-child:nth-child(odd) {
       grid-column: 1 / -1;
@@ -135,10 +150,11 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
       column-gap: 36px;
       align-items: start;
     }
-    .dir-card:last-child:nth-child(odd) .dir-copy { grid-column: 1; grid-row: 1; }
-    .dir-card:last-child:nth-child(odd) .dir-body { grid-column: 2; grid-row: 1; margin-top: 0; }
-    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; grid-row: 2; }
-    .dir-card:last-child:nth-child(odd) .dir-team { grid-column: 1 / -1; grid-row: 3; }
+    .dir-card:last-child:nth-child(odd) .dir-copy { grid-column: 1 / -1; grid-row: 1; }
+    .dir-card:last-child:nth-child(odd) .dir-details { grid-column: 1 / -1; grid-row: 2; }
+    .dir-card:last-child:nth-child(odd) .dir-details-inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 36px; }
+    .dir-card:last-child:nth-child(odd) .dir-body { margin-top: 0; }
+    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; grid-row: 3; }
   }
   .dir-card {
     position: relative;
@@ -198,7 +214,10 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
 
   .dir-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
   .dir-heading { flex: 1; min-width: 0; }
+  .dir-heading--starx { display: flex; align-items: center; gap: clamp(12px, 3vw, 36px); }
   .dir-logo-wrap { position: relative; width: 85%; max-width: 350px; aspect-ratio: 1164 / 264; }
+  .dir-heading--starx .dir-logo-wrap { flex: 0 1 350px; width: 42%; }
+  .dir-heading--starx .dir-team-logo-wrap { flex: 0 1 420px; width: 50%; max-width: 420px; margin: 0; }
   .dir-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-logo--light { opacity: 1; }
@@ -229,11 +248,41 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     font-size: var(--type-small);
     color: rgba(177, 214, 233, 0.82);
     margin-bottom: 14px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 10px;
   }
   .dir-tagline-decor { font-family: var(--font-mono); font-weight: 700; opacity: 0.7; }
+  .dir-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 12px;
+    border: 1px solid rgba(145, 185, 208, 0.3);
+    border-radius: var(--radius-pill);
+    background: rgba(145, 185, 208, 0.08);
+    color: rgba(181, 215, 234, 0.96);
+    font: inherit;
+    font-size: var(--type-small);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  .dir-toggle:hover { background: rgba(145, 185, 208, 0.16); border-color: rgba(145, 185, 208, 0.5); }
+  .dir-toggle:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
+  .dir-toggle svg { transition: transform 280ms ease; }
+  .dir-toggle-expanded { display: none; }
+  .dir-card.is-open .dir-toggle-collapsed { display: none; }
+  .dir-card.is-open .dir-toggle-expanded { display: inline; }
+  .dir-card.is-open .dir-toggle svg { transform: rotate(180deg); }
+  .dir-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: 0;
+    transition: grid-template-rows 460ms cubic-bezier(0.76, 0, 0.24, 1), margin-top 460ms cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .dir-details-inner { min-height: 0; overflow: hidden; }
+  .dir-card.is-open .dir-details { grid-template-rows: 1fr; margin-top: 18px; }
   .dir-intro, .dir-body { color: rgba(214, 229, 241, 0.74); font-size: var(--type-small); line-height: 1.8; }
   .dir-body { margin-top: 14px; }
   .dir-body ol { display: grid; gap: 10px; margin: 0; padding-left: 1.5em; }
@@ -249,7 +298,6 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     background: var(--surface);
   }
   .dir-team-logo-wrap { position: relative; width: 100%; max-width: 400px; margin-inline: auto; aspect-ratio: 1200 / 236; }
-  .dir-card:last-child .dir-team-logo-wrap { max-width: 580px; }
   .dir-team-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-team-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-team-logo--light { opacity: 1; }
@@ -281,5 +329,18 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     .dir-head { flex-direction: column; align-items: flex-start; gap: 12px; }
     .dir-heading { width: 100%; }
     .dir-index { min-width: 82px; padding: 8px 12px; }
+    .dir-heading--starx { gap: 10px; }
   }
 </style>
+
+<script is:inline>
+  document.querySelectorAll(".dir-toggle").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var card = button.closest(".dir-card");
+      var details = card.querySelector(".dir-details");
+      var open = card.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", String(open));
+      details.setAttribute("aria-hidden", String(!open));
+    });
+  });
+</script>

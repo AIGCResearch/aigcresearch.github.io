@@ -612,6 +612,7 @@ const linksEn = en.nav.links;
       updateActive();
       var mobile = window.innerWidth <= 900;
       var progress = Math.min(Math.max(window.scrollY / (mobile ? 110 : 140), 0), 1);
+      root.classList.toggle("hero-content-expanded", window.scrollY > 2);
       var targetWidth = Math.min(920, Math.max(260, window.innerWidth - (mobile ? 28 : 36)));
       var targetInnerWidth = window.innerWidth - (window.innerWidth - targetWidth) * progress - 32;
       var cardsWidth = 0;
