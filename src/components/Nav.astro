@@ -104,9 +104,13 @@ const linksEn = en.nav.links;
     display: flex;
     align-items: center;
     gap: 22px;
-    width: min(900px, calc(100% - 38px));
+    width: min(var(--nav-inner-width, var(--container)), calc(100% - 38px));
     height: 74px;
     margin-inline: auto;
+  }
+
+  @media (min-width: 901px) {
+    .nav-inner { transition: width 350ms ease; }
   }
 
   .brand {
@@ -201,6 +205,10 @@ const linksEn = en.nav.links;
     letter-spacing: 0.025em;
     white-space: nowrap;
     transition: color 180ms ease, background-color 180ms ease;
+  }
+
+  @media (min-width: 901px) and (max-width: 1000px) {
+    .nav-links a { padding-inline: 9px; }
   }
 
   .nav-links a:hover,
@@ -373,6 +381,7 @@ const linksEn = en.nav.links;
     var ticking = false;
     var heroLogo = null;
     var heroAnchor = null;
+    var heroCards = null;
     var root = document.documentElement;
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var trails = [];
@@ -426,6 +435,7 @@ const linksEn = en.nav.links;
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
       heroAnchor = document.querySelector(".hero-logo-anchor");
+      heroCards = document.querySelector(".hero-cards");
       syncMobileHero();
       trails = Array.from(document.querySelectorAll(".logo-trail"));
       sections = Array.from(nav.querySelectorAll('.nav-links a[href^="#"]')).map(function (link) {
@@ -496,6 +506,11 @@ const linksEn = en.nav.links;
       var mobile = window.innerWidth <= 900;
       var progress = Math.min(Math.max(window.scrollY / (mobile ? 110 : 140), 0), 1);
       var targetWidth = Math.min(920, Math.max(260, window.innerWidth - (mobile ? 28 : 36)));
+      if (!mobile && heroCards) {
+        var cardsWidth = heroCards.getBoundingClientRect().width;
+        var dockedInnerWidth = Math.min(900, targetWidth - 38);
+        nav.style.setProperty("--nav-inner-width", (cardsWidth + (dockedInnerWidth - cardsWidth) * progress).toFixed(2) + "px");
+      }
       nav.style.setProperty("--nav-shrink", ((window.innerWidth - targetWidth) * progress).toFixed(2) + "px");
       nav.style.setProperty("--nav-top", (12 * progress).toFixed(2) + "px");
       nav.style.setProperty("--nav-radius-top", (999 * progress).toFixed(2) + "px");

@@ -317,7 +317,7 @@ Identify creative pain points and technical needs from real production workflows
         monogram: "X",
         avatar: "/images/team/mengtian-li.webp",
         role: "Academic Advisor",
-        affiliation: "Shanghai University · Shanghai Film Academy",
+        affiliation: "Shanghai University · Shanghai Film Academy · Professor",
         bio: "Research on AI filmmaking.",
         links: {
           personal_page: "https://mengtianli.github.io/",
@@ -329,7 +329,7 @@ Identify creative pain points and technical needs from real production workflows
         monogram: "X",
         avatar: "/images/team/qingling-xia.webp",
         role: "Academic Advisor",
-        affiliation: "Chongqing University of Technology · School of AI",
+        affiliation: "Chongqing University of Technology · School of AI · Professor",
         bio: "Research on biomedical engineering.",
         links: {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",

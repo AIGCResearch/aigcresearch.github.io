@@ -305,7 +305,7 @@ export const zh: Content = {
         monogram: "Z",
         avatar: "/images/team/siyu-zhu.webp",
         role: "学术界导师",
-        affiliation: "复旦大学·正教授\n上海创智学院·全时导师",
+        affiliation: "复旦大学 · 正教授\n上海创智学院 · 全时导师",
         bio: "",
         links: {
           personal_page: "https://sites.google.com/site/zhusiyucs/home",
@@ -317,7 +317,7 @@ export const zh: Content = {
         monogram: "X",
         avatar: "/images/team/mengtian-li.webp",
         role: "学术界导师",
-        affiliation: "上海大学 · 上海电影学院",
+        affiliation: "上海大学 · 上海电影学院 · 教授",
         bio: "研究方向为AI电影。",
         links: {
           personal_page: "https://mengtianli.github.io/",
@@ -330,7 +330,7 @@ export const zh: Content = {
         monogram: "X",
         avatar: "/images/team/qingling-xia.webp",
         role: "学术界导师",
-        affiliation: "重庆理工大学·两江人工智能学院",
+        affiliation: "重庆理工大学 · 两江人工智能学院 · 教授",
         bio: "研究方向为生物医学工程。",
         links: {
           google_scholar: "https://scholar.google.com/citations?user=QgwsFLQAAAAJ&hl=zh-CN",
