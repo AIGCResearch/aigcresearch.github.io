@@ -160,6 +160,7 @@ Identify creative pain points and technical needs from real production workflows
         tags: ["Human-AI Co-creation", "Visual Design", "Cross-media Expression", "Creative Production", "Creative Feedback"],
         team: {
           name: "Seek Team | StarX Team",
+          description: "Seek Team explores cinematic world models, while StarX Team focuses on filmmaking. Together at StarX Studio, they connect generative technology with creative practice, from story ideas to visual works.",
           logoBase: "/images/logo-seek-starx-team",
         },
       },

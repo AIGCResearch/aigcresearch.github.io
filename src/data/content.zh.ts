@@ -160,6 +160,7 @@ export const zh: Content = {
         tags: ["人机共创", "视觉设计", "跨媒介表达", "作品实践", "创作反馈"],
         team: {
           name: "Seek Team | StarX Team",
+          description: "Seek Team 聚焦电影世界模型，StarX Team 聚焦电影创作。两支团队在星联无限灵感工作室中连接生成技术与创作实践，探索从故事构思到影像呈现的新路径。",
           logoBase: "/images/logo-seek-starx-team",
         },
       },
