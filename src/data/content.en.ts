@@ -192,7 +192,7 @@ Identify creative pain points and technical needs from real production workflows
         title: "ViStoryBench",
         paperTitle: "ViStoryBench: Comprehensive Benchmark Suite for Story Visualization",
         venue: "CVPR 2026",
-        institutions: "StepFun · AIGC Research",
+        institutions: "ShanghaiTech University · StepFun · AIGC Research",
         tagline: "A Comprehensive Benchmark Suite for Story Visualization.",
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",

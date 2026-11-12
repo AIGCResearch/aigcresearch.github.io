@@ -181,24 +181,24 @@ export const zh: Content = {
         body:
           "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
         links: [
-          { label: "Paper", href: "#", disabled: true },
-          { label: "Project Page", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
-          { label: "Code", href: "#", disabled: true },
+          { label: "论文", href: "#", disabled: true },
+          { label: "项目主页", href: "https://aigcresearch.github.io/Act2Cut.github.io/" },
+          { label: "代码", href: "#", disabled: true },
         ],
       },
       {
         id: "vistorybench",
         title: "ViStoryBench",
         venue: "CVPR 2026",
-        institutions: "阶跃星辰 · AIGC Research",
+        institutions: "上海科技大学 · 阶跃星辰 · AIGC Research",
         tagline: "面向视觉故事讲述的综合性基准测试。",
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
         links: [
-          { label: "Paper", href: "https://arxiv.org/abs/2505.24862" },
-          { label: "Code", href: "https://github.com/ViStoryBench/vistorybench" },
-          { label: "Dataset", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
-          { label: "Project Page", href: "https://vistorybench.github.io/" },
+          { label: "论文", href: "https://arxiv.org/abs/2505.24862" },
+          { label: "代码", href: "https://github.com/ViStoryBench/vistorybench" },
+          { label: "数据集", href: "https://huggingface.co/datasets/ViStoryBench/ViStoryBench" },
+          { label: "项目主页", href: "https://vistorybench.github.io/" },
         ],
       },
       {
@@ -210,9 +210,9 @@ export const zh: Content = {
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
         links: [
-          { label: "Paper", href: "https://arxiv.org/abs/2504.15281" },
-          { label: "Project Page", href: "https://styleme3d.github.io/" },
-          { label: "Code", href: "https://github.com/AIGCResearch/styleme3d" },
+          { label: "论文", href: "https://arxiv.org/abs/2504.15281" },
+          { label: "项目主页", href: "https://styleme3d.github.io/" },
+          { label: "代码", href: "https://github.com/AIGCResearch/styleme3d" },
         ],
       },
       {
@@ -222,9 +222,9 @@ export const zh: Content = {
         body:
           "将创意理解、镜头组织、素材生成与创作流程协同串联起来，是面向未来电影生成与影视创作系统的重要框架原型，也是不断演化的创意工作流实验场。",
         links: [
-          { label: "Code", href: "https://github.com/AIGCResearch/ShotStudio" },
-          { label: "Demo", href: "https://aigcresearch.github.io/ShotStudio/" },
-          { label: "Docs", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
+          { label: "代码", href: "https://github.com/AIGCResearch/ShotStudio" },
+          { label: "演示", href: "https://aigcresearch.github.io/ShotStudio/" },
+          { label: "文档", href: "https://github.com/AIGCResearch/ShotStudio/blob/main/README.md" },
         ],
       },
       {
@@ -234,7 +234,7 @@ export const zh: Content = {
         tagline: "持续追踪 AIGC 前沿进展的开源知识整理项目。",
         body:
           "体现团队在知识组织、趋势追踪与社区共享方面的持续投入，不仅服务于内部研究，也希望与更广泛社区共同推动 AIGC 发展。",
-        links: [{ label: "Code", href: "https://github.com/AIGCResearch/Awesome-PaperDaily" }],
+        links: [{ label: "代码", href: "https://github.com/AIGCResearch/Awesome-PaperDaily" }],
         featured: true,
       },
     ],

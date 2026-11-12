@@ -587,13 +587,10 @@ const linksEn = en.nav.links;
           }
         }
         var flight = flightPoint(haloProgress);
-        // The flight reaches the brand icon at 0.98; wait for the nav's own resize to finish too.
-        var navRect = nav.getBoundingClientRect();
-        var navSettled = Math.abs(navRect.width - targetWidth) < 1
-          && Math.abs(navRect.top - 12 * progress) < 1;
-        var logoDocked = haloProgress >= 0.98 && navSettled;
+        // The flight reaches the brand icon at 0.98; the nav can keep resizing without delaying the sweep.
+        var logoDocked = haloProgress >= 0.98;
         if (navLogoDocked === null) {
-          navLogoDocked = haloProgress >= 0.98;
+          navLogoDocked = logoDocked;
           if (navLogoDocked && !reducedMotion) {
             // Rest at the destination on a deep-link load without playing an arrival sweep.
             nav.style.setProperty("--nav-sweep-duration", "0ms");
@@ -737,7 +734,6 @@ const linksEn = en.nav.links;
         syncLabels();
       }
       syncMobileHero();
-      navLogoDocked = null;
       finishSweepReturn();
       window.cancelAnimationFrame(sealSweepFrame);
       sealSweepFrame = null;

@@ -49,11 +49,13 @@ html[data-theme="light"] body.site-body {
   background: var(--bg-deep);
 }
 html[data-theme="light"] body.site-body .site-background-image {
-  opacity: 0.28;
+  opacity: 0.58;
   mix-blend-mode: multiply;
 }
 html[data-theme="light"] body.site-body .site-background::after {
-  background: rgba(250, 251, 255, 0.28);
+  background: rgba(250, 251, 255, 0.12);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 html[data-theme="light"] body.site-body::before {
   background: radial-gradient(120% 80% at 50% 30%, transparent 0%, transparent 60%, rgba(108, 118, 164, 0.06) 100%);
