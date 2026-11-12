@@ -50,7 +50,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
                 <span>{directionMark(d.id)}</span>
                 <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
               </span>
-              <div class="dir-heading">
+              <div class:list={["dir-heading", { "dir-heading--starx": d.id === "starx" }]}>
                 <h3 class="dir-title">
                   <span data-lang="zh">{d.title}</span>
                   <span data-lang="en">{e.items[i].title}</span>
@@ -59,6 +59,12 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
                   <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                   <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                 </div>
+                {d.id === "starx" && d.team && (
+                  <div class="dir-team-logo-wrap" role="img" aria-label={d.team.name}>
+                    <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+                    <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+                  </div>
+                )}
               </div>
             </header>
             <p class="dir-tagline">
@@ -92,7 +98,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
               </li>
             ))}
           </ul>
-          {d.team && e.items[i].team && (
+          {d.id !== "starx" && d.team && e.items[i].team && (
             <aside class="dir-team" aria-label={d.team.name}>
               <div class="dir-team-logo-wrap" aria-hidden="true">
                 <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
@@ -149,7 +155,6 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     .dir-card:last-child:nth-child(odd) .dir-details-inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 36px; }
     .dir-card:last-child:nth-child(odd) .dir-body { margin-top: 0; }
     .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; grid-row: 3; }
-    .dir-card:last-child:nth-child(odd) .dir-team { grid-column: 1 / -1; grid-row: 4; }
   }
   .dir-card {
     position: relative;
@@ -209,7 +214,10 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
 
   .dir-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
   .dir-heading { flex: 1; min-width: 0; }
+  .dir-heading--starx { display: flex; align-items: center; gap: clamp(12px, 3vw, 36px); }
   .dir-logo-wrap { position: relative; width: 85%; max-width: 350px; aspect-ratio: 1164 / 264; }
+  .dir-heading--starx .dir-logo-wrap { flex: 0 1 350px; width: 42%; }
+  .dir-heading--starx .dir-team-logo-wrap { flex: 0 1 420px; width: 50%; max-width: 420px; margin: 0; }
   .dir-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-logo--light { opacity: 1; }
@@ -290,7 +298,6 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     background: var(--surface);
   }
   .dir-team-logo-wrap { position: relative; width: 100%; max-width: 400px; margin-inline: auto; aspect-ratio: 1200 / 236; }
-  .dir-card:last-child .dir-team-logo-wrap { max-width: 580px; }
   .dir-team-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-team-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-team-logo--light { opacity: 1; }
@@ -322,6 +329,7 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     .dir-head { flex-direction: column; align-items: flex-start; gap: 12px; }
     .dir-heading { width: 100%; }
     .dir-index { min-width: 82px; padding: 8px 12px; }
+    .dir-heading--starx { gap: 10px; }
   }
 </style>
 
