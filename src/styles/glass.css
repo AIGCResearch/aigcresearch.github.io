@@ -65,7 +65,6 @@ html[data-theme] body.site-body .nav-sweep {
   border-radius: inherit;
   pointer-events: none;
   opacity: var(--halo-progress, 0);
-  transition: opacity 120ms linear;
 }
 
 html[data-theme] body.site-body .nav-shell { z-index: 1; }
@@ -107,29 +106,40 @@ html[data-theme] body.site-body .nav.is-sweep-returning .nav-sweep {
 .logo-transfer {
   position: fixed;
   z-index: 61;
-  top: var(--logo-transfer-top, -200px);
-  left: var(--logo-transfer-left, 50vw);
-  width: var(--logo-transfer-size, 220px);
+  top: 0;
+  left: 50vw;
+  width: var(--logo-transfer-base-size, 220px);
   aspect-ratio: 2163 / 2149;
-  transform: translate(-50%, -50%);
+  transform: translate3d(calc(var(--logo-transfer-left, 50vw) - 50vw), var(--logo-transfer-top, -200px), 0) translate(-50%, -50%) scale(var(--logo-transfer-scale, 1));
+  transform-origin: center;
   opacity: var(--logo-transfer-opacity, 0);
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 /* On mobile the real hero logo and its halo fly together; the anchor keeps its place in the page. */
 html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight {
   position: fixed;
   z-index: 61;
-  top: var(--logo-transfer-top, -200px);
-  left: var(--logo-transfer-left, 50vw);
-  width: var(--logo-transfer-size, 220px);
+  top: 0;
+  left: 50vw;
+  width: var(--logo-transfer-base-size, 220px);
   height: auto;
   aspect-ratio: 2163 / 2149;
   margin: 0;
-  transform: translate(-50%, -50%);
+  transform: translate3d(calc(var(--logo-transfer-left, 50vw) - 50vw), var(--logo-transfer-top, -200px), 0) translate(-50%, -50%) scale(var(--logo-transfer-scale, 1));
+  transform-origin: center;
   opacity: var(--mobile-hero-opacity, 1);
   pointer-events: none;
   animation: mobile-hero-glow 2.8s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight.is-flying {
+  animation: none;
+  filter:
+    drop-shadow(-8px -8px 14px rgba(47, 213, 198, 0.34))
+    drop-shadow(8px 8px 14px rgba(2, 164, 218, 0.34));
 }
 
 html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
@@ -178,8 +188,8 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
   }
 
   html[data-theme] body.site-body .logo-transfer img {
-    --desktop-logo-glow-shift: clamp(3px, calc(var(--logo-transfer-size, 220px) * 0.08), 17px);
-    --desktop-logo-glow-blur: clamp(4px, calc(var(--logo-transfer-size, 220px) * 0.1), 22px);
+    --desktop-logo-glow-shift: clamp(3px, calc(var(--logo-transfer-base-size, 220px) * 0.08), 17px);
+    --desktop-logo-glow-blur: clamp(4px, calc(var(--logo-transfer-base-size, 220px) * 0.1), 22px);
   }
 }
 
@@ -188,6 +198,16 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
   html[data-theme] body.site-body .logo-transfer img {
     animation: desktop-logo-self-glow 2.8s ease-in-out infinite alternate;
   }
+}
+
+@media (min-width: 901px) {
+  html[data-theme] body.site-body .logo-transfer.is-flying img {
+    animation: none;
+  }
+}
+
+html[data-theme] body.site-body .logo-transfer.is-flying .halo-transfer {
+  animation: none;
 }
 
 @keyframes desktop-logo-self-glow {
@@ -243,29 +263,31 @@ html[data-theme="light"] .logo-transfer--dark { opacity: 0; }
   to { transform: translate(-50%, -50%) scale(1.12); }
 }
 
-.logo-trail {
+.logo-trails {
   position: fixed;
   z-index: 58;
-  top: -200px;
-  left: 50vw;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
-  opacity: 0;
-  background: conic-gradient(from -45deg, #2fd5c6, #e1ea2f, #26d3bc, #02a4da, #2fd5c6);
-  -webkit-mask-image: radial-gradient(circle, transparent 28%, #000 42%, #000 53%, transparent 68%);
-  mask-image: radial-gradient(circle, transparent 28%, #000 42%, #000 53%, transparent 68%);
-  filter: blur(9px);
-  will-change: opacity;
+  contain: layout paint;
 }
 
-@media (min-width: 901px) {
-  .logo-trail {
-    -webkit-mask-image: radial-gradient(circle, transparent 38%, #000 45%, #000 52%, transparent 59%);
-    mask-image: radial-gradient(circle, transparent 38%, #000 45%, #000 52%, transparent 59%);
-    filter: blur(3px);
-  }
+.logo-trail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--logo-transfer-base-size, 220px);
+  aspect-ratio: 720 / 715;
+  transform-origin: center;
+  pointer-events: none;
+  opacity: 0;
+  background: url("/images/logo-hero-dark.webp?v=20261112") center / contain no-repeat;
+  filter: blur(2px);
+  will-change: transform, opacity;
+}
+
+html[data-theme="light"] .logo-trail {
+  background-image: url("/images/logo-hero-light.webp?v=20261112");
 }
 
 /* The navigation frame and rising cards share one moving logo-colored rim. */
@@ -292,7 +314,6 @@ html[data-theme] body.site-body .nav::before {
   border-radius: inherit;
   pointer-events: none;
   opacity: var(--halo-progress, 0);
-  transition: opacity 120ms linear;
   animation: nav-border-spin 6s linear infinite;
 }
 
@@ -326,6 +347,7 @@ html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .
   .nav-sweep { display: none; }
   .halo-transfer,
   .logo-transfer,
+  .logo-trails,
   .logo-trail { display: none; }
   html[data-theme] body.site-body .nav::before,
   html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring { animation: none; }

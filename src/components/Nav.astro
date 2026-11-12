@@ -81,11 +81,11 @@ const linksEn = en.nav.links;
     --nav-alpha: 0.62;
     --nav-shadow-alpha: 0;
     position: fixed;
-    top: var(--nav-top);
+    top: 0;
     left: 50%;
     z-index: 60;
     width: calc(100% - var(--nav-shrink));
-    transform: translateX(-50%);
+    transform: translate3d(-50%, var(--nav-top), 0);
     border: 1px solid rgba(112, 190, 224, 0.26);
     border-top-color: rgba(112, 190, 224, 0.08);
     border-radius: var(--nav-radius-top) var(--nav-radius-top) var(--nav-radius-bottom) var(--nav-radius-bottom);
@@ -94,7 +94,6 @@ const linksEn = en.nav.links;
     backdrop-filter: blur(16px) saturate(135%);
     -webkit-backdrop-filter: blur(16px) saturate(135%);
     color: #edf6fa;
-    transition: width 350ms ease, top 350ms ease, border-radius 350ms ease, background-color 350ms ease, box-shadow 350ms ease;
   }
 
   .nav-shell { position: relative; }
@@ -107,10 +106,6 @@ const linksEn = en.nav.links;
     width: min(var(--nav-inner-width, var(--container)), calc(100% - 38px));
     height: 74px;
     margin-inline: auto;
-  }
-
-  @media (min-width: 901px) {
-    .nav-inner { transition: width 350ms ease; }
   }
 
   .brand {
@@ -135,6 +130,7 @@ const linksEn = en.nav.links;
   .brand-logo--icon {
     clip-path: inset(0 72% 0 0);
     opacity: var(--nav-icon-opacity, 1);
+    transition: none;
   }
   .brand-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .brand-logo--light { opacity: 1; }
@@ -161,9 +157,6 @@ const linksEn = en.nav.links;
   @media (min-width: 901px) {
     :global(html[data-lang="en"]) .nav-university-seal {
       transform: translateX(var(--nav-seal-shift, 0px));
-    }
-    :global(html[data-lang="en"]) .nav.is-seal-ready .nav-university-seal {
-      transition: transform 350ms ease;
     }
   }
   :global(html[data-lang="zh"]) .nav-links { margin-left: auto; }
@@ -409,16 +402,17 @@ const linksEn = en.nav.links;
     var heroLogo = null;
     var heroAnchor = null;
     var heroCards = null;
+    var logoTransfer = null;
+    var logoBaseSize = 220;
     var root = document.documentElement;
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var trails = [];
-    var trailTimeout = null;
-    var lastScrollY = window.scrollY;
-    var trailActive = false;
-    var trailLastSampleScrollY = window.scrollY;
-    var trailNeedsStart = false;
-    var nextTrailIndex = 0;
-    var trailDirection = 0;
+    var trailLayer = null;
+    var trailPool = [];
+    var activeTrails = new Set();
+    var trailPrevious = null;
+    var trailVelocity = 0;
+    var trailDistance = 0;
+    var trailMotionPending = false;
     var navLogoDocked = null;
     var sweepReturnTimeout = null;
     var sweep = nav.querySelector(".nav-sweep");
@@ -464,11 +458,22 @@ const linksEn = en.nav.links;
       heroLogo = document.querySelector(".hero-logo-wrap");
       heroAnchor = document.querySelector(".hero-logo-anchor");
       heroCards = document.querySelector(".hero-cards");
+      logoTransfer = document.querySelector(".logo-transfer");
+      updateLogoBaseSize();
       syncMobileHero();
-      trails = Array.from(document.querySelectorAll(".logo-trail"));
+      trailLayer = document.querySelector(".logo-trails");
       sections = Array.from(nav.querySelectorAll('.nav-links a[href^="#"]')).map(function (link) {
         return { id: link.getAttribute("href"), element: document.querySelector(link.getAttribute("href")) };
       }).filter(function (item) { return item.element; });
+    }
+
+    function updateLogoBaseSize() {
+      if (!heroAnchor) return;
+      var width = heroAnchor.getBoundingClientRect().width;
+      if (width > 0) {
+        logoBaseSize = width;
+        root.style.setProperty("--logo-transfer-base-size", width.toFixed(2) + "px");
+      }
     }
 
     function syncMobileHero() {
@@ -521,24 +526,115 @@ const linksEn = en.nav.links;
         + t * t * t * end;
     }
 
-    function clearTrails() {
-      trails.forEach(function (trail) {
-        trail.getAnimations().forEach(function (animation) { animation.cancel(); });
-        trail.style.visibility = "hidden";
+    function clearTrail() {
+      activeTrails.forEach(function (animation) {
+        animation.onfinish = null;
+        var ghost = animation.effect.target;
+        animation.cancel();
+        ghost.remove();
+        trailPool.push(ghost);
       });
-      nextTrailIndex = 0;
+      activeTrails.clear();
+      trailPrevious = null;
+      trailVelocity = 0;
+      trailDistance = 0;
+      trailMotionPending = false;
+    }
+
+    function emitTrail(point, size, strength, energy, age) {
+      // Reuse a ghost only after its fade completes; never interrupt a visible ghost.
+      if (strength <= 0.01 || activeTrails.size >= 64) return;
+      var ghost = trailPool.pop() || document.createElement("span");
+      ghost.className = "logo-trail";
+      trailLayer.appendChild(ghost);
+      var scale = size / logoBaseSize;
+      var position = "translate3d(" + point.x.toFixed(2) + "px," + point.y.toFixed(2) + "px,0) translate(-50%,-50%)";
+      var opacity = (0.18 + 0.06 * energy) * strength;
+      // A brief silhouette eases into a soft tail, independently of scroll events.
+      var animation = ghost.animate([
+        { opacity: 0, transform: position + " scale(" + scale.toFixed(5) + ")", offset: 0, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+        { opacity: opacity, transform: position + " scale(" + scale.toFixed(5) + ")", offset: 0.035, easing: "cubic-bezier(0.33, 0, 0.67, 1)" },
+        { opacity: opacity * 0.85, transform: position + " scale(" + (scale * 1.006).toFixed(5) + ")", offset: 0.2, easing: "cubic-bezier(0.4, 0, 0.55, 1)" },
+        { opacity: opacity * 0.35, transform: position + " scale(" + (scale * 1.015).toFixed(5) + ")", offset: 0.55, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" },
+        { opacity: 0, transform: position + " scale(" + (scale * 1.035).toFixed(5) + ")", offset: 1 }
+      ], {
+        duration: 700 + 300 * energy,
+        fill: "both"
+      });
+      animation.currentTime = age;
+      activeTrails.add(animation);
+      animation.onfinish = function () {
+        activeTrails.delete(animation);
+        ghost.remove();
+        animation.cancel();
+        trailPool.push(ghost);
+      };
+    }
+
+    function updateTrails(point, progress, pointAt, startSize, endSize) {
+      if (reducedMotion || !trailLayer) return;
+      var now = performance.now();
+      var size = startSize + (endSize - startSize) * smoothstep(0.2, 0.62, progress);
+      var previous = trailPrevious;
+      trailPrevious = { x: point.x, y: point.y, size: size, progress: progress, time: now };
+      if (!previous || !trailMotionPending) {
+        trailDistance = 0;
+        trailVelocity = 0;
+        return;
+      }
+      var elapsed = Math.min(64, Math.max(8, now - previous.time));
+      var distance = Math.hypot(point.x - previous.x, point.y - previous.y);
+      if (distance < 0.1) return;
+      var restarting = now - previous.time > 160;
+      if (restarting) {
+        trailDistance = 0;
+        trailVelocity = 0;
+      }
+      trailVelocity += (distance / elapsed - trailVelocity) * (1 - Math.exp(-elapsed / 50));
+      // Faster motion spreads the ghosts apart; scaling the gap with the logo avoids crowding as it shrinks.
+      var energy = 1 - Math.exp(-trailVelocity / 1.2);
+      var spacing = Math.max(12, (size + previous.size) / 2 * (0.22 + 0.2 * energy));
+      trailDistance = Math.min(trailDistance, spacing);
+      var total = trailDistance + distance;
+      var samples = Math.floor(total / spacing);
+      var count = Math.min(samples, 24);
+      for (var index = 0; index < count; index++) {
+        var fraction = samples > count ? (index + 1) / count : (spacing * (index + 1) - trailDistance) / distance;
+        var atProgress = previous.progress + (progress - previous.progress) * fraction;
+        var atSize = startSize + (endSize - startSize) * smoothstep(0.2, 0.62, atProgress);
+        emitTrail(pointAt(atProgress), atSize, 1 - smoothstep(0.92, 1, atProgress), energy, elapsed * (1 - fraction));
+      }
+      trailDistance = total % spacing;
     }
 
     function applyProgress() {
       ticking = false;
+      updateActive();
       var mobile = window.innerWidth <= 900;
       var progress = Math.min(Math.max(window.scrollY / (mobile ? 110 : 140), 0), 1);
       var targetWidth = Math.min(920, Math.max(260, window.innerWidth - (mobile ? 28 : 36)));
       var targetInnerWidth = window.innerWidth - (window.innerWidth - targetWidth) * progress - 32;
+      var cardsWidth = 0;
       if (!mobile && heroCards) {
-        var cardsWidth = heroCards.getBoundingClientRect().width;
+        cardsWidth = heroCards.getBoundingClientRect().width;
         var dockedInnerWidth = Math.min(900, targetWidth - 38);
         targetInnerWidth = cardsWidth + (dockedInnerWidth - cardsWidth) * progress;
+      }
+
+      // Measure before changing scroll-driven styles so this frame doesn't force layout mid-flight.
+      var flyingMobileLogo = mobile && !reducedMotion;
+      var logoRect = null;
+      var brandRect = null;
+      if (heroLogo) {
+        logoRect = (flyingMobileLogo ? heroAnchor : heroLogo).getBoundingClientRect();
+        brandRect = nav.querySelector(".brand").getBoundingClientRect();
+      }
+      var sealWidth = universitySeal.offsetWidth;
+      var navInnerWidth = navInner.clientWidth;
+      var sealOffsetLeft = universitySeal.offsetLeft;
+      var sealOffsetWidth = universitySeal.offsetWidth;
+
+      if (!mobile && heroCards) {
         nav.style.setProperty("--nav-inner-width", targetInnerWidth.toFixed(2) + "px");
       }
       nav.style.setProperty("--nav-shrink", ((window.innerWidth - targetWidth) * progress).toFixed(2) + "px");
@@ -548,17 +644,14 @@ const linksEn = en.nav.links;
       nav.style.setProperty("--nav-alpha", (0.62 - 0.08 * progress).toFixed(3));
       nav.style.setProperty("--nav-shadow-alpha", (0.26 * progress).toFixed(3));
       nav.style.setProperty("--nav-outline-opacity", progress.toFixed(3));
-      if (!mobile && root.dataset.lang === "en" && universitySeal.offsetWidth) {
+      if (!mobile && root.dataset.lang === "en" && sealWidth) {
         // The seal stays in flex layout so the menu keeps its right edge; shift only its painted position.
-        var rightOfSeal = navInner.clientWidth - universitySeal.offsetLeft - universitySeal.offsetWidth / 2;
+        var rightOfSeal = navInnerWidth - sealOffsetLeft - sealOffsetWidth / 2;
         var centerShift = (rightOfSeal - targetInnerWidth / 2) * (1 - progress);
         universitySeal.style.setProperty("--nav-seal-shift", centerShift.toFixed(2) + "px");
       }
 
-      if (heroLogo) {
-        var flyingMobileLogo = mobile && !reducedMotion;
-        var logoRect = (flyingMobileLogo ? heroAnchor : heroLogo).getBoundingClientRect();
-        var brandRect = nav.querySelector(".brand").getBoundingClientRect();
+      if (heroLogo && logoRect && brandRect) {
         var logoX = logoRect.left + logoRect.width / 2;
         var navX = brandRect.left + brandRect.width * (160 / 1200);
         var logoY = logoRect.top + logoRect.height / 2;
@@ -618,6 +711,8 @@ const linksEn = en.nav.links;
           }
         }
         heroLogo.classList.toggle("is-desktop-flight", !mobile && !reducedMotion && haloProgress > 0);
+        heroLogo.classList.toggle("is-flying", haloProgress > 0);
+        if (logoTransfer) logoTransfer.classList.toggle("is-flying", !flyingMobileLogo && haloProgress > 0);
         var logoOpacity = haloProgress > 0 ? 0 : 1;
         var flightOpacity = haloProgress > 0 ? 1 - smoothstep(0.9, 0.995, haloProgress) : 0;
         var navIconOpacity = 1 - smoothstep(0.16, 0.32, haloProgress) + smoothstep(0.88, 0.995, haloProgress);
@@ -626,80 +721,24 @@ const linksEn = en.nav.links;
         var rim = smoothstep(0.78, 0.995, haloProgress);
         var endSize = brandRect.width * (320 / 1200);
         var logoSize = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, haloProgress);
+        var logoScale = logoSize / logoBaseSize;
         root.style.setProperty("--hero-logo-opacity", flyingMobileLogo ? "1" : logoOpacity.toFixed(3));
         root.style.setProperty("--nav-icon-opacity", Math.min(navIconOpacity, 1).toFixed(3));
         root.style.setProperty("--logo-transfer-left", flight.x.toFixed(1) + "px");
         root.style.setProperty("--logo-transfer-top", flight.y.toFixed(1) + "px");
-        root.style.setProperty("--logo-transfer-size", logoSize.toFixed(1) + "px");
-        if (flyingMobileLogo) {
-          heroLogo.style.setProperty("--mobile-glow-inner", Math.max(4, logoSize * 0.14).toFixed(1) + "px");
-          heroLogo.style.setProperty("--mobile-glow-outer", Math.max(8, logoSize * 0.24).toFixed(1) + "px");
-          var glowShift = Math.max(2, logoSize * 0.085);
-          heroLogo.style.setProperty("--mobile-glow-shift", glowShift.toFixed(1) + "px");
-          heroLogo.style.setProperty("--mobile-glow-negative", (-glowShift).toFixed(1) + "px");
-        }
+        root.style.setProperty("--logo-transfer-scale", logoScale.toFixed(4));
         root.style.setProperty("--logo-transfer-opacity", flyingMobileLogo ? "0" : flightOpacity.toFixed(3));
         root.style.setProperty("--mobile-hero-opacity", mobileHeroOpacity.toFixed(3));
         root.style.setProperty("--halo-progress", rim.toFixed(3));
         root.style.setProperty("--hero-halo-dark-opacity", (0.7 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
         root.style.setProperty("--hero-halo-light-opacity", (0.85 * (flyingMobileLogo ? 1 : logoOpacity)).toFixed(3));
-        if (trailActive && !reducedMotion && trails.length) {
-          // Leave each ring where the logo passed; large scroll jumps emit from start to end in order.
-          var travelledSinceSample = window.scrollY - trailLastSampleScrollY;
-          var spacing = Math.max(10, travel * 0.04);
-          var count = Math.min(Math.floor(Math.abs(travelledSinceSample) / spacing), trails.length - (trailNeedsStart ? 1 : 0));
-          var startingSegment = trailNeedsStart;
-          function emitTrail(atScrollY, delay) {
-            var atProgress = Math.min(Math.max(atScrollY / travel, 0), 1);
-            var strength = 1 - smoothstep(0.92, 1, atProgress);
-            if (strength <= 0.01) return;
-            var point = flightPoint(atProgress);
-            var size = logoRect.width + (endSize - logoRect.width) * smoothstep(0.2, 0.62, atProgress);
-            var trail = trails[nextTrailIndex];
-            trail.getAnimations().forEach(function (animation) { animation.cancel(); });
-            trail.style.left = point.x.toFixed(1) + "px";
-            trail.style.top = point.y.toFixed(1) + "px";
-            trail.style.width = (size * (mobile ? 1.12 : 0.98)).toFixed(1) + "px";
-            trail.style.visibility = "visible";
-            trail.animate([
-              { opacity: 0, offset: 0 },
-              { opacity: (0.82 * strength).toFixed(3), offset: 0.08 },
-              { opacity: 0, offset: 1 }
-            ], { duration: 520, delay: delay, easing: "linear", fill: "both" });
-            nextTrailIndex = (nextTrailIndex + 1) % trails.length;
-          }
-          if (trailNeedsStart) {
-            emitTrail(trailLastSampleScrollY, 0);
-            trailNeedsStart = false;
-          }
-          if (count) {
-            for (var index = 1; index <= count; index++) {
-              emitTrail(trailLastSampleScrollY + travelledSinceSample * index / count, (index - (startingSegment ? 0 : 1)) * 45);
-            }
-            trailLastSampleScrollY = window.scrollY;
-          }
-        }
+        updateTrails(flight, haloProgress, flightPoint, logoRect.width, endSize);
       }
-      updateActive();
+      trailMotionPending = false;
     }
 
     function onScroll() {
-      var currentScrollY = window.scrollY;
-      var delta = currentScrollY - lastScrollY;
-      if (Math.abs(delta) < 0.5) return;
-      var direction = Math.sign(delta);
-      if (!trailActive || direction !== trailDirection) {
-        clearTrails();
-        trailLastSampleScrollY = lastScrollY;
-        trailNeedsStart = true;
-        trailDirection = direction;
-      }
-      lastScrollY = currentScrollY;
-      trailActive = true;
-      window.clearTimeout(trailTimeout);
-      trailTimeout = window.setTimeout(function () {
-        trailActive = false;
-      }, 160);
+      trailMotionPending = true;
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
@@ -734,16 +773,11 @@ const linksEn = en.nav.links;
         syncLabels();
       }
       syncMobileHero();
+      updateLogoBaseSize();
       finishSweepReturn();
       window.cancelAnimationFrame(sealSweepFrame);
       sealSweepFrame = null;
-      window.clearTimeout(trailTimeout);
-      trailActive = false;
-      clearTrails();
-      trailLastSampleScrollY = window.scrollY;
-      trailNeedsStart = false;
-      trailDirection = 0;
-      lastScrollY = window.scrollY;
+      clearTrail();
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
@@ -752,12 +786,6 @@ const linksEn = en.nav.links;
     sweep.addEventListener("transitionend", function (event) {
       if (event.pseudoElement === "::before" && event.propertyName === "transform"
         && nav.classList.contains("is-sweep-returning")) finishSweepReturn();
-    });
-    nav.addEventListener("transitionend", function (event) {
-      if (event.target !== nav || (event.propertyName !== "width" && event.propertyName !== "top")) return;
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(applyProgress);
     });
     window.addEventListener("aigcr:langchange", function () {
       syncLabels();
@@ -770,14 +798,10 @@ const linksEn = en.nav.links;
       document.addEventListener("DOMContentLoaded", function () {
         collectSections();
         applyProgress();
-        void getComputedStyle(universitySeal).transform;
-        nav.classList.add("is-seal-ready");
       }, { once: true });
     } else {
       collectSections();
       applyProgress();
-      void getComputedStyle(universitySeal).transform;
-      nav.classList.add("is-seal-ready");
     }
   })();
 </script>
