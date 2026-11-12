@@ -178,7 +178,7 @@ Identify creative pain points and technical needs from real production workflows
         paperTitle: "Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut",
         venue: "SIGGRAPH Asia 2026",
         institutions: "TeleAI · AIGC Research · Fudan University",
-        tagline: "Continuous Multi-shot Video Narrative Match on Action-Cut.",
+        tagline: "Continuous-action-driven Multi-shot Video Generation.",
         body:
           "Tackling the long-overlooked “match on action” problem in cinematic language, Act2Cut enables generative video systems to understand action continuity across shots — narrative motion, not just surface frame similarity.",
         links: [
@@ -193,7 +193,7 @@ Identify creative pain points and technical needs from real production workflows
         paperTitle: "ViStoryBench: Comprehensive Benchmark Suite for Story Visualization",
         venue: "CVPR 2026",
         institutions: "ShanghaiTech University · StepFun · AIGC Research",
-        tagline: "A Comprehensive Benchmark Suite for Story Visualization.",
+        tagline: "Story Visualization Benchmark.",
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",
         links: [
@@ -209,7 +209,7 @@ Identify creative pain points and technical needs from real production workflows
         paperTitle: "StyleMe3D: Stylization with Disentangled Priors by Multiple Encoders on 3D Gaussians",
         venue: "ArXiv 2025",
         institutions: "ShanghaiTech · StepFun · AIGC Research · Guangming Lab",
-        tagline: "Stylization with Disentangled Priors on 3D Gaussians.",
+        tagline: "3DGS Stylization with Disentangled Priors.",
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",
         links: [

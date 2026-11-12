@@ -15,12 +15,12 @@ const thumbImages: Record<string, { src: string; height: number }> = {
   vistorybench: { src: "/images/vistorybench.webp", height: 696 },
   styleme3d: { src: "/images/styleme3d.webp", height: 595 },
 };
-const titleGlyphs: Record<string, string> = {
-  act2cut: "✂",
-  vistorybench: "▦",
-  styleme3d: "◈",
-  shotstudio: "▣",
-  "awesome-paperdaily": "▤",
+const titleIconPaths: Record<string, string[]> = {
+  act2cut: ["M3 8h18v12H3z", "M3 8l3-4h15l-3 4", "m7 4 3 4", "m14 4 3 4"],
+  vistorybench: ["M3 4h18v16H3z", "M12 4v16", "M3 12h18", "m15 16 1.5 1.5 3-3"],
+  styleme3d: ["m12 3 9 5-9 5-9-5 9-5Z", "M3 8v8l9 5 9-5V8", "M12 13v8"],
+  shotstudio: ["M3 6h18v14H3z", "M3 10h18", "M7 6v4", "M12 6v4", "M17 6v4", "M8 15h8"],
+  "awesome-paperdaily": ["M7 4h12v16H7z", "M4 7v14h12", "M10 9h6", "M10 13h6", "M10 17h4"],
 };
 const v = visuals[itemZh.id] ?? visuals.vistorybench;
 const thumbImage = thumbImages[itemZh.id];
@@ -127,7 +127,11 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   <div class="pub-body">
     <div class="pub-heading">
       <h3 class="pub-title">
-        <span class="pub-title-glyph" aria-hidden="true">{titleGlyphs[itemZh.id] ?? "✦"}</span>
+        <span class="pub-title-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            {(titleIconPaths[itemZh.id] ?? titleIconPaths["awesome-paperdaily"]).map((path) => <path d={path} />)}
+          </svg>
+        </span>
         <span class="pub-title-text">{itemZh.title}</span>
       </h3>
       {itemZh.institutions && (
@@ -301,12 +305,12 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
 
   .pub-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; }
   .pub-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-  .pub-title { display: flex; align-items: baseline; gap: 0.4em; min-width: 0; font-size: var(--type-medium); letter-spacing: 0.01em; }
-  .pub-title-glyph { flex: 0 0 auto; font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", sans-serif; line-height: 1; }
+  .pub-title { display: flex; align-items: center; flex: 0 1 auto; gap: 8px; max-width: 60%; min-width: 0; font-size: var(--type-medium); letter-spacing: 0.01em; }
+  .pub-title-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; padding: 6px; border: 1px solid rgba(119, 195, 226, 0.17); border-radius: 9px; background: rgba(83, 163, 199, 0.09); color: var(--accent-cyan); }
+  .pub-title-icon svg { width: 100%; height: 100%; }
   .pub-title-text { min-width: 0; overflow-wrap: anywhere; }
   .pub-institutions {
-    flex: 0 1 auto;
-    max-width: 62%;
+    flex: 1 1 0;
     min-width: 0;
     margin: 0;
     color: var(--text-muted);
