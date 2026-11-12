@@ -18,7 +18,7 @@ export const zh: Content = {
     ],
   },
   hero: {
-    eyebrow: "AI for Creativity (AI4C) Research",
+    eyebrow: "AI for Generative Creativity Research",
     headline: "创意人工智能研究计划",
     subhead: "从 工作流 走向 创意流",
     intro:

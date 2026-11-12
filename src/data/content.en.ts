@@ -18,7 +18,7 @@ export const en: Content = {
     ],
   },
   hero: {
-    eyebrow: "AI for Creativity (AI4C) Research",
+    eyebrow: "AI for Generative Creativity Research",
     headline: "Creative AI Research",
     subhead: "From Workflow to Creative Flow",
     intro:
