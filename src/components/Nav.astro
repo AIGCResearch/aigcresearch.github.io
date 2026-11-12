@@ -22,6 +22,7 @@ const linksEn = en.nav.links;
       <div class="nav-university-seal">
         <img class="nav-university-logo--light" src="/images/fudan-university-logo.webp" alt="复旦大学 / Fudan University" width="320" height="320" decoding="async" />
         <img class="nav-university-logo--dark" src="/images/fudan-university-logo-dark-blue.webp" alt="" width="320" height="320" decoding="async" />
+        <span class="nav-university-flow" aria-hidden="true"></span>
       </div>
 
       <nav class="nav-links" aria-label="页面导航">
@@ -163,6 +164,21 @@ const linksEn = en.nav.links;
   .nav-university-logo--dark { display: none; }
   :global(html[data-theme="dark"]) .nav-university-logo--light { display: none; }
   :global(html[data-theme="dark"]) .nav-university-logo--dark { display: block; filter: brightness(1.2); }
+  .nav-university-flow {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    clip-path: inset(0 var(--seal-cover, 100%) 0 0);
+    background: conic-gradient(from var(--nav-border-angle),
+      #2fd5c6 0deg, #e1ea2f 90deg, #26d3bc 180deg, #02a4da 270deg, #2fd5c6 360deg);
+    -webkit-mask: url('/images/fudan-university-logo.webp') center / contain no-repeat;
+    mask: url('/images/fudan-university-logo.webp') center / contain no-repeat;
+    animation: nav-border-spin 6s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-university-flow { display: none; }
+  }
 
   .nav-links {
     display: flex;
@@ -370,6 +386,30 @@ const linksEn = en.nav.links;
     var navLogoDocked = null;
     var sweepReturnTimeout = null;
     var sweep = nav.querySelector(".nav-sweep");
+    var universitySeal = nav.querySelector(".nav-university-seal");
+    var sealSweepFrame = null;
+
+    function syncSealColor() {
+      var sealRect = universitySeal.getBoundingClientRect();
+      if (!sealRect.width) return;
+      var navRect = nav.getBoundingClientRect();
+      var transform = getComputedStyle(sweep, "::before").transform;
+      var offset = transform === "none" ? 0 : new DOMMatrixReadOnly(transform).m41;
+      var sweepCenter = navRect.left + navRect.width / 2 + offset;
+      var cover = Math.min(Math.max((sealRect.right - sweepCenter) / sealRect.width, 0), 1);
+      universitySeal.style.setProperty("--seal-cover", (cover * 100).toFixed(2) + "%");
+    }
+
+    function trackSealSweep() {
+      window.cancelAnimationFrame(sealSweepFrame);
+      var endAt = performance.now() + 950;
+      function frame() {
+        syncSealColor();
+        if (performance.now() < endAt) sealSweepFrame = window.requestAnimationFrame(frame);
+        else sealSweepFrame = null;
+      }
+      sealSweepFrame = window.requestAnimationFrame(frame);
+    }
 
     function finishSweepReturn() {
       window.clearTimeout(sweepReturnTimeout);
@@ -511,12 +551,14 @@ const linksEn = en.nav.links;
             void getComputedStyle(nav.querySelector(".nav-sweep"), "::before").transform;
             nav.style.removeProperty("--nav-sweep-duration");
           }
+          universitySeal.style.setProperty("--seal-cover", navLogoDocked && !reducedMotion ? "0%" : "100%");
         } else if (!navLogoDocked && logoDocked) {
           navLogoDocked = true;
           if (!reducedMotion) {
             finishSweepReturn();
             nav.classList.remove("is-sweep-exit");
             nav.classList.add("is-sweep-enter");
+            trackSealSweep();
           }
         } else if (navLogoDocked && haloProgress < 0.98) {
           navLogoDocked = false;
@@ -524,6 +566,7 @@ const linksEn = en.nav.links;
             startSweepReturn();
             nav.classList.remove("is-sweep-enter");
             nav.classList.add("is-sweep-exit");
+            trackSealSweep();
           }
         }
         heroLogo.classList.toggle("is-desktop-flight", !mobile && !reducedMotion && haloProgress > 0);
@@ -645,6 +688,8 @@ const linksEn = en.nav.links;
       syncMobileHero();
       navLogoDocked = null;
       finishSweepReturn();
+      window.cancelAnimationFrame(sealSweepFrame);
+      sealSweepFrame = null;
       window.clearTimeout(trailTimeout);
       trailActive = false;
       clearTrails();
