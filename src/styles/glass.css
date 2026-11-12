@@ -135,13 +135,6 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight {
   will-change: transform, opacity;
 }
 
-html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight.is-flying {
-  animation: none;
-  filter:
-    drop-shadow(-8px -8px 14px rgba(47, 213, 198, 0.34))
-    drop-shadow(8px 8px 14px rgba(2, 164, 218, 0.34));
-}
-
 html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
   display: none;
 }
@@ -198,16 +191,6 @@ html[data-theme] body.site-body .hero-logo-wrap.is-mobile-flight .hero-rings {
   html[data-theme] body.site-body .logo-transfer img {
     animation: desktop-logo-self-glow 2.8s ease-in-out infinite alternate;
   }
-}
-
-@media (min-width: 901px) {
-  html[data-theme] body.site-body .logo-transfer.is-flying img {
-    animation: none;
-  }
-}
-
-html[data-theme] body.site-body .logo-transfer.is-flying .halo-transfer {
-  animation: none;
 }
 
 @keyframes desktop-logo-self-glow {
