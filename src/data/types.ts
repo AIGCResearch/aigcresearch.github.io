@@ -21,6 +21,7 @@ export type Publication = {
   title: string;
   paperTitle?: string;
   venue?: string;
+  institutions?: string;
   tagline: string;
   body: string;
   links: Link[];

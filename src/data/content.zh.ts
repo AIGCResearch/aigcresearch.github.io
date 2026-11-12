@@ -176,6 +176,7 @@ export const zh: Content = {
         id: "act2cut",
         title: "Act2Cut",
         venue: "SIGGRAPH Asia 2026",
+        institutions: "TeleAI · AIGC Research · 复旦大学",
         tagline: "多镜头视频叙事的动作连续性建模。",
         body:
           "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
@@ -189,6 +190,7 @@ export const zh: Content = {
         id: "vistorybench",
         title: "ViStoryBench",
         venue: "CVPR 2026",
+        institutions: "阶跃星辰 · AIGC Research",
         tagline: "面向视觉故事讲述的综合性基准测试。",
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
@@ -202,7 +204,8 @@ export const zh: Content = {
       {
         id: "styleme3d",
         title: "StyleMe3D",
-        venue: "ArXiv 2026",
+        venue: "ArXiv 2025",
+        institutions: "上海科技大学 · 阶跃星辰 · AIGC Research · 光明实验室",
         tagline: "3D 高斯下的解耦先验风格化。",
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
@@ -227,6 +230,7 @@ export const zh: Content = {
       {
         id: "awesome-paperdaily",
         title: "Awesome-PaperDaily",
+        institutions: "AIGC Research",
         tagline: "持续追踪 AIGC 前沿进展的开源知识整理项目。",
         body:
           "体现团队在知识组织、趋势追踪与社区共享方面的持续投入，不仅服务于内部研究，也希望与更广泛社区共同推动 AIGC 发展。",

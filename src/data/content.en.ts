@@ -177,6 +177,7 @@ Identify creative pain points and technical needs from real production workflows
         title: "Act2Cut",
         paperTitle: "Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut",
         venue: "SIGGRAPH Asia 2026",
+        institutions: "TeleAI · AIGC Research · Fudan University",
         tagline: "Continuous Multi-shot Video Narrative Match on Action-Cut.",
         body:
           "Tackling the long-overlooked “match on action” problem in cinematic language, Act2Cut enables generative video systems to understand action continuity across shots — narrative motion, not just surface frame similarity.",
@@ -191,6 +192,7 @@ Identify creative pain points and technical needs from real production workflows
         title: "ViStoryBench",
         paperTitle: "ViStoryBench: Comprehensive Benchmark Suite for Story Visualization",
         venue: "CVPR 2026",
+        institutions: "StepFun · AIGC Research",
         tagline: "A Comprehensive Benchmark Suite for Story Visualization.",
         body:
           "Targeting customized visual storytelling — the core task of cinematic generation — ViStoryBench defines a systematic evaluation framework for character consistency, style stability, plot alignment, compositional quality, and visualization.",
@@ -205,7 +207,8 @@ Identify creative pain points and technical needs from real production workflows
         id: "styleme3d",
         title: "StyleMe3D",
         paperTitle: "StyleMe3D: Stylization with Disentangled Priors by Multiple Encoders on 3D Gaussians",
-        venue: "ArXiv 2026",
+        venue: "ArXiv 2025",
+        institutions: "ShanghaiTech · StepFun · AIGC Research · Guangming Lab",
         tagline: "Stylization with Disentangled Priors on 3D Gaussians.",
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",
@@ -230,6 +233,7 @@ Identify creative pain points and technical needs from real production workflows
       {
         id: "awesome-paperdaily",
         title: "Awesome-PaperDaily",
+        institutions: "AIGC Research",
         tagline: "Following the advance of AIGC, day by day.",
         body:
           "An open knowledge curation project that tracks AIGC frontiers — reflecting our continued investment in knowledge organization, trend tracking, and community contribution.",
