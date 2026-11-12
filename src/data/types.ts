@@ -19,6 +19,7 @@ export type Direction = {
 export type Publication = {
   id: string;
   title: string;
+  paperTitle?: string;
   venue?: string;
   tagline: string;
   body: string;

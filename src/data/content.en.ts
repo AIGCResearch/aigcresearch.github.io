@@ -175,6 +175,7 @@ Identify creative pain points and technical needs from real production workflows
       {
         id: "act2cut",
         title: "Act2Cut",
+        paperTitle: "Act2Cut: Continuous Multi-Shot Video Narrative Match on Action-Cut",
         venue: "SIGGRAPH Asia 2026",
         tagline: "Continuous Multi-shot Video Narrative Match on Action-Cut.",
         body:
@@ -188,6 +189,7 @@ Identify creative pain points and technical needs from real production workflows
       {
         id: "vistorybench",
         title: "ViStoryBench",
+        paperTitle: "ViStoryBench: Comprehensive Benchmark Suite for Story Visualization",
         venue: "CVPR 2026",
         tagline: "A Comprehensive Benchmark Suite for Story Visualization.",
         body:
@@ -202,7 +204,8 @@ Identify creative pain points and technical needs from real production workflows
       {
         id: "styleme3d",
         title: "StyleMe3D",
-        venue: "ArXiv 2025",
+        paperTitle: "StyleMe3D: Stylization with Disentangled Priors by Multiple Encoders on 3D Gaussians",
+        venue: "ArXiv 2026",
         tagline: "Stylization with Disentangled Priors on 3D Gaussians.",
         body:
           "Multi-encoder, disentangled-prior stylization for 3D Gaussian representations — exploring controllable, interactive, scalable 3D creation as a long-term creative medium.",

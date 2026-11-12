@@ -202,7 +202,7 @@ export const zh: Content = {
       {
         id: "styleme3d",
         title: "StyleMe3D",
-        venue: "ArXiv 2025",
+        venue: "ArXiv 2026",
         tagline: "3D 高斯下的解耦先验风格化。",
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",

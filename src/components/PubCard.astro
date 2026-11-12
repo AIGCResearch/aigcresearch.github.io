@@ -17,6 +17,8 @@ const thumbImages: Record<string, { src: string; height: number }> = {
 };
 const v = visuals[itemZh.id] ?? visuals.vistorybench;
 const thumbImage = thumbImages[itemZh.id];
+const thumbTag = itemZh.venue ?? (itemZh.featured ? "OPEN KNOWLEDGE" : undefined);
+const thumbTitle = itemEn.paperTitle ?? itemZh.title;
 const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
   cx: 30 + (i * 13 + (i * i * 7)) % 150,
   cy: 20 + (i * 9 + i * 11) % 90,
@@ -26,7 +28,7 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
 ---
 <article class="pub-card reveal">
   <span class="card-hover-ring" aria-hidden="true"></span>
-  <div class="pub-thumb-shell" aria-hidden="true">
+  <div class="pub-thumb-shell">
     <div class="pub-thumb" data-expand-thumb>
       <div class="pub-thumb-bg" style={`background: radial-gradient(120% 100% at 20% 0%, ${v.from}33 0%, transparent 60%), linear-gradient(160deg, ${v.from}22 0%, ${v.to} 80%);`}></div>
       {thumbImage && <img class="pub-thumb-image" src={thumbImage.src} alt="" width="760" height={thumbImage.height} loading="lazy" decoding="async" data-expand-image />}
@@ -111,8 +113,8 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
       )}
 
       <div class="pub-thumb-overlay"></div>
-      <span class="pub-thumb-code" aria-hidden="true">{itemZh.id.toUpperCase().replace(/-/g, " · ")}</span>
-      <span class="pub-thumb-tag" aria-hidden="true">{itemZh.featured ? "OPEN KNOWLEDGE" : "FEATURED"}</span>
+      <span class="pub-thumb-paper-title">{thumbTitle}</span>
+      {thumbTag && <span class="pub-thumb-tag">{thumbTag}</span>}
     </div>
   </div>
   <div class="pub-body">
@@ -235,15 +237,17 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     pointer-events: none;
     transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .pub-thumb-code {
+  .pub-thumb-paper-title {
     position: absolute;
     bottom: 12px;
     left: 14px;
-    font-family: var(--font-mono);
+    max-width: calc(100% - 28px);
+    font-family: var(--font-en);
     font-size: var(--type-small);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(232, 238, 247, 0.85);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: rgba(241, 246, 251, 0.96);
     text-shadow: 0 0 12px rgba(6, 9, 15, 0.8);
     z-index: 4;
     transition:
@@ -254,26 +258,26 @@ const gaussianDots = Array.from({ length: 28 }).map((_, i) => ({
     position: absolute;
     top: 12px;
     right: 12px;
-    font-family: var(--font-mono);
+    font-family: var(--font-en);
     font-size: var(--type-small);
-    letter-spacing: 0.22em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     padding: 4px 8px;
     color: rgba(182, 214, 232, 0.84);
     background: rgba(8, 15, 22, 0.56);
     border: 1px solid rgba(162, 192, 210, 0.16);
     border-radius: var(--radius-pill);
     z-index: 4;
-    text-transform: uppercase;
     transition:
       opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
       transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .pub-card:hover .pub-thumb-overlay,
-  .pub-card:hover .pub-thumb-code,
+  .pub-card:hover .pub-thumb-paper-title,
   .pub-card:hover .pub-thumb-tag {
     opacity: 0;
   }
-  .pub-card:hover .pub-thumb-code { transform: translateY(6px); }
+  .pub-card:hover .pub-thumb-paper-title { transform: translateY(6px); }
   .pub-card:hover .pub-thumb-tag { transform: translateY(-6px); }
 
   .pub-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; }
