@@ -96,6 +96,14 @@ html[data-theme] body.site-body .nav.is-sweep-exit .nav-sweep::before {
   transform: translateX(-60%);
 }
 
+html[data-theme] body.site-body .nav.is-sweep-exit .nav-sweep {
+  transition-duration: 320ms;
+}
+
+html[data-theme] body.site-body .nav.is-sweep-returning .nav-sweep {
+  opacity: 1;
+}
+
 .logo-transfer {
   position: fixed;
   z-index: 61;

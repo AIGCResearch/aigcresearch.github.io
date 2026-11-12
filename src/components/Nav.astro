@@ -368,6 +368,20 @@ const linksEn = en.nav.links;
     var nextTrailIndex = 0;
     var trailDirection = 0;
     var navLogoDocked = null;
+    var sweepReturnTimeout = null;
+    var sweep = nav.querySelector(".nav-sweep");
+
+    function finishSweepReturn() {
+      window.clearTimeout(sweepReturnTimeout);
+      sweepReturnTimeout = null;
+      nav.classList.remove("is-sweep-returning");
+    }
+
+    function startSweepReturn() {
+      nav.classList.add("is-sweep-returning");
+      window.clearTimeout(sweepReturnTimeout);
+      sweepReturnTimeout = window.setTimeout(finishSweepReturn, 900);
+    }
 
     function collectSections() {
       heroLogo = document.querySelector(".hero-logo-wrap");
@@ -500,12 +514,14 @@ const linksEn = en.nav.links;
         } else if (!navLogoDocked && logoDocked) {
           navLogoDocked = true;
           if (!reducedMotion) {
+            finishSweepReturn();
             nav.classList.remove("is-sweep-exit");
             nav.classList.add("is-sweep-enter");
           }
         } else if (navLogoDocked && haloProgress < 0.98) {
           navLogoDocked = false;
           if (!reducedMotion) {
+            startSweepReturn();
             nav.classList.remove("is-sweep-enter");
             nav.classList.add("is-sweep-exit");
           }
@@ -628,6 +644,7 @@ const linksEn = en.nav.links;
       }
       syncMobileHero();
       navLogoDocked = null;
+      finishSweepReturn();
       window.clearTimeout(trailTimeout);
       trailActive = false;
       clearTrails();
@@ -640,6 +657,10 @@ const linksEn = en.nav.links;
       window.requestAnimationFrame(applyProgress);
     });
     window.addEventListener("scroll", onScroll, { passive: true });
+    sweep.addEventListener("transitionend", function (event) {
+      if (event.pseudoElement === "::before" && event.propertyName === "transform"
+        && nav.classList.contains("is-sweep-returning")) finishSweepReturn();
+    });
     nav.addEventListener("transitionend", function (event) {
       if (event.target !== nav || (event.propertyName !== "width" && event.propertyName !== "top")) return;
       if (ticking) return;
