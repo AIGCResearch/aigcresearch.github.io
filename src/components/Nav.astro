@@ -158,6 +158,12 @@ const linksEn = en.nav.links;
     margin-left: 0;
     transform: translateX(-50%);
   }
+  :global(html[data-lang="en"]) .nav-university-seal {
+    transform: translateX(var(--nav-seal-shift, 0px));
+  }
+  :global(html[data-lang="en"]) .nav.is-seal-ready .nav-university-seal {
+    transition: transform 350ms ease;
+  }
   :global(html[data-lang="zh"]) .nav-links { margin-left: auto; }
   .nav-university-seal img {
     grid-area: 1 / 1;
@@ -246,6 +252,19 @@ const linksEn = en.nav.links;
   .nav-mobile-tools :global(.lang-toggle):hover {
     background: rgba(237, 246, 250, 0.11);
     color: #ffffff;
+  }
+
+  @media (min-width: 901px) and (max-width: 1100px) {
+    :global(html[data-lang="en"]) .nav-links {
+      gap: clamp(0px, calc(1.5vw - 13.5px), 3px);
+    }
+    :global(html[data-lang="en"]) .nav-links a {
+      padding-inline: clamp(4px, calc(3.5vw - 27.5px), 11px);
+    }
+    :global(html[data-lang="en"]) .nav-links :global(.lang-toggle) {
+      min-width: clamp(36px, calc(3vw + 9px), 42px);
+      padding-inline: clamp(6px, calc(1.5vw - 7.5px), 9px);
+    }
   }
 
   .nav-burger {
@@ -395,6 +414,7 @@ const linksEn = en.nav.links;
     var navLogoDocked = null;
     var sweepReturnTimeout = null;
     var sweep = nav.querySelector(".nav-sweep");
+    var navInner = nav.querySelector(".nav-inner");
     var universitySeal = nav.querySelector(".nav-university-seal");
     var sealSweepFrame = null;
 
@@ -506,10 +526,12 @@ const linksEn = en.nav.links;
       var mobile = window.innerWidth <= 900;
       var progress = Math.min(Math.max(window.scrollY / (mobile ? 110 : 140), 0), 1);
       var targetWidth = Math.min(920, Math.max(260, window.innerWidth - (mobile ? 28 : 36)));
+      var targetInnerWidth = window.innerWidth - (window.innerWidth - targetWidth) * progress - 32;
       if (!mobile && heroCards) {
         var cardsWidth = heroCards.getBoundingClientRect().width;
         var dockedInnerWidth = Math.min(900, targetWidth - 38);
-        nav.style.setProperty("--nav-inner-width", (cardsWidth + (dockedInnerWidth - cardsWidth) * progress).toFixed(2) + "px");
+        targetInnerWidth = cardsWidth + (dockedInnerWidth - cardsWidth) * progress;
+        nav.style.setProperty("--nav-inner-width", targetInnerWidth.toFixed(2) + "px");
       }
       nav.style.setProperty("--nav-shrink", ((window.innerWidth - targetWidth) * progress).toFixed(2) + "px");
       nav.style.setProperty("--nav-top", (12 * progress).toFixed(2) + "px");
@@ -518,6 +540,12 @@ const linksEn = en.nav.links;
       nav.style.setProperty("--nav-alpha", (0.62 - 0.08 * progress).toFixed(3));
       nav.style.setProperty("--nav-shadow-alpha", (0.26 * progress).toFixed(3));
       nav.style.setProperty("--nav-outline-opacity", progress.toFixed(3));
+      if (root.dataset.lang === "en" && universitySeal.offsetWidth) {
+        // The seal stays in flex layout so the menu keeps its right edge; shift only its painted position.
+        var rightOfSeal = navInner.clientWidth - universitySeal.offsetLeft - universitySeal.offsetWidth / 2;
+        var centerShift = (rightOfSeal - targetInnerWidth / 2) * (1 - progress);
+        universitySeal.style.setProperty("--nav-seal-shift", centerShift.toFixed(2) + "px");
+      }
 
       if (heroLogo) {
         var flyingMobileLogo = mobile && !reducedMotion;
@@ -727,16 +755,25 @@ const linksEn = en.nav.links;
       ticking = true;
       window.requestAnimationFrame(applyProgress);
     });
-    window.addEventListener("aigcr:langchange", syncLabels);
+    window.addEventListener("aigcr:langchange", function () {
+      syncLabels();
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(applyProgress);
+    });
     syncLabels();
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", function () {
         collectSections();
         applyProgress();
+        void getComputedStyle(universitySeal).transform;
+        nav.classList.add("is-seal-ready");
       }, { once: true });
     } else {
       collectSections();
       applyProgress();
+      void getComputedStyle(universitySeal).transform;
+      nav.classList.add("is-seal-ready");
     }
   })();
 </script>
