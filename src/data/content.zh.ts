@@ -310,7 +310,7 @@ export const zh: Content = {
         avatar: "/images/team/siyu-zhu.webp",
         role: "学术界导师",
         affiliation: "复旦大学 · 正教授\n上海创智学院 · 全时导师",
-        bio: "",
+        bio: "研究方向为视频世界模型。",
         links: {
           personal_page: "https://sites.google.com/site/zhusiyucs/home",
           google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",

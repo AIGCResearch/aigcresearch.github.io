@@ -189,6 +189,7 @@ const filledIcons = new Set(["publication"]);
           <span data-lang="zh">AI for Generative Creativity Research</span>
           <span data-lang="en">AI for Generative Creativity Research</span>
         </p>
+        <p class="hero-acronym">AIGC = Art · Innovation · Generation · Creativity</p>
 
         <ul class="hero-values">
           <li><span data-lang="zh">创新</span><span data-lang="en">Innovation</span></li>
@@ -447,6 +448,17 @@ const filledIcons = new Set(["publication"]);
     line-height: 1.35;
     color: rgba(225, 240, 250, 0.9);
     text-shadow: 0 6px 26px rgba(0, 0, 0, 0.32);
+  }
+
+  .hero-acronym {
+    margin: 12px 0 0;
+    color: rgba(225, 240, 250, 0.78);
+    font-family: var(--font-en);
+    font-size: var(--type-small);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    text-wrap: balance;
   }
 
   .hero-values {
@@ -722,10 +734,12 @@ const filledIcons = new Set(["publication"]);
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       width: min(100%, 360px);
+      margin-top: 18px;
       gap: 10px 12px;
     }
     .hero-values li { justify-content: center; }
     .hero-values li + li::before { display: none; }
+    .hero-cards { margin-top: 16px; }
     .hero-capabilities {
       padding: 16px 14px 18px;
     }

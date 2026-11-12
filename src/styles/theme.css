@@ -81,6 +81,7 @@ html[data-theme="light"] body.site-body .hero-side,
 html[data-theme="light"] body.site-body .hero-title { color: #173b53; text-shadow: none; }
 html[data-theme="light"] body.site-body .hero-side-detail,
 html[data-theme="light"] body.site-body .hero-subtitle { color: #486b7f; text-shadow: none; }
+html[data-theme="light"] body.site-body .hero-acronym { color: #3f6578; }
 html[data-theme="light"] body.site-body .hero-values {
   color: #22485f;
   border-top-color: rgba(34, 72, 95, 0.2);
@@ -175,7 +176,7 @@ html[data-theme="light"] body.site-body .social:hover {
   background: #eef1fc;
 }
 html[data-theme] body.site-body .social--github { --social-brand: #f0f6fc; --social-brand-light: #24292f; --social-brand-light-icon: #24292f; }
-html[data-theme] body.site-body .social--huggingface { --social-brand: #ffd21e; --social-brand-light: #ffd21e; --social-brand-light-icon: #ffd21e; }
+html[data-theme] body.site-body .social--huggingface { --social-brand: #ffd21e; --social-brand-light: #785800; --social-brand-light-icon: #ad7b00; }
 html[data-theme] body.site-body .social--youtube { --social-brand: #ff0033; --social-brand-light: #b81b31; --social-brand-light-icon: #ff0033; }
 html[data-theme] body.site-body .social--bilibili { --social-brand: #00a1d6; --social-brand-light: #006b8f; --social-brand-light-icon: #007da5; }
 html[data-theme] body.site-body .social--x { --social-brand: #f5f5f5; --social-brand-light: #111111; --social-brand-light-icon: #111111; }
@@ -192,11 +193,6 @@ html[data-theme="light"] body.site-body .social:hover {
   box-shadow: 0 0 16px color-mix(in srgb, var(--social-brand-light-icon) 12%, transparent);
 }
 html[data-theme="light"] body.site-body .social:hover svg { color: var(--social-brand-light-icon); }
-html[data-theme="light"] body.site-body .social--huggingface:hover {
-  background: #38506a;
-  border-color: rgba(255, 210, 30, 0.72);
-  box-shadow: none;
-}
 html[data-theme="light"] body.site-body .member-wechat {
   background: #eef1fc;
   border-color: rgba(66, 134, 170, 0.18);

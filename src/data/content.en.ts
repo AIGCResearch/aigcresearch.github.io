@@ -313,7 +313,7 @@ Identify creative pain points and technical needs from real production workflows
         avatar: "/images/team/siyu-zhu.webp",
         role: "Academic Advisor",
         affiliation: "Fudan University · Full Professor\nShanghai Innovation Institute · Full-time Mentor",
-        bio: "",
+        bio: "Research on video world models.",
         links: {
           personal_page: "https://sites.google.com/site/zhusiyucs/home",
           google_scholar: "https://scholar.google.com.hk/citations?hl=en&user=vNCnDiMAAAAJ&view_op=list_works&sortby=pubdate",
