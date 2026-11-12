@@ -177,7 +177,7 @@ export const zh: Content = {
         title: "Act2Cut",
         venue: "SIGGRAPH Asia 2026",
         institutions: "TeleAI · AIGC Research · 复旦大学",
-        tagline: "多镜头视频叙事的动作连续性建模。",
+        tagline: "连续动作驱动的多镜头视频生成。",
         body:
           "聚焦电影语言中“动作匹配剪辑”这一长期被忽视的关键问题，让生成式视频系统具备跨镜头动作连续性理解，强调叙事动作与电影语法之间的协同。",
         links: [
@@ -191,7 +191,7 @@ export const zh: Content = {
         title: "ViStoryBench",
         venue: "CVPR 2026",
         institutions: "上海科技大学 · 阶跃星辰 · AIGC Research",
-        tagline: "面向视觉故事讲述的综合性基准测试。",
+        tagline: "故事可视化基准测试。",
         body:
           "针对定制化视觉故事讲述这一电影生成的核心任务，构建系统性评测框架，衡量模型在角色一致性、风格稳定性、剧情对齐、构图质量与故事可视化方面的真实能力。",
         links: [
@@ -206,7 +206,7 @@ export const zh: Content = {
         title: "StyleMe3D",
         venue: "ArXiv 2025",
         institutions: "上海科技大学 · 阶跃星辰 · AIGC Research · 光明实验室",
-        tagline: "3D 高斯下的解耦先验风格化。",
+        tagline: "基于解耦先验的 3DGS 风格化。",
         body:
           "在 3D 高斯表示下探索可控、可交互、可扩展的风格化生成，通过多编码器与解耦先验实现稳定的风格控制，体现团队对 3D 作为创作媒介的长期判断。",
         links: [
