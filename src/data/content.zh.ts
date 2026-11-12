@@ -98,7 +98,7 @@ export const zh: Content = {
 
   directions: {
     eyebrow: "Research Directions",
-    title: "实验室与工作室",
+    title: "组织架构",
     intro:
       "通用创意智能实验室负责基础研究，智能影像叙事实验室聚焦应用研究，星联无限灵感工作室专注创作实践。",
     items: [
