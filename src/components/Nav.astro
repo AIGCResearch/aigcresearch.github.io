@@ -489,13 +489,21 @@ const linksEn = en.nav.links;
         var logoDocked = haloProgress >= 0.98 && navSettled;
         if (navLogoDocked === null) {
           navLogoDocked = haloProgress >= 0.98;
+          if (navLogoDocked && !reducedMotion) {
+            // Rest at the destination on a deep-link load without playing an arrival sweep.
+            nav.style.setProperty("--nav-sweep-duration", "0ms");
+            nav.classList.remove("is-sweep-exit");
+            nav.classList.add("is-sweep-enter");
+            void getComputedStyle(nav.querySelector(".nav-sweep"), "::before").transform;
+            nav.style.removeProperty("--nav-sweep-duration");
+          }
         } else if (!navLogoDocked && logoDocked) {
           navLogoDocked = true;
           if (!reducedMotion) {
             nav.classList.remove("is-sweep-exit");
             nav.classList.add("is-sweep-enter");
           }
-        } else if (navLogoDocked && !logoDocked) {
+        } else if (navLogoDocked && haloProgress < 0.98) {
           navLogoDocked = false;
           if (!reducedMotion) {
             nav.classList.remove("is-sweep-enter");

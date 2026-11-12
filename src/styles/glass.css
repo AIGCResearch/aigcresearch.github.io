@@ -64,6 +64,8 @@ html[data-theme] body.site-body .nav-sweep {
   overflow: hidden;
   border-radius: inherit;
   pointer-events: none;
+  opacity: var(--halo-progress, 0);
+  transition: opacity 120ms linear;
 }
 
 html[data-theme] body.site-body .nav-shell { z-index: 1; }
@@ -72,7 +74,8 @@ html[data-theme] body.site-body .nav-sweep::before {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0;
+  transform: translateX(-60%);
+  transition: transform var(--nav-sweep-duration, 850ms) ease-in-out;
   background: linear-gradient(90deg,
     transparent 20%,
     rgba(47, 213, 198, 0.16) 27%,
@@ -86,23 +89,11 @@ html[data-theme] body.site-body .nav-sweep::before {
 }
 
 html[data-theme] body.site-body .nav.is-sweep-enter .nav-sweep::before {
-  animation: nav-sweep-enter 850ms ease-in-out both;
+  transform: translateX(60%);
 }
 
 html[data-theme] body.site-body .nav.is-sweep-exit .nav-sweep::before {
-  animation: nav-sweep-exit 850ms ease-in-out both;
-}
-
-@keyframes nav-sweep-enter {
-  0% { transform: translateX(-100%); opacity: 0; }
-  16%, 84% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
-}
-
-@keyframes nav-sweep-exit {
-  0% { transform: translateX(100%); opacity: 0; }
-  16%, 84% { opacity: 1; }
-  100% { transform: translateX(-100%); opacity: 0; }
+  transform: translateX(-60%);
 }
 
 .logo-transfer {
