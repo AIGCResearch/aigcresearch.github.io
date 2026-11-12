@@ -85,7 +85,6 @@ html[data-theme="light"] body.site-body .hero-acronym {
   color: #3f6578;
   border-color: rgba(52, 115, 151, 0.3);
 }
-html[data-theme="light"] body.site-body .hero-acronym::before { color: #d2a029; }
 html[data-theme="light"] body.site-body .hero-acronym-initial { color: #d2a029; }
 html[data-theme="light"] body.site-body .hero-values {
   color: #22485f;
