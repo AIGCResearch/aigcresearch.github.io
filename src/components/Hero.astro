@@ -189,7 +189,7 @@ const filledIcons = new Set(["publication"]);
           <span data-lang="zh">AI for Generative Creativity Research</span>
           <span data-lang="en">AI for Generative Creativity Research</span>
         </p>
-        <p class="hero-acronym">AIGC = Art&nbsp;· Innovation&nbsp;· Generation&nbsp;· Creativity</p>
+        <p class="hero-acronym"><span class="hero-acronym-word"><span class="hero-acronym-initial">A</span>rt&nbsp;·</span> <span class="hero-acronym-word"><span class="hero-acronym-initial">I</span>nnovation&nbsp;·</span> <span class="hero-acronym-word"><span class="hero-acronym-initial">G</span>eneration&nbsp;·</span> <span class="hero-acronym-word"><span class="hero-acronym-initial">C</span>reativity</span></p>
 
         <ul class="hero-values">
           <li><span data-lang="zh">创新</span><span data-lang="en">Innovation</span></li>
@@ -457,7 +457,10 @@ const filledIcons = new Set(["publication"]);
     padding: 6px 16px;
     border: 1px solid rgba(126, 197, 221, 0.36);
     border-radius: 999px;
-    background: rgba(24, 72, 103, 0.2);
+    background: linear-gradient(105deg,
+      rgba(2, 164, 218, 0.2),
+      rgba(47, 213, 198, 0.2) 50%,
+      rgba(225, 234, 47, 0.2));
     color: rgba(225, 240, 250, 0.78);
     font-family: var(--font-en);
     font-size: var(--type-small);
@@ -466,6 +469,9 @@ const filledIcons = new Set(["publication"]);
     line-height: 1.5;
     text-wrap: balance;
   }
+
+  .hero-acronym-word { white-space: nowrap; }
+  .hero-acronym-initial { font-size: 1.24em; line-height: 0; }
 
   .hero-values {
     display: flex;
