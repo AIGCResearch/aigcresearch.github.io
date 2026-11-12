@@ -16,6 +16,22 @@ const splitBody = (body: string) => {
 const bodyZh = z.items.map((item) => splitBody(item.body));
 const bodyEn = e.items.map((item) => splitBody(item.body));
 const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN" : "StarX";
+const directionIconPaths: Record<string, string[]> = {
+  cgi: [
+    "M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z",
+    "M5 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M19 3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M5 17.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "M19 17.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z",
+    "m10.6 10.6-4.5-4.5", "m13.4 10.6 4.5-4.5",
+    "m10.6 13.4-4.5 4.5", "m13.4 13.4 4.5 4.5",
+  ],
+  icn: ["M3 8h18v12H3z", "M3 8l3-4h15l-3 4", "m7 4 3 4", "m14 4 3 4"],
+  starx: [
+    "M12 3a9 9 0 1 0 0 18h1.2a2.8 2.8 0 0 0 0-5.6h-.7a1.9 1.9 0 0 1 0-3.8h4A4.5 4.5 0 0 0 21 7.1 8.1 8.1 0 0 0 12 3Z",
+    "M7.5 10h.01", "M10 7.5h.01", "M14 7.5h.01",
+  ],
+};
 ---
 <section class="section directions" id="directions" aria-labelledby="directions-title">
   <hr class="section-divider" />
@@ -47,10 +63,15 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
           <div class="dir-copy">
             <header class="dir-head">
               <span class="dir-index" aria-hidden="true">
-                <span>{directionMark(d.id)}</span>
-                <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
+                <svg class="dir-index-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  {directionIconPaths[d.id].map((path) => <path d={path}></path>)}
+                </svg>
+                <span class="dir-index-text">
+                  <span>{directionMark(d.id)}</span>
+                  <span class="dir-index-kind">{d.id === "starx" ? "Studio" : "Lab"}</span>
+                </span>
               </span>
-              <div class:list={["dir-heading", { "dir-heading--starx": d.id === "starx" }]}>
+              <div class="dir-heading">
                 <h3 class="dir-title">
                   <span data-lang="zh">{d.title}</span>
                   <span data-lang="en">{e.items[i].title}</span>
@@ -59,12 +80,6 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
                   <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                   <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
                 </div>
-                {d.id === "starx" && d.team && (
-                  <div class="dir-team-logo-wrap" role="img" aria-label={d.team.name}>
-                    <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
-                    <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
-                  </div>
-                )}
               </div>
             </header>
             <p class="dir-tagline">
@@ -98,19 +113,22 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
               </li>
             ))}
           </ul>
-          {d.id !== "starx" && d.team && e.items[i].team && (
-            <aside class="dir-team" aria-label={d.team.name}>
-              <div class="dir-team-logo-wrap" aria-hidden="true">
-                <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
-                <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
-              </div>
-              {d.team.description && e.items[i].team.description && (
-                <p class="dir-team-description">
-                  <span data-lang="zh">{d.team.description}</span>
-                  <span data-lang="en">{e.items[i].team.description}</span>
-                </p>
-              )}
-            </aside>
+        </article>
+      ))}
+    </div>
+    <div class="dir-team-grid">
+      {z.items.map((d, i) => d.team && e.items[i].team && (
+        <article class:list={["dir-team", "reveal", { "dir-team--logo-only": !d.team.description }]} aria-labelledby={`dir-team-title-${d.id}`}>
+          <h3 class="dir-title" id={`dir-team-title-${d.id}`}>{d.team.name}</h3>
+          <div class="dir-team-logo-wrap" aria-hidden="true">
+            <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+            <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+          </div>
+          {d.team.description && e.items[i].team.description && (
+            <p class="dir-team-description">
+              <span data-lang="zh">{d.team.description}</span>
+              <span data-lang="en">{e.items[i].team.description}</span>
+            </p>
           )}
         </article>
       ))}
@@ -141,21 +159,8 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
   }
   html[lang="en"] .lede { line-height: 1.65; }
 
-  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 18px; }
-  @media (min-width: 861px) {
-    .dir-card:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-      column-gap: 36px;
-      align-items: start;
-    }
-    .dir-card:last-child:nth-child(odd) .dir-copy { grid-column: 1 / -1; grid-row: 1; }
-    .dir-card:last-child:nth-child(odd) .dir-details { grid-column: 1 / -1; grid-row: 2; }
-    .dir-card:last-child:nth-child(odd) .dir-details-inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 36px; }
-    .dir-card:last-child:nth-child(odd) .dir-body { margin-top: 0; }
-    .dir-card:last-child:nth-child(odd) .dir-tags { grid-column: 1 / -1; grid-row: 3; }
-  }
+  .dir-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 18px; }
+  .dir-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
   .dir-card {
     position: relative;
     padding: 32px 28px 28px;
@@ -212,22 +217,18 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     user-select: none;
   }
 
-  .dir-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
-  .dir-heading { flex: 1; min-width: 0; }
-  .dir-heading--starx { display: flex; align-items: center; gap: clamp(12px, 3vw, 36px); }
-  .dir-logo-wrap { position: relative; width: 85%; max-width: 350px; aspect-ratio: 1164 / 264; }
-  .dir-heading--starx .dir-logo-wrap { flex: 0 1 350px; width: 42%; }
-  .dir-heading--starx .dir-team-logo-wrap { flex: 0 1 420px; width: 50%; max-width: 420px; margin: 0; }
+  .dir-head { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+  .dir-heading { width: 100%; min-width: 0; }
+  .dir-logo-wrap { position: relative; width: 100%; max-width: 350px; aspect-ratio: 1164 / 264; }
   .dir-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-logo--light { opacity: 1; }
   :global(html[data-theme="light"]) .dir-logo--dark { opacity: 0; }
   .dir-index {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 7px;
     min-width: 90px;
     font-family: var(--font-mono);
     font-size: var(--type-medium);
@@ -240,7 +241,10 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
     border: 1px solid rgba(145, 185, 208, 0.16);
     color: rgba(181, 215, 234, 0.86);
     flex-shrink: 0;
+    white-space: nowrap;
   }
+  .dir-index-icon { width: 20px; height: 20px; flex: none; }
+  .dir-index-text { display: inline-flex; align-items: baseline; gap: 7px; }
   .dir-index-kind { font-size: var(--type-small); font-weight: 500; letter-spacing: 0.06em; }
   .dir-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
@@ -291,18 +295,19 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
   .dir-point-line { display: block; }
   html[lang="en"] :is(.dir-intro, .dir-body) { line-height: 1.6; }
   .dir-team {
-    margin-top: 22px;
-    padding: 18px 20px;
+    min-width: 0;
+    padding: 22px 28px;
     border: 1px solid var(--surface-border-strong);
     border-radius: 14px;
     background: var(--surface);
   }
-  .dir-team-logo-wrap { position: relative; width: 100%; max-width: 400px; margin-inline: auto; aspect-ratio: 1200 / 236; }
+  .dir-team--logo-only { display: flex; align-items: center; }
+  .dir-team-logo-wrap { position: relative; width: 100%; max-width: 440px; margin-inline: auto; aspect-ratio: 1200 / 236; }
   .dir-team-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 180ms ease; }
   .dir-team-logo--light { opacity: 0; }
   :global(html[data-theme="light"]) .dir-team-logo--light { opacity: 1; }
   :global(html[data-theme="light"]) .dir-team-logo--dark { opacity: 0; }
-  .dir-team-description { margin: 10px 0 0; color: var(--text-muted); font-size: var(--type-small); line-height: 1.75; }
+  .dir-team-description { margin: 14px 0 0; color: var(--text-muted); font-size: var(--type-small); line-height: 1.75; }
 
   .dir-tags { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
@@ -319,17 +324,21 @@ const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN
   }
   .tag:hover { border-color: rgba(180, 208, 224, 0.2); color: rgba(228, 236, 241, 0.88); background: rgba(163, 184, 198, 0.07); }
 
+  @media (max-width: 1020px) {
+    .dir-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 860px) {
-    .dir-grid { grid-template-columns: 1fr; gap: 18px; }
     .dir-card { padding: 32px 24px; }
     .dir-card-watermark { font-size: var(--type-large); top: 18px; right: 20px; }
     .section-panel { padding: 24px 20px 28px; }
   }
+  @media (max-width: 700px) {
+    .dir-grid, .dir-team-grid { grid-template-columns: 1fr; }
+    .dir-team { padding: 20px 24px; }
+  }
   @media (max-width: 480px) {
-    .dir-head { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .dir-heading { width: 100%; }
+    .dir-head { gap: 12px; }
     .dir-index { min-width: 82px; padding: 8px 12px; }
-    .dir-heading--starx { gap: 10px; }
   }
 </style>
 
