@@ -158,11 +158,13 @@ const linksEn = en.nav.links;
     margin-left: 0;
     transform: translateX(-50%);
   }
-  :global(html[data-lang="en"]) .nav-university-seal {
-    transform: translateX(var(--nav-seal-shift, 0px));
-  }
-  :global(html[data-lang="en"]) .nav.is-seal-ready .nav-university-seal {
-    transition: transform 350ms ease;
+  @media (min-width: 901px) {
+    :global(html[data-lang="en"]) .nav-university-seal {
+      transform: translateX(var(--nav-seal-shift, 0px));
+    }
+    :global(html[data-lang="en"]) .nav.is-seal-ready .nav-university-seal {
+      transition: transform 350ms ease;
+    }
   }
   :global(html[data-lang="zh"]) .nav-links { margin-left: auto; }
   .nav-university-seal img {
@@ -540,7 +542,7 @@ const linksEn = en.nav.links;
       nav.style.setProperty("--nav-alpha", (0.62 - 0.08 * progress).toFixed(3));
       nav.style.setProperty("--nav-shadow-alpha", (0.26 * progress).toFixed(3));
       nav.style.setProperty("--nav-outline-opacity", progress.toFixed(3));
-      if (root.dataset.lang === "en" && universitySeal.offsetWidth) {
+      if (!mobile && root.dataset.lang === "en" && universitySeal.offsetWidth) {
         // The seal stays in flex layout so the menu keeps its right edge; shift only its painted position.
         var rightOfSeal = navInner.clientWidth - universitySeal.offsetLeft - universitySeal.offsetWidth / 2;
         var centerShift = (rightOfSeal - targetInnerWidth / 2) * (1 - progress);
