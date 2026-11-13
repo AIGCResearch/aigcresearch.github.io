@@ -15,7 +15,8 @@ const splitBody = (body: string) => {
 };
 const bodyZh = z.items.map((item) => splitBody(item.body));
 const bodyEn = e.items.map((item) => splitBody(item.body));
-const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "icn" ? "ICN" : "StarX";
+const directionMark = (id: string) => id === "cgi" ? "CGI" : id === "ifm" ? "IFM" : "StarX";
+const directionLogo = (id: string, theme: string) => `/images/logo-${id}-lab-${theme}.${id === "ifm" ? "png" : "webp"}`;
 const directionIconPaths: Record<string, string[]> = {
   cgi: [
     "M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z",
@@ -26,7 +27,7 @@ const directionIconPaths: Record<string, string[]> = {
     "m10.6 10.6-4.5-4.5", "m13.4 10.6 4.5-4.5",
     "m10.6 13.4-4.5 4.5", "m13.4 13.4 4.5 4.5",
   ],
-  icn: ["M3 8h18v12H3z", "M3 8l3-4h15l-3 4", "m7 4 3 4", "m14 4 3 4"],
+  ifm: ["M3 8h18v12H3z", "M3 8l3-4h15l-3 4", "m7 4 3 4", "m14 4 3 4"],
   starx: [
     "M12 3a9 9 0 1 0 0 18h1.2a2.8 2.8 0 0 0 0-5.6h-.7a1.9 1.9 0 0 1 0-3.8h4A4.5 4.5 0 0 0 21 7.1 8.1 8.1 0 0 0 12 3Z",
     "M7.5 10h.01", "M10 7.5h.01", "M14 7.5h.01",
@@ -77,8 +78,8 @@ const directionIconPaths: Record<string, string[]> = {
                   <span data-lang="en">{e.items[i].title}</span>
                 </h3>
                 <div class="dir-logo-wrap" aria-hidden="true">
-                  <img class="dir-logo dir-logo--light" src={`/images/logo-${d.id}-lab-light.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
-                  <img class="dir-logo dir-logo--dark" src={`/images/logo-${d.id}-lab-dark.webp`} alt="" width="1164" height="264" loading="lazy" decoding="async" />
+                  <img class="dir-logo dir-logo--light" src={directionLogo(d.id, "light")} alt="" width="1164" height={d.id === "ifm" ? 265 : 264} loading="lazy" decoding="async" />
+                  <img class="dir-logo dir-logo--dark" src={directionLogo(d.id, "dark")} alt="" width="1164" height={d.id === "ifm" ? 265 : 264} loading="lazy" decoding="async" />
                 </div>
               </div>
             </header>
@@ -121,8 +122,8 @@ const directionIconPaths: Record<string, string[]> = {
         <article class:list={["dir-team", "reveal", { "dir-team--logo-only": !d.team.description }]} aria-labelledby={`dir-team-title-${d.id}`}>
           <h3 class="dir-title" id={`dir-team-title-${d.id}`}>{d.team.name}</h3>
           <div class="dir-team-logo-wrap" aria-hidden="true">
-            <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
-            <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.webp`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+            <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.png`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
+            <img class="dir-team-logo dir-team-logo--dark" src={`${d.team.logoBase}-dark.png`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
           </div>
           {d.team.description && e.items[i].team.description && (
             <p class="dir-team-description">

@@ -4,7 +4,7 @@ export const en: Content = {
   meta: {
     title: "AIGC Research · AI4C — AI for Creativity",
     description:
-      "We are the AI4C Team, dedicated to advancing artistic content creation. Our work focuses on AI with Design Thinking and AI in Creative Workflows.",
+      "We are the AI4C Team, dedicated to advancing artistic content creation. Our work focuses on Creative General Intelligence and Intelligent TV & Filmmaking.",
   },
   nav: {
     brand: "AIGC Research",
@@ -22,7 +22,7 @@ export const en: Content = {
     headline: "Creative AI Research",
     subhead: "From Workflow to Creative Flow",
     intro:
-      "We are the AI4C Team (AI for Creativity), dedicated to advancing artistic content creation. Our work focuses on two pathways — AI with Design Thinking and AI in Creative Workflows — toward democratizing animation filmmaking and television production.",
+      "We are the AI4C Team (AI for Creativity), dedicated to advancing artistic content creation. Our work focuses on two pathways — Creative General Intelligence and Intelligent TV & Filmmaking — toward democratizing animation filmmaking and television production.",
     ctas: [
       { label: "Research Directions", href: "#directions" },
       { label: "Featured Work", href: "#publications" },
@@ -100,7 +100,7 @@ export const en: Content = {
     eyebrow: "Research Directions",
     title: "Labs & Studio",
     intro:
-      "The Creative General Intelligent Lab leads foundational research, the Intelligent Cinema Narrative Lab focuses on applied research, and the StarX Infinite Inspiration Studio specializes in creative practice.",
+      "The Creative General Intelligent Lab leads foundational research, the Intelligent TV & Filmmaking Lab focuses on applied research, and the StarX Infinite Inspiration Studio specializes in creative practice.",
     items: [
       {
         id: "cgi",
@@ -121,8 +121,8 @@ Outward scientific impact: Use generative AI to advance neuroscience and help ta
         tags: ["Cross-modal Aesthetics", "Design Thinking", "Interpretability", "Efficiency", "Brain-inspired Research", "Neuroscience"],
       },
       {
-        id: "icn",
-        title: "Intelligent Cinema Narrative Lab",
+        id: "ifm",
+        title: "Intelligent TV & Filmmaking Lab",
         subtitle: "Visual Storytelling & Filmmaking",
         tagline: "Expanding the Boundaries of Human Creativity: From Cumbersome Workflows to Free Creative Flow",
         body: `Starting from the goal of empowering human creators, we turn cutting-edge AI capabilities into practical tools for visual storytelling and cinematic content production. We aim to free creators from repetitive work so they can focus on story and expression, while exploring a new paradigm for AI-native post-production.

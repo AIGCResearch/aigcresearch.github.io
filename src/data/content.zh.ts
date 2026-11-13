@@ -4,7 +4,7 @@ export const zh: Content = {
   meta: {
     title: "AIGC Research · AI4C 创意人工智能研究院",
     description:
-      "我们致力于推动 AIGC 技术赋能艺术创作与内容生产，围绕通用创意智能与智能创意工作流开展持续研究。",
+      "我们致力于推动 AIGC 技术赋能艺术创作与内容生产，围绕通用创意智能与智能影视制作开展持续研究。",
   },
   nav: {
     brand: "AIGC Research",
@@ -22,7 +22,7 @@ export const zh: Content = {
     headline: "创意人工智能研究计划",
     subhead: "从 工作流 走向 创意流",
     intro:
-      "我们致力于推动 AIGC 技术赋能艺术创作与内容生产，围绕“通用创意智能”与“智能创意工作流”开展持续研究，探索机器如何理解创作、参与创作，并服务未来影视级内容生产。",
+      "我们致力于推动 AIGC 技术赋能艺术创作与内容生产，围绕“通用创意智能”与“智能影视制作”开展持续研究，探索机器如何理解创作、参与创作，并服务未来影视级内容生产。",
     ctas: [
       { label: "了解研究方向", href: "#directions" },
       { label: "查看代表成果", href: "#publications" },
@@ -100,7 +100,7 @@ export const zh: Content = {
     eyebrow: "Research Directions",
     title: "组织架构",
     intro:
-      "通用创意智能实验室负责基础研究，智能影像叙事实验室聚焦应用研究，星联无限灵感工作室专注创作实践。",
+      "通用创意智能实验室负责基础研究，智能影视制作实验室聚焦应用研究，星联无限灵感工作室专注创作实践。",
     items: [
       {
         id: "cgi",
@@ -121,9 +121,9 @@ export const zh: Content = {
         tags: ["跨模态美学", "设计思维", "可解释性", "轻量化", "类脑启发", "神经科学"],
       },
       {
-        id: "icn",
-        title: "智能影像叙事实验室",
-        subtitle: "Intelligent Cinema Narrative Lab",
+        id: "ifm",
+        title: "智能影视制作实验室",
+        subtitle: "Intelligent TV & Filmmaking Lab",
         tagline: "拓展人类创造力的边界：从“繁琐工作流”到“自由创意流”",
         body: `从"赋能人类创作"出发，我们旨在将前沿 AI 能力转化为创作者可用的智能工具，以支持影像叙事与影视级内容生产，让创作者更专注于故事与表达而非受制于重复劳动，并探索AI时代的原生后期制作范式。
 
@@ -138,7 +138,7 @@ export const zh: Content = {
         tags: ["全维度多模态交互", "影像叙事", "镜头语言", "数字资产生产", "影视创意流", "AI原生后期制作"],
         team: {
           name: "ActXCut Team",
-          description: "ActXCut Team 是智能影像叙事实验室的连续多镜头视频研发团队，围绕跨镜头动作连续性与叙事一致性，开创ActXCut系列研究工作，探索 AI 原生的影像创作与后期制作。",
+          description: "ActXCut Team 是智能影视制作实验室的连续多镜头视频研发团队，围绕跨镜头动作连续性与叙事一致性，开创ActXCut系列研究工作，探索 AI 原生的影像创作与后期制作。",
           logoBase: "/images/logo-actxcut-team",
         },
       },
