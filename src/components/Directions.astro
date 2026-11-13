@@ -120,6 +120,7 @@ const directionIconPaths: Record<string, string[]> = {
     <div class="dir-team-grid">
       {z.items.map((d, i) => d.team && e.items[i].team && (
         <article class:list={["dir-team", "reveal", { "dir-team--logo-only": !d.team.description }]} aria-labelledby={`dir-team-title-${d.id}`}>
+          <span class="card-hover-ring" aria-hidden="true"></span>
           <h3 class="dir-title" id={`dir-team-title-${d.id}`}>{d.team.name}</h3>
           <div class="dir-team-logo-wrap" aria-hidden="true">
             <img class="dir-team-logo dir-team-logo--light" src={`${d.team.logoBase}-light.png`} alt="" width="1200" height="236" loading="lazy" decoding="async" />
@@ -161,7 +162,7 @@ const directionIconPaths: Record<string, string[]> = {
   html[lang="en"] .lede { line-height: 1.65; }
 
   .dir-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 18px; }
-  .dir-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+  .dir-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
   .dir-card {
     position: relative;
     padding: 32px 28px 28px;
@@ -296,6 +297,7 @@ const directionIconPaths: Record<string, string[]> = {
   .dir-point-line { display: block; }
   html[lang="en"] :is(.dir-intro, .dir-body) { line-height: 1.6; }
   .dir-team {
+    position: relative;
     min-width: 0;
     padding: 22px 28px;
     border: 1px solid var(--surface-border-strong);
@@ -326,7 +328,7 @@ const directionIconPaths: Record<string, string[]> = {
   .tag:hover { border-color: rgba(180, 208, 224, 0.2); color: rgba(228, 236, 241, 0.88); background: rgba(163, 184, 198, 0.07); }
 
   @media (max-width: 1020px) {
-    .dir-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dir-grid, .dir-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 860px) {
     .dir-card { padding: 32px 24px; }

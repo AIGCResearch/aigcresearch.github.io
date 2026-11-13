@@ -313,11 +313,11 @@ html[data-theme] body.site-body .card-hover-ring {
   transition: opacity 220ms var(--ease-out);
 }
 
-html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) {
+html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .dir-team, .pub-card, .member, .partner-card):is(:hover, :focus-within) {
   border-color: transparent;
 }
 
-html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring {
+html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .dir-team, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring {
   opacity: 1;
   animation: nav-border-spin 6s linear infinite;
 }
@@ -333,7 +333,7 @@ html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .
   .logo-trails,
   .logo-trail { display: none; }
   html[data-theme] body.site-body .nav::before,
-  html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring { animation: none; }
+  html[data-theme] body.site-body :is(.hero-card, .pillar, .dir-card, .dir-team, .pub-card, .member, .partner-card):is(:hover, :focus-within) > .card-hover-ring { animation: none; }
 }
 
 html[data-theme="dark"] body.site-body .nav-mobile {

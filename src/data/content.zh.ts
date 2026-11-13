@@ -119,6 +119,11 @@ export const zh: Content = {
 内化探索：将创造力神经机制转化为可计算模型，研发下一代创意智能架构。
 外哺科研：利用生成式 AI 反哺神经科学，辅助攻克神经连接、疾病机理、创造力神经机制等重大科学难题。`,
         tags: ["跨模态美学", "设计思维", "可解释性", "轻量化", "类脑启发", "神经科学"],
+        team: {
+          name: "CreativeBench Team",
+          description: "CreativeBench Team 聚焦创意能力基准评测，研究如何衡量生成模型的创意表现。",
+          logoBase: "/images/logo-creativebench-team",
+        },
       },
       {
         id: "ifm",

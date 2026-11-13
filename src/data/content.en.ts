@@ -119,6 +119,11 @@ Analyze the black-box mechanisms of large models across micro, meso, and macro s
 Inward exploration: Turn the neural mechanisms of creativity into computable models to develop next-generation creative intelligence architectures.
 Outward scientific impact: Use generative AI to advance neuroscience and help tackle major questions about neural connectivity, disease mechanisms, and the neural basis of creativity.`,
         tags: ["Cross-modal Aesthetics", "Design Thinking", "Interpretability", "Efficiency", "Brain-inspired Research", "Neuroscience"],
+        team: {
+          name: "CreativeBench Team",
+          description: "CreativeBench Team studies benchmarks for creative ability and how to evaluate the creative performance of generative models.",
+          logoBase: "/images/logo-creativebench-team",
+        },
       },
       {
         id: "ifm",
