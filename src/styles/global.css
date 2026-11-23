@@ -43,7 +43,7 @@ body {
   max-width: none;
   object-fit: cover;
   object-position: center top;
-  opacity: 0.2;
+  opacity: 0.3;
   mix-blend-mode: screen;
   transform: translate3d(0, var(--background-shift, 0px), 0);
   will-change: transform;
