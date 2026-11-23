@@ -52,7 +52,7 @@ html[data-theme="light"] body.site-body .site-background-image {
   mix-blend-mode: multiply;
 }
 html[data-theme="light"] body.site-body .site-background::after {
-  background: linear-gradient(180deg, rgba(250, 251, 255, 0.28), rgba(250, 251, 255, 0.48));
+  background: linear-gradient(180deg, rgba(250, 251, 255, 0.3), rgba(250, 251, 255, 0.4));
 }
 html[data-theme="light"] body.site-body::before {
   background: radial-gradient(120% 80% at 50% 30%, transparent 0%, transparent 55%, rgba(250, 251, 255, 0.5) 100%);

@@ -52,7 +52,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(4, 16, 37, 0.28), rgba(4, 16, 37, 0.48));
+  background: linear-gradient(180deg, rgba(4, 16, 37, 0.3), rgba(4, 16, 37, 0.4));
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
